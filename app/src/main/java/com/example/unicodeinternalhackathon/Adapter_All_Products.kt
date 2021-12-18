@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -20,9 +21,20 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val input = data[position]
+
+        //function for showing data in recyclerView fields
         holder.bind(input,context)
+
+        //on click of recycler sends data to new activity and open new activity
         holder.itemView.setOnClickListener {
-//            val intent = Intent(this)
+            val intent = Intent(context,All_Product_Desc::class.java)
+            intent.putExtra("name",data[position].Name)
+            intent.putExtra("img",data[position].Image)
+            intent.putExtra("desc",data[position].Description)
+            intent.putExtra("dp",data[position].DiscountedPrice)
+            intent.putExtra("min",data[position].MinQuantity)
+            intent.putExtra("mrp",data[position].MRP)
+            context.startActivity(intent)
         }
     }
 
@@ -31,10 +43,14 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
+        //variables for recyclerview fields
         private var tvName: TextView = v.findViewById(R.id.tv_all_products_name)
         private var tvMrp: TextView = v.findViewById(R.id.tv_all_products_mrp)
         private var tvDp: TextView = v.findViewById(R.id.tv_all_products_dp)
         var img: ImageView = v.findViewById(R.id.im_all_products_img)
+
+        // function that assigns data to recyclerview fields
         fun bind(data: data_all_products,context: Context) {
             tvName.text = data.Name
             tvDp.text = data.DiscountedPrice
