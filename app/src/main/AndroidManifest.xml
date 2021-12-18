@@ -10,11 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnicodeInternalHackathon">
         <activity
+<<<<<<< HEAD
             android:name=".All_Products"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"/>
+=======
+            android:name=".SellerProducts"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+>>>>>>> dfa93ce6db2c91b5c16bd059fd3a7c0a56ad6d40
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
@@ -24,6 +32,15 @@
         <activity
             android:name=".Buyer_All_Products"
             android:exported="true" />
+<<<<<<< HEAD
+=======
+
+        <activity
+            android:name=".SellerAddProduct"
+            android:exported="true"/>
+
+
+>>>>>>> dfa93ce6db2c91b5c16bd059fd3a7c0a56ad6d40
         <activity
             android:name=".Seller_All_Products"
             android:exported="true">
