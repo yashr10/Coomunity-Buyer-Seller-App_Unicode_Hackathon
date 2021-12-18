@@ -13,7 +13,7 @@
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_marginEnd="70dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="78dp"
             android:padding="5dp"
             android:background="@drawable/back_button"
             android:text="Buyer"
@@ -29,7 +29,7 @@
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="78dp"
             android:padding="5dp"
             android:text="Seller"
             android:textStyle="normal"
@@ -98,6 +98,25 @@
             app:layout_constraintTop_toBottomOf="@id/et_bAddress_register" />
 
         <EditText
+            android:id="@+id/et_bPhNo_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_phone_login"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Phone Number"
+            android:visibility="gone"
+            android:inputType = "numberDecimal"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_bRegNo_register" />
+
+        <EditText
             android:id="@+id/et_bEmail_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
@@ -114,7 +133,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_bRegNo_register" />
+            app:layout_constraintTop_toBottomOf="@id/et_bPhNo_register" />
 
         <EditText
             android:id="@+id/et_bPassword_register"
@@ -225,6 +244,25 @@
             app:layout_constraintTop_toBottomOf="@id/et_sAddress_register" />
 
         <EditText
+            android:id="@+id/et_sPhNo_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_phone_login"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Phone Number"
+            android:visibility="gone"
+            android:inputType = "numberDecimal"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sPanNo_register" />
+
+        <EditText
             android:id="@+id/et_sEmail_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
@@ -241,7 +279,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_sPanNo_register" />
+            app:layout_constraintTop_toBottomOf="@id/et_sPhNo_register" />
 
         <EditText
             android:id="@+id/et_sPassword_register"
