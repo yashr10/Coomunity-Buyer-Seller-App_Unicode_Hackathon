@@ -15,11 +15,7 @@ package="com.example.unicodeinternalhackathon">
     <activity
         android:name=".LoginActivity"
         android:exported="true">
-    <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
 
-    <category android:name="android.intent.category.LAUNCHER" />
-</intent-filter>
     </activity>
 
     <activity
@@ -29,22 +25,10 @@ package="com.example.unicodeinternalhackathon">
         android:name=".SellerOrders"
         android:exported="true"/>
 
-</application>
-    package="com.example.unicodeinternalhackathon">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-
-        android:theme="@style/Theme.UnicodeInternalHackathon">
         <activity android:name=".Buyer_All_Products"
             android:exported = "true"/>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true"/>
+
         <activity
             android:name=".Seller_All_Products"
             android:exported="true">
@@ -56,9 +40,7 @@ package="com.example.unicodeinternalhackathon">
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true"/>
+
     </application>
 
 </manifest>
