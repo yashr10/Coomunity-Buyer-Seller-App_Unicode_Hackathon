@@ -172,5 +172,103 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+        bt_bRegister_register.setOnClickListener {
+            when {
+                TextUtils.isEmpty(et_bName_register.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please Enter Shop Name.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                TextUtils.isEmpty(et_bAddress_register.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please Enter Address.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                TextUtils.isEmpty(et_bRegNo_register.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please Enter Pan Card Number.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                TextUtils.isEmpty(et_bPhNo_register.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please Enter Phone Number.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                TextUtils.isEmpty(et_bEmail_register.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please Enter Email.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                TextUtils.isEmpty(et_bPassword_register.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please Enter Password.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {
+                    val bName: String = et_bName_register.text.toString().trim { it <= ' ' }
+                    val bAddress: String = et_bAddress_register.text.toString().trim { it <= ' ' }
+                    val bRegNo: String = et_bRegNo_register.text.toString().trim { it <= ' ' }
+                    val bPhNo: String = et_bPhNo_register.text.toString().trim { it <= ' ' }
+                    val bEmail: String = et_bEmail_register.text.toString().trim { it <= ' ' }
+                    val bPassword: String = et_bPassword_register.text.toString().trim { it <= ' ' }
+
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(bEmail, bPassword)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                task.result!!.user!!
+                                Toast.makeText(
+                                    this@RegisterActivity,
+                                    "You were registered successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                val user = hashMapOf(
+
+                                    "Name" to bName,
+                                    "email" to bEmail,
+                                    "pan_card_number" to bRegNo,
+                                    "phone_number" to bPhNo,
+                                    "address" to bAddress,
+                                    "user_id" to task.result!!.user!!.uid
+                                )
+
+                                db.collection("buyer")
+                                    .document(task.result!!.user!!.uid)
+                                    .set(user)
+                                    .addOnSuccessListener {
+                                        Log.d("data in Firestore" , "true")
+                                    }
+                                    .addOnFailureListener {
+                                        Log.d("data in Firestore",it.message.toString() )
+                                    }
+
+                                startActivity(Intent(this,SellerOrders::class.java))
+                                finish()
+
+                            } else {
+                                Toast.makeText(
+                                    this@RegisterActivity,
+                                    task.exception!!.message.toString(),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                }
+            }
+        }
     }
 }
