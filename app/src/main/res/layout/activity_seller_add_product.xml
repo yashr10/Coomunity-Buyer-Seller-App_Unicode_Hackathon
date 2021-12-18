@@ -13,33 +13,52 @@
         android:orientation="vertical">
 
         <EditText
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
             android:id="@+id/et_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Product Name"
             />
         <EditText
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
             android:id="@+id/et_productDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Product Description"
             />
         <EditText
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
+        android:id="@+id/et_MRP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+            android:hint="MRP"
+            />
+        <EditText
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
             android:id="@+id/et_product_discountedPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:hint="Discounted Price"
             />
         <EditText
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
             android:id="@+id/et_minQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
-        <EditText
-            android:id="@+id/et_MRP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:hint="Minimum Quantity for discount"
             android:inputType="number"/>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
             android:layout_width="match_parent"
             android:id="@+id/cl"
             android:layout_height="wrap_content">
@@ -68,9 +87,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
+            android:padding="8dp"
+            android:layout_marginTop="12dp"
             android:id="@+id/bt_addProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="add product"/>
 
 

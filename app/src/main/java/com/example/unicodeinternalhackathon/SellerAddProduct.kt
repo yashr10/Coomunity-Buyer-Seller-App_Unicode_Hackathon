@@ -56,7 +56,7 @@ class SellerAddProduct : AppCompatActivity() {
 
             val product = hashMapOf(
 
-                "Nme" to productName.text.toString(),
+                "Name" to productName.text.toString(),
                 "Description" to productDesc.text.toString(),
                 "MRP" to productMrp.text.toString(),
                 "DiscountedPrice"  to productDiscountedPrice.text.toString(),
@@ -82,6 +82,8 @@ class SellerAddProduct : AppCompatActivity() {
                     imageText.isVisible = true
                     imageUri = null
                     productImage.setImageURI(imageUri)
+
+
                 }.addOnFailureListener {
                     Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
                 }
