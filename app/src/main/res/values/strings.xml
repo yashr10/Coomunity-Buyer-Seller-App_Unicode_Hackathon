@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Unicode Internal Hackathon</string>
+    <string name="new_user_register_now">New User? &#160;<b>Register now</b> </string>
 </resources>
