@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 
 class SellerAddProduct : AppCompatActivity() {
@@ -22,6 +23,7 @@ class SellerAddProduct : AppCompatActivity() {
     private var imageUri : Uri? = null
     private lateinit var productImage : ImageView
     private lateinit var imageText : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,39 +56,85 @@ class SellerAddProduct : AppCompatActivity() {
 
         addProduct.setOnClickListener {
 
-            val product = hashMapOf(
 
-                "Name" to productName.text.toString(),
-                "Description" to productDesc.text.toString(),
-                "MRP" to productMrp.text.toString(),
-                "DiscountedPrice"  to productDiscountedPrice.text.toString(),
-                "MinQuantity" to productMinQuantity.text.toString(),
-                "Image" to imageUri.toString()
+            var productId : String?= null
+            var product: HashMap<String, String>
 
-            )
+
 
 
             db.collection("seller")
              //   .document(Firebase.auth.currentUser!!.uid)
-                .document()
+                .document("33")
                 .collection("products")
                 .document()
-                .set(product)
-                .addOnSuccessListener {
-                    Log.d("SellerAddProduct","Product added")
-                    productName.text = null
-                    productDesc.text = null
-                    productMrp.text = null
-                    productDiscountedPrice.text = null
-                    productMinQuantity.text = null
-                    imageText.isVisible = true
-                    imageUri = null
-                    productImage.setImageURI(imageUri)
+                .addSnapshotListener { value, error ->
+
+                    productId = value?.id
+                    product = hashMapOf(
+
+                        "Name" to productName.text.toString(),
+                        "Description" to productDesc.text.toString(),
+                        "MRP" to productMrp.text.toString(),
+                        "DiscountedPrice"  to productDiscountedPrice.text.toString(),
+                        "MinQuantity" to productMinQuantity.text.toString(),
+                        "Image" to imageUri.toString(),
+                        "ProductId" to productId.toString()
+
+                    )
+
+                    if (!productId.isNullOrEmpty()){
 
 
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
-                }
+
+                        val filename = productId
+
+                        val storageRef = FirebaseStorage.getInstance().getReference("images/$filename")
+
+                        imageUri.let {
+
+                            storageRef.putFile(it!!)
+                        }.addOnSuccessListener {
+
+                            Log.d("image added",imageUri.toString())
+                        }.addOnFailureListener{
+
+                            Log.d("iamge exce",it.message.toString())
+                        }
+
+
+                        db.collection("seller")
+                            //   .document(Firebase.auth.currentUser!!.uid)
+                            .document("33")
+                            .collection("products")
+                            .document(productId!!)
+                            .set(product)
+                            .addOnSuccessListener {
+                                Log.d("SellerAddProduct","Product added")
+                                productName.text = null
+                                productDesc.text = null
+                                productMrp.text = null
+                                productDiscountedPrice.text = null
+                                productMinQuantity.text = null
+                                imageText.isVisible = true
+                                imageUri = null
+                                productImage.setImageURI(imageUri)
+
+                                startActivity(Intent(this,SellerProducts::class.java))
+
+
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
+                            }
+                }else{
+                        Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
+                    }
+
+
+
+
+            }
+
 
 
 
@@ -110,6 +158,7 @@ class SellerAddProduct : AppCompatActivity() {
 
             val currentUser = mAuth.currentUser
             imageText.isVisible = false
+
 
 
 
