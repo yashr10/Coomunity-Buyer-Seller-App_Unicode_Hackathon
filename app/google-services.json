@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1069716744166",
+    "project_id": "unicode-internal-hackathon",
+    "storage_bucket": "unicode-internal-hackathon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069716744166:android:5a857a6b02f592c5a89827",
+        "android_client_info": {
+          "package_name": "com.example.unicodeinternalhackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069716744166-1205c6ic3i34smcj1pq5pq9r1p6i5g75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDntj-6c6IKEBtJz-W_i_r26Nz8gp1ucU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069716744166-1205c6ic3i34smcj1pq5pq9r1p6i5g75.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
