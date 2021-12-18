@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:title="@string/orders"
+            android:id="@+id/nav_seller_orders"
+            android:icon="@drawable/ic_all_products"/>
+        <item android:title="@string/your_products"
+            android:id="@+id/nav_seller_products"
+            android:icon="@drawable/ic_orders"/>
+        <item android:title="@string/all_products"
+            android:id="@+id/nav_seller_all_products"
+            android:icon="@drawable/ic_orders"/>
+        <item android:id="@+id/nav_seller_min_amount"
+            android:title="@string/min_amount"
+            android:icon="@drawable/ic_orders"/>
+    <group android:checkableBehavior="single">
+        <item android:title="@string/account">
+            <menu>
+                <item android:title="@string/profile"
+                    android:id="@+id/nav_seller_profile"
+                    android:icon="@drawable/ic_profile"/>
+            </menu>
+        </item>
+
+    </group>
+</menu>
