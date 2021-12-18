@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back1.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back_button.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_lock.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_profile.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_register.xml" value="0.1796875" />
       </map>
     </option>
   </component>
