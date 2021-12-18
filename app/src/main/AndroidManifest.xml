@@ -28,6 +28,7 @@ package="com.example.unicodeinternalhackathon">
     <activity
         android:name=".SellerOrders"
         android:exported="true"/>
+
 </application>
 
 </manifest>
