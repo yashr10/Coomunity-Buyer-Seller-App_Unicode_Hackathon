@@ -109,7 +109,7 @@ class SellerProductsAdapter(
         val image : ImageView = v.findViewById(R.id.im_all_products_img)
         val name: TextView = v.findViewById(R.id.tv_all_products_name)
         val mrp : TextView= v.findViewById(R.id.tv_all_products_mrp)
-        val discountedPrice : TextView= v.findViewById(R.id.tv_all_products_dp)
+        val discountedPrice : TextView= v.findViewById(R.id.tv_buyer_order_amount)
 
     }
 
