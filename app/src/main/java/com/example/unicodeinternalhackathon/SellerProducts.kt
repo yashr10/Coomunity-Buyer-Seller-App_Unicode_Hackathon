@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -39,74 +40,40 @@ class SellerProducts : AppCompatActivity() {
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
 
-     //   val productNameList = arrayListOf<String>()
-        /*val productImageList = arrayListOf<String>()
-        val productPriceList = arrayListOf<String?>()*/
 
         db.collection("seller")
-            .document(Firebase.auth.currentUser!!.uid)
-          //  .document("33")
+//            .document(Firebase.auth.currentUser!!.uid)
+            .document("33")
             .collection("products")
             .get()
             .addOnSuccessListener { querySnapshot ->
 
-               /* querySnapshot.documentChanges.forEach{
+                querySnapshot.documentChanges.forEach{
 
                     productList.add(it.document.toObject(data_all_products::class.java))
 
                     Log.d("msg", productList.toString())
 
-
-
-                   *//* productNameList.add(it.document["Name"].toString())
-                    productImageList.add(it.document["Image"].toString())
-                    productPriceList.add(it.document["DiscountedPrice"].toString())
-*//*
-                }*/
-
-                querySnapshot.forEach {
-
-                    productList.add(it.toObject(data_all_products::class.java))
-                    Log.d("productList",productList.toString())
-                    val filename = it.id
-                    val storageRef = FirebaseStorage.getInstance().reference.child("images/$filename")
-                    val localFile = File.createTempFile("tempImage","jpg")
-                    Log.d("local file",localFile.toString())
-                    storageRef.getFile(localFile).addOnSuccessListener {
-                        imageList.add(localFile.toUri())
-                        Log.d("image added","ff")
-
-                    }.addOnFailureListener{
-                        Log.d("fail","ff")
-                    }
-
-
                 }
 
-
-                myAdapter = SellerProductsAdapter(productList,imageList,this)
+                myAdapter = SellerProductsAdapter(productList,this)
                 recyclerView.adapter = myAdapter
 
             }
-
-
-
-
 
     }
 }
 
 class SellerProductsAdapter(
     private val productList: ArrayList<data_all_products>,
-    val  imageList: ArrayList<Uri>,
     val context: Context
 ) : RecyclerView.Adapter<SellerProductsAdapter.ViewHolder>(){
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-        val image : ImageView = v.findViewById<ImageView>(R.id.im_all_products_img)
-        val name: TextView = v.findViewById<TextView>(R.id.tv_all_products_name)
-        val mrp : TextView= v.findViewById<TextView>(R.id.tv_all_products_mrp)
-        val discountedPrice : TextView= v.findViewById<TextView>(R.id.tv_all_products_dp)
+        val image : ImageView = v.findViewById(R.id.im_all_products_img)
+        val name: TextView = v.findViewById(R.id.tv_all_products_name)
+        val mrp : TextView= v.findViewById(R.id.tv_all_products_mrp)
+        val discountedPrice : TextView= v.findViewById(R.id.tv_all_products_dp)
 
     }
 
@@ -123,14 +90,16 @@ class SellerProductsAdapter(
         holder.name.text = productList[position].Name
         holder.discountedPrice.text = productList[position].DiscountedPrice
         holder.mrp.text = productList[position].MRP
-        holder.image.setImageURI(productList[position].Image.toUri())
+
+        Glide.with(context)
+            .load(productList[position].Image)
+            .into(holder.image)
+//        holder.image.setImageURI(productList[position].Image.toUri())
      //   holder.image.setImageURI(imageList[position])
 
 
 
-
         holder.itemView.setOnClickListener {
-
 
             val activity = it.context as AppCompatActivity
             val intent = Intent(context,ProductDetails::class.java)
