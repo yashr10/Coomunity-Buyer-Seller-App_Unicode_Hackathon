@@ -1,7 +1,11 @@
 package com.example.unicodeinternalhackathon
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +14,12 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 class SellerProducts : AppCompatActivity() {
 
@@ -19,83 +27,94 @@ class SellerProducts : AppCompatActivity() {
     lateinit var recyclerView : RecyclerView
     val db = Firebase.firestore
     private lateinit var myAdapter: SellerProductsAdapter
+    private val productList : ArrayList<data_all_products> = ArrayList()
+    private val imageList : ArrayList<Uri> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_products)
+        Log.d("OnCreate","reached")
 
         recyclerView = findViewById(R.id.rv_seller_products)
 
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
 
-        val productNameList = arrayListOf<String>()
-        val productImageList = arrayListOf<String>()
-        val productPriceList = arrayListOf<String?>()
 
         db.collection("seller")
-          //  .document(Firebase.auth.currentUser!!.uid)
-            .document()
+//            .document(Firebase.auth.currentUser!!.uid)
+            .document("33")
             .collection("products")
             .get()
             .addOnSuccessListener { querySnapshot ->
 
                 querySnapshot.documentChanges.forEach{
 
-                    productNameList.add(it.document["Name"].toString())
-                    productImageList.add(it.document["Image"].toString())
-                    productPriceList.add(it.document["DiscountedPrice"].toString())
+                    productList.add(it.document.toObject(data_all_products::class.java))
+
+                    Log.d("msg", productList.toString())
 
                 }
 
-                myAdapter = SellerProductsAdapter(productNameList,productPriceList,productImageList)
+                myAdapter = SellerProductsAdapter(productList,this)
                 recyclerView.adapter = myAdapter
 
             }
-
-
-
-
 
     }
 }
 
 class SellerProductsAdapter(
-    val productNameList: ArrayList<String>,
-   val  productPriceList: ArrayList<String?>,
-   val  productImageList: ArrayList<String>
+    private val productList: ArrayList<data_all_products>,
+    val context: Context
 ) : RecyclerView.Adapter<SellerProductsAdapter.ViewHolder>(){
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-        val image : ImageView = v.findViewById<ImageView>(R.id.iv_product_image)
-        val name: TextView = v.findViewById<TextView>(R.id.tv_product_name)
-        val price : TextView= v.findViewById<TextView>(R.id.tv_product_price)
-
+        val image : ImageView = v.findViewById(R.id.im_all_products_img)
+        val name: TextView = v.findViewById(R.id.tv_all_products_name)
+        val mrp : TextView= v.findViewById(R.id.tv_all_products_mrp)
+        val discountedPrice : TextView= v.findViewById(R.id.tv_all_products_dp)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        val v = inflater.inflate(R.layout.card_seller_products,parent,false)
+        val v = inflater.inflate(R.layout.card_view_all_products,parent,false)
 
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.name.text = productNameList[position]
-        holder.price.text = productPriceList[position]
-        holder.image.setImageURI(productImageList[position].toUri())
+        holder.name.text = productList[position].Name
+        holder.discountedPrice.text = productList[position].DiscountedPrice
+        holder.mrp.text = productList[position].MRP
+
+        Glide.with(context)
+            .load(productList[position].Image)
+            .into(holder.image)
+//        holder.image.setImageURI(productList[position].Image.toUri())
+     //   holder.image.setImageURI(imageList[position])
+
+
 
         holder.itemView.setOnClickListener {
+
+            val activity = it.context as AppCompatActivity
+            val intent = Intent(context,ProductDetails::class.java)
+
+            intent.putExtra("product",productList[position])
+
+           activity.startActivity(intent)
+
 
 
         }
     }
 
     override fun getItemCount(): Int {
-     return  productNameList.size
+     return  productList.size
     }
 
 }

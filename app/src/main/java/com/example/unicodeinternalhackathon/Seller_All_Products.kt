@@ -1,5 +1,6 @@
 package com.example.unicodeinternalhackathon
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,15 +71,12 @@ class Seller_All_Products : AppCompatActivity() {
             .addOnSuccessListener { sellers ->
                 for (i in sellers) {
                     db.collection("seller")
-                        .document("33")
+                        .document(i["user_id"].toString())
                         .collection("products")
                         .get()
                         .addOnSuccessListener { products ->
-                            Toast.makeText(this, "inner loop", Toast.LENGTH_SHORT).show()
                             for (p in products) {
-                                Toast.makeText(this, "inner loop1", Toast.LENGTH_SHORT).show()
                                 data.add(p.toObject(data_all_products::class.java))
-                                Log.d("msg", data.toString())
                             }
                             rv.adapter = Adapter_All_Products(data, this)
                             rv.adapter!!.notifyDataSetChanged()
@@ -92,26 +91,32 @@ class Seller_All_Products : AppCompatActivity() {
             }
 
 
-//        nav.setNavigationItemSelectedListener {
-//            when(it.itemId)
-//            {
+        nav.setNavigationItemSelectedListener {
+            drawer.closeDrawer(GravityCompat.START)
+            when(it.itemId)
+            {
 //                R.id.nav_seller_orders->{
 //
 //                }
-//                R.id.nav_seller_all_products->{
-//
-//                }
-//                R.id.nav_seller_products->{
-//
-//                }
-//                R.id.nav_seller_min_amount->{
-//
-//                }
+                R.id.nav_seller_all_products->{
+                    val Intent = Intent(this,Seller_All_Products::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                R.id.nav_seller_products->{
+                    val Intent = Intent(this,SellerAddProduct::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                R.id.nav_seller_min_amount->{
+
+                }
 //                R.id.nav_seller_profile->{
 //
 //                }
-//            }
-//        }
+            }
+            true
+        }
     }
 
 }
