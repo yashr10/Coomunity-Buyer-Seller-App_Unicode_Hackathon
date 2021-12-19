@@ -28,7 +28,7 @@ class SellerAddProduct : AppCompatActivity() {
     private val storageRef = storage.reference
 
     //variable to store imageUrl
-    private lateinit var imgUrl: String? = null
+    private var imgUrl: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
