@@ -100,6 +100,11 @@ class Buyer_All_Products : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+                R.id.nav_buyer_logout -> {
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this,LoginActivity::class.java))
+                    finish()
+                }
 //                R.id.nav_buyer_profile -> {
 //
 //                }
