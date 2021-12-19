@@ -1,6 +1,7 @@
 package com.example.unicodeinternalhackathon
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -82,8 +83,15 @@ class All_Product_Desc : AppCompatActivity() {
                     .collection("products")
                     .document(pId.toString())
                     .update("QuantityFulfilled",total.toString())
-
+                    .addOnSuccessListener {
+                        val intent = Intent(this,Buyer_orders::class.java)
+                        intent.putExtra("name",tvName.text.toString())
+                        intent.putExtra("quantity",add)
+                        intent.putExtra("ppItem",tvDp.text.toString())
+                        intent.putExtra("image",img)
+                    }
             }
+
             dialog.setNegativeButton("Cancel") { _, _ ->
 
             }

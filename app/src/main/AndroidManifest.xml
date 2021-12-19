@@ -3,38 +3,39 @@
     package="com.example.unicodeinternalhackathon">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UnicodeInternalHackathon"
-        android:fullBackupContent="true">
-
+        android:theme="@style/Theme.UnicodeInternalHackathon">
+        <activity
+            android:name=".Buyer_orders"
+            android:exported="false" />
         <activity
             android:name=".ProductDetails"
             android:exported="false" />
-         <activity
+        <activity
             android:name=".All_Product_Desc"
             android:exported="false" />
         <activity
             android:name=".All_Products"
             android:exported="false" />
         <activity
-            android:name=".SellerAddProduct"
+            android:name=".Seller_All_Products"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".Seller_All_Products"
+            android:name=".SellerAddProduct"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -50,8 +51,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

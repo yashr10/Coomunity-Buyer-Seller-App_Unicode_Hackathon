@@ -11,15 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import java.io.File
 
 class SellerProducts : AppCompatActivity() {
 
@@ -73,7 +69,7 @@ class SellerProductsAdapter(
         val image : ImageView = v.findViewById(R.id.im_all_products_img)
         val name: TextView = v.findViewById(R.id.tv_all_products_name)
         val mrp : TextView= v.findViewById(R.id.tv_all_products_mrp)
-        val discountedPrice : TextView= v.findViewById(R.id.tv_all_products_dp)
+        val discountedPrice : TextView= v.findViewById(R.id.tv_buyer_order_amount)
 
     }
 
