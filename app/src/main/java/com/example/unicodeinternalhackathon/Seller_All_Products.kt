@@ -53,10 +53,12 @@ class Seller_All_Products : AppCompatActivity() {
         toolbar = findViewById(R.id.seller_toolbar)
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.seller_left_nav)
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //assigning rv and adapter
         rv = findViewById(R.id.rv_seller_products)
@@ -105,6 +107,11 @@ class Seller_All_Products : AppCompatActivity() {
                 R.id.nav_seller_products->{
                     val intent = Intent(this, SellerAddProduct::class.java)
                     startActivity(intent)
+                    finish()
+                }
+                R.id.nav_seller_logout -> {
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this,LoginActivity::class.java))
                     finish()
                 }
 //                R.id.nav_seller_min_amount->{
