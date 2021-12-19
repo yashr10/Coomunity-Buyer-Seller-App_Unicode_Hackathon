@@ -13,14 +13,20 @@
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_orders.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_phone_login.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_profile.xml" value="0.16458333333333333" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_all_product_desc.xml" value="0.4" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_all_products.xml" value="0.2234375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_login.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_register.xml" value="0.14427083333333332" />
-        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/buyer_all_products.xml" value="0.152" />
-        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/card_view_all_products.xml" value="0.4" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/buyer_all_products.xml" value="0.264" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/card_activity_seller_order.xml" value="0.2234375" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/card_seller_products.xml" value="0.2234375" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/card_view_all_products.xml" value="0.5853658536585366" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/dialog_input.xml" value="0.4849557522123894" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/left_nav_header.xml" value="0.6" />
-        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/rv_all_products.xml" value="0.176" />
-        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/seller_all_products.xml" value="0.176" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/product_details.xml" value="0.2" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/rv_all_products.xml" value="0.1" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/seller_all_products.xml" value="0.136" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/menu/menu_buyer.xml" value="0.2234375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/menu/menu_seller.xml" value="0.2234375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

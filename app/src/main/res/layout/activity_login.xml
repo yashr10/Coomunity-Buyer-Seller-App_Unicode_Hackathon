@@ -103,32 +103,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/bt_login_login"
-                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal|center_vertical"
                     android:padding="2dp"
                     android:text="OR"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bt_login_login" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/tv_google_login"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/or"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/tv_phoneNumber_login"
-                    android:padding="2dp"
-                    android:src="@drawable/icon_google"
-                    app:layout_constraintEnd_toStartOf="@+id/or"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/or" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/tv_phoneNumber_login"
@@ -136,12 +118,10 @@
                     android:layout_height="40dp"
                     android:layout_below="@+id/or"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/ic_phone_login"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/or"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/or" />
 
                 <TextView
@@ -150,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/or"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:padding="8dp"
                     android:text="@string/new_user_register_now"
                     android:textColor="@color/black"
@@ -159,7 +139,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_google_login"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phoneNumber_login"
                     app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

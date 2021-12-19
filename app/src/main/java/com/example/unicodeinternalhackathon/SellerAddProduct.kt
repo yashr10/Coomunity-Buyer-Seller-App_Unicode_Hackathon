@@ -46,7 +46,9 @@ class SellerAddProduct : AppCompatActivity() {
 
         imageText.setOnClickListener {
 
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+
+
             val chooser = Intent.createChooser(intent,"choose")
             intent.type = "image/"
             startActivityForResult(chooser,100)
@@ -64,8 +66,8 @@ class SellerAddProduct : AppCompatActivity() {
 
 
             db.collection("seller")
-             //   .document(Firebase.auth.currentUser!!.uid)
-                .document("33")
+                .document(Firebase.auth.currentUser!!.uid)
+           //     .document("33")
                 .collection("products")
                 .document()
                 .addSnapshotListener { value, error ->
@@ -97,15 +99,39 @@ class SellerAddProduct : AppCompatActivity() {
                         }.addOnSuccessListener {
 
                             Log.d("image added",imageUri.toString())
+                            db.collection("seller")
+                                .document(Firebase.auth.currentUser!!.uid)
+                                // .document("33")
+                                .collection("products")
+                                .document(productId!!)
+                                .set(product)
+                                .addOnSuccessListener {
+                                    Log.d("SellerAddProduct","Product added")
+                                    productName.text = null
+                                    productDesc.text = null
+                                    productMrp.text = null
+                                    productDiscountedPrice.text = null
+                                    productMinQuantity.text = null
+                                    imageText.isVisible = true
+                                    imageUri = null
+                                    productImage.setImageURI(imageUri)
+
+                                        startActivity(Intent(this,SellerProducts::class.java))
+
+
+                                }.addOnFailureListener {
+                                    Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
+                                }
+
                         }.addOnFailureListener{
 
                             Log.d("iamge exce",it.message.toString())
                         }
 
 
-                        db.collection("seller")
-                            //   .document(Firebase.auth.currentUser!!.uid)
-                            .document("33")
+                       /* db.collection("seller")
+                               .document(Firebase.auth.currentUser!!.uid)
+                           // .document("33")
                             .collection("products")
                             .document(productId!!)
                             .set(product)
@@ -120,12 +146,12 @@ class SellerAddProduct : AppCompatActivity() {
                                 imageUri = null
                                 productImage.setImageURI(imageUri)
 
-                                startActivity(Intent(this,SellerProducts::class.java))
+                            //    startActivity(Intent(this,SellerProducts::class.java))
 
 
                             }.addOnFailureListener {
                                 Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
-                            }
+                            }*/
                 }else{
                         Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
                     }

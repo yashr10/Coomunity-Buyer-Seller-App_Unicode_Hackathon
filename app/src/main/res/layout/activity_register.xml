@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/frame2"
-                android:layout_width="match_parent"
-                android:layout_height="225dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+//Buyer
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_buyer"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginTop="78dp"
+            android:padding="5dp"
+            android:background="@drawable/back_button"
+            android:text="Buyer"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Welcome New User \n    Please Register"
-                    android:textColor="@color/black"
-                    android:textSize="32sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.495"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.319" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_seller"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="78dp"
+            android:padding="5dp"
+            android:text="Seller"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="@color/white"
+            android:background="@drawable/back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_name_register"
+            android:id="@+id/et_bName_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/frame2"
-            android:layout_alignParentEnd="true"
             android:layout_marginTop="65dp"
             android:drawableLeft="@drawable/ic_profile"
             android:drawablePadding="12dp"
@@ -47,17 +53,73 @@
             android:padding="8dp"
             android:textColorHint="#808080"
             android:textColor="@color/black"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/frame2" />
+            app:layout_constraintTop_toTopOf="@id/bt_buyer"/>
 
         <EditText
-            android:id="@+id/et_email_register"
+            android:id="@+id/et_bAddress_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_name_register"
-            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_home"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Address"
+            android:visibility="gone"
+            android:inputType="textPostalAddress"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_bName_register" />
+
+        <EditText
+            android:id="@+id/et_bRegNo_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_registration"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Registration Number"
+            android:inputType = "numberDecimal"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_bAddress_register" />
+
+        <EditText
+            android:id="@+id/et_bPhNo_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_phone_login"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Phone Number"
+            android:visibility="gone"
+            android:inputType = "numberDecimal"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_bRegNo_register" />
+
+        <EditText
+            android:id="@+id/et_bEmail_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="12dp"
@@ -65,19 +127,18 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="8dp"
+            android:visibility="gone"
             android:textColorHint="#808080"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_name_register" />
+            app:layout_constraintTop_toBottomOf="@id/et_bPhNo_register" />
 
         <EditText
-            android:id="@+id/et_password_register"
+            android:id="@+id/et_bPassword_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_email_register"
-            android:layout_alignParentEnd="true"
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="12dp"
@@ -85,31 +146,175 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="8dp"
+            android:visibility="gone"
             android:textColorHint="#808080"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_email_register" />
+            app:layout_constraintTop_toBottomOf="@id/et_bEmail_register" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_register_register"
+            android:id="@+id/bt_bRegister_register"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/et_password_register"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:padding="5dp"
             android:text="Register"
             android:background="@drawable/back_button"
             android:textColor="@color/white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_password_register"
+            app:layout_constraintTop_toBottomOf="@id/et_bPassword_register"
             app:layout_constraintVertical_bias="0.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+        <TextView
+            android:id="@+id/tv_already_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="90dp"
+            android:text="@string/already_a_user_login"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+//Seller
+        <EditText
+            android:id="@+id/et_shopName_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:drawableLeft="@drawable/ic_profile"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Shop Name"
+            android:inputType="text"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bt_buyer"/>
+
+        <EditText
+            android:id="@+id/et_sAddress_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_home"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Address"
+            android:visibility="gone"
+            android:inputType="textPostalAddress"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_shopName_register" />
+
+        <EditText
+            android:id="@+id/et_sPanNo_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_registration"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Pan Card Number"
+            android:visibility="gone"
+            android:inputType = "numberDecimal"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sAddress_register" />
+
+        <EditText
+            android:id="@+id/et_sPhNo_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_phone_login"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Phone Number"
+            android:visibility="gone"
+            android:inputType = "numberDecimal"
+            android:padding="8dp"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sPanNo_register" />
+
+        <EditText
+            android:id="@+id/et_sEmail_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sPhNo_register" />
+
+        <EditText
+            android:id="@+id/et_sPassword_register"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawablePadding="12dp"
+            android:background="@drawable/back1"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sEmail_register" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_sRegister_register"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:padding="5dp"
+            android:text="Register"
+            android:background="@drawable/back_button"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sPassword_register"
+            app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

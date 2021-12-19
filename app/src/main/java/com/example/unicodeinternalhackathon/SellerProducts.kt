@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -30,6 +32,7 @@ class SellerProducts : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_products)
+        Log.d("OnCreate","reached")
 
         recyclerView = findViewById(R.id.rv_seller_products)
 
@@ -41,8 +44,8 @@ class SellerProducts : AppCompatActivity() {
         val productPriceList = arrayListOf<String?>()*/
 
         db.collection("seller")
-          //  .document(Firebase.auth.currentUser!!.uid)
-            .document("33")
+            .document(Firebase.auth.currentUser!!.uid)
+          //  .document("33")
             .collection("products")
             .get()
             .addOnSuccessListener { querySnapshot ->
@@ -64,14 +67,17 @@ class SellerProducts : AppCompatActivity() {
                 querySnapshot.forEach {
 
                     productList.add(it.toObject(data_all_products::class.java))
-
+                    Log.d("productList",productList.toString())
                     val filename = it.id
                     val storageRef = FirebaseStorage.getInstance().reference.child("images/$filename")
                     val localFile = File.createTempFile("tempImage","jpg")
+                    Log.d("local file",localFile.toString())
                     storageRef.getFile(localFile).addOnSuccessListener {
-
                         imageList.add(localFile.toUri())
+                        Log.d("image added","ff")
 
+                    }.addOnFailureListener{
+                        Log.d("fail","ff")
                     }
 
 
@@ -117,8 +123,8 @@ class SellerProductsAdapter(
         holder.name.text = productList[position].Name
         holder.discountedPrice.text = productList[position].DiscountedPrice
         holder.mrp.text = productList[position].MRP
-
-        holder.image.setImageURI(imageList[position])
+        holder.image.setImageURI(productList[position].Image.toUri())
+     //   holder.image.setImageURI(imageList[position])
 
 
 
