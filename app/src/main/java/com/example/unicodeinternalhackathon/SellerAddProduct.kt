@@ -28,7 +28,7 @@ class SellerAddProduct : AppCompatActivity() {
     private val storageRef = storage.reference
 
     //variable to store imageUrl
-    private lateinit var imgUrl: String
+    private lateinit var imgUrl: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,8 +77,11 @@ class SellerAddProduct : AppCompatActivity() {
 
                         imageUri?.let { it1 -> storageRef.child("image/$filename").putFile(it1) }
                             ?.addOnSuccessListener {
-                                imgUrl = storageRef.child("image/$filename").downloadUrl.toString()
-                                Log.d("image added", imgUrl)
+                                storageRef.child("image/$filename").downloadUrl.
+                                    addOnSuccessListener {
+                                        imgUrl = it.toString()
+                                        Log.d("image added", imgUrl.toString())
+                                    }
 
                                 val product = hashMapOf(
                                     "Name" to productName.text.toString(),
@@ -86,7 +89,7 @@ class SellerAddProduct : AppCompatActivity() {
                                     "MRP" to productMrp.text.toString(),
                                     "DiscountedPrice" to productDiscountedPrice.text.toString(),
                                     "MinQuantity" to productMinQuantity.text.toString(),
-                                    "Image" to imgUrl,
+                                    "Image" to imgUrl.toString(),
                                     "ProductId" to productId.toString(),
                                     "QuantityFulfilled" to "0",
 //                                  "SellerId" to mAuth.currentUser!!.uid
