@@ -52,10 +52,12 @@ class Buyer_orders : AppCompatActivity() {
         toolbar = findViewById(R.id.buyer_order_toolbar)
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.buyer_order_left_nav)
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 //        recyclerview for order list
         rv = findViewById(R.id.rv_buyer_orders)
@@ -86,6 +88,11 @@ class Buyer_orders : AppCompatActivity() {
                 }
                 R.id.nav_buyer_orders -> {
                     drawer.closeDrawer(GravityCompat.START)
+                }
+                R.id.nav_seller_logout -> {
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this,LoginActivity::class.java))
+                    finish()
                 }
             }
             true

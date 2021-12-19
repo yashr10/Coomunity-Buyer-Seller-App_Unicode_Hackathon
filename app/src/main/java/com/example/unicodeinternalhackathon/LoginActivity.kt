@@ -15,13 +15,15 @@ class LoginActivity : AppCompatActivity() {
 
 
     private val db = Firebase.firestore
-    private lateinit var auth: FirebaseAuth
+    private lateinit var mAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        auth = FirebaseAuth.getInstance()
+
+        //initialising firebase auth
+        mAuth = FirebaseAuth.getInstance()
 
         tv_registerNow_login.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
@@ -101,6 +103,49 @@ class LoginActivity : AppCompatActivity() {
         tv_phoneNumber_login.setOnClickListener {
             startActivity(Intent(this,PhoneLoginRegisterActivity::class.java))
             finish()
+        }
+    }
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null)
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
+
+        //redirect to main Activity if user is not null
+        if (currentUser != null){
+            db.collection("buyer")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        if(document["user_id"].toString() == currentUser.uid){
+                            startActivity(Intent(this,Buyer_All_Products::class.java))
+                            finish()
+                        }
+                    }
+
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(this@LoginActivity,
+                        "Failure",
+                        Toast.LENGTH_SHORT).show()
+                }
+
+            db.collection("seller")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        if(document["user_id"].toString() == currentUser.uid){
+                            startActivity(Intent(this,SellerProducts::class.java))
+                            finish()
+                        }
+                    }
+
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(this@LoginActivity,
+                        "Failure",
+                        Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }

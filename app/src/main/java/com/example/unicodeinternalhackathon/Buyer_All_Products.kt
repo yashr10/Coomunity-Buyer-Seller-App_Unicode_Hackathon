@@ -51,10 +51,12 @@ class Buyer_All_Products : AppCompatActivity() {
         toolbar = findViewById(R.id.buyer_toolbar)
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.buyer_left_nav)
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
         //assinging rv and adapter
@@ -98,6 +100,11 @@ class Buyer_All_Products : AppCompatActivity() {
                 R.id.nav_buyer_orders -> {
                     val intent = Intent(this, Buyer_orders::class.java)
                     startActivity(intent)
+                    finish()
+                }
+                R.id.nav_buyer_logout -> {
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this,LoginActivity::class.java))
                     finish()
                 }
 //                R.id.nav_buyer_profile -> {

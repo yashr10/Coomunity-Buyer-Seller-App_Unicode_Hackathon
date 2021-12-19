@@ -79,44 +79,50 @@ class SellerProducts : AppCompatActivity() {
 
         }
 
-        // variable of navigation view,
-        // header variable for header of navigation
-        //userName variable to access username in header
-//        nav = findViewById(R.id.seller_products_nav1)
-//        val header = nav.getHeaderView(0)
-//        val userName = header.findViewById<TextView>(R.id.tv_left_nav_name)
-//        userName.text = mAuth.currentUser!!.displayName
+//         variable of navigation view,
+//         header variable for header of navigation
+//        userName variable to access username in header
+        nav = findViewById(R.id.seller_products_nav1)
+        val header = nav.getHeaderView(0)
+        val userName = header.findViewById<TextView>(R.id.tv_left_nav_name)
+        userName.text = mAuth.currentUser!!.displayName
 
-        //assigning toolbar and drawer to work simultaneously
-//        toolbar = findViewById(R.id.seller_products_toolbar)
-//        setSupportActionBar(toolbar)
-//        drawer = findViewById(R.id.seller_products_left_nav)
-//        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
-//        drawer.addDrawerListener(toggle)
-//        toggle.syncState()
-//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        assigning toolbar and drawer to work simultaneously
+        toolbar = findViewById(R.id.seller_products_toolbar)
+        setSupportActionBar(toolbar)
+        drawer = findViewById(R.id.seller_products_left_nav)
+        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.isDrawerIndicatorEnabled = true
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
 
-        //setting nav for accessing activities through left nav
-//        nav.setNavigationItemSelectedListener {
-//            drawer.closeDrawer(GravityCompat.START)
-//            when (it.itemId) {
-//                R.id.nav_seller_orders -> {
-//                    val intent = Intent(this, SellerOrders::class.java)
-//                    startActivity(intent)
-//                    finish()
-//                }
-//                R.id.nav_seller_all_products -> {
-//                    val intent = Intent(this, Seller_All_Products::class.java)
-//                    startActivity(intent)
-//                    finish()
-//                }
-//                R.id.nav_seller_products -> {
-//                    drawer.closeDrawer(GravityCompat.START)
-//                }
-//
-//            }
-//            true
-//        }
+//        setting nav for accessing activities through left nav
+        nav.setNavigationItemSelectedListener {
+            drawer.closeDrawer(GravityCompat.START)
+            when (it.itemId) {
+                R.id.nav_seller_orders -> {
+                    val intent = Intent(this, SellerOrders::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                R.id.nav_seller_all_products -> {
+                    val intent = Intent(this, Seller_All_Products::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                R.id.nav_seller_products -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                }
+                R.id.nav_seller_logout -> {
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this,LoginActivity::class.java))
+                    finish()
+                }
+            }
+            true
+        }
     }
 
 
