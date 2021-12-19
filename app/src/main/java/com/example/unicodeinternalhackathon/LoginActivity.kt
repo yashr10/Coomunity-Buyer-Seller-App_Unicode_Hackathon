@@ -4,14 +4,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+
+
+    private val db = Firebase.firestore
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        auth = FirebaseAuth.getInstance()
 
         tv_registerNow_login.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
@@ -43,12 +53,41 @@ class LoginActivity : AppCompatActivity() {
                                     "You were logged in successfully",
                                     Toast.LENGTH_SHORT).show()
 
-                                val intent = Intent(this@LoginActivity,
-                                    SellerProducts::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                startActivity(intent)
-                                finish()
+
+                                db.collection("buyer")
+                                    .get()
+                                    .addOnSuccessListener { result ->
+                                        for (document in result) {
+                                            if(document["user_id"].toString() == task.result!!.user!!.uid){
+                                                startActivity(Intent(this,Buyer_All_Products::class.java))
+                                                finish()
+                                            }
+                                        }
+
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        Toast.makeText(this@LoginActivity,
+                                            "Failure",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
+
+                                db.collection("seller")
+                                    .get()
+                                    .addOnSuccessListener { result ->
+                                        for (document in result) {
+                                            if(document["user_id"].toString() == task.result!!.user!!.uid){
+                                                startActivity(Intent(this,SellerProducts::class.java))
+                                                finish()
+                                            }
+                                        }
+
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        Toast.makeText(this@LoginActivity,
+                                            "Failure",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
+
                             } else {
                                 Toast.makeText(this@LoginActivity,
                                     task.exception!!.message.toString(),
