@@ -266,7 +266,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/ph_et_sOTP_register"
+        android:id="@+id/ph_et_OTP_register"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -276,11 +276,28 @@
         android:hint="Enter OTP"
         android:inputType = "numberDecimal"
         android:padding="8dp"
+        android:visibility="gone"
         android:textColorHint="#808080"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ph_bt_verify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:background="@drawable/back_button"
+        android:text="Verify"
+        android:textStyle="normal"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ph_et_OTP_register" />
 
     <TextView
         android:id="@+id/ph_tv_resend_otp"
@@ -291,7 +308,8 @@
         android:text="@string/otp_not_received"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/ph_et_sOTP_register"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/ph_et_OTP_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

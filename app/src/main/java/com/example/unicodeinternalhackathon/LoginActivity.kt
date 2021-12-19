@@ -58,5 +58,10 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+
+        tv_phoneNumber_login.setOnClickListener {
+            startActivity(Intent(this,PhoneLoginRegisterActivity::class.java))
+            finish()
+        }
     }
 }
