@@ -19,7 +19,7 @@ class SellerAddProduct : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     val db = Firebase.firestore
-    private lateinit var imageUri: Uri
+    private var imageUri: Uri? = null
     private lateinit var productImage: ImageView
     private lateinit var imageText: TextView
 
@@ -28,7 +28,7 @@ class SellerAddProduct : AppCompatActivity() {
     private val storageRef = storage.reference
 
     //variable to store imageUrl
-    private lateinit var imgUrl: String
+    private var imgUrl: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +52,8 @@ class SellerAddProduct : AppCompatActivity() {
 
         imageText.setOnClickListener {
 
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
+
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(intent, 100)
@@ -73,41 +74,53 @@ class SellerAddProduct : AppCompatActivity() {
 
 
                         val filename = productId
-                        storageRef.child("image/$filename").putFile(imageUri)
-                            .addOnSuccessListener {
-                                imgUrl = it.storage.downloadUrl.toString()
-                                Log.d("image added", imgUrl)
-                                val product = hashMapOf(
-                                    "Name" to productName.text.toString(),
-                                    "Description" to productDesc.text.toString(),
-                                    "MRP" to productMrp.text.toString(),
-                                    "DiscountedPrice" to productDiscountedPrice.text.toString(),
-                                    "MinQuantity" to productMinQuantity.text.toString(),
-                                    "Image" to imgUrl.toString(),
-                                    "ProductId" to productId.toString(),
-                                    "QuantityFulfilled" to "0",
-                                    "SellerId" to mAuth.currentUser!!.uid
-                                )
+                        imageUri?.let { it1 -> storageRef.child("image/$filename").putFile(it1) }
+                            ?.addOnSuccessListener {
+                                storageRef.child("image/$filename").downloadUrl.addOnSuccessListener {
 
-                                db.collection("seller")
-                                    .document(Firebase.auth.currentUser!!.uid)
-                                    .collection("products")
-                                    .document(productId!!)
-                                    .set(product)
-                                    .addOnSuccessListener {
-                                        Log.d("SellerAddProduct", product.toString())
+                                    imgUrl = it.toString()
+                                    Log.d("image added", imgUrl!!.toString())
 
-                                        startActivity(Intent(this, SellerProducts::class.java))
-                                        finish()
 
-                                    }.addOnFailureListener {
-                                        Toast.makeText(
-                                            this,
-                                            "Failed to add product",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
+                                    val product = hashMapOf(
+                                        "Name" to productName.text.toString(),
+                                        "Description" to productDesc.text.toString(),
+                                        "MRP" to productMrp.text.toString(),
+                                        "DiscountedPrice" to productDiscountedPrice.text.toString(),
+                                        "MinQuantity" to productMinQuantity.text.toString(),
+                                        "Image" to imgUrl.toString(),
+                                        "ProductId" to productId.toString(),
+                                        "QuantityFulfilled" to "0",
+                                        "SellerId" to mAuth.currentUser!!.uid
+                                    )
+
+                                    db.collection("seller")
+                                        .document(Firebase.auth.currentUser!!.uid)
+                                        .collection("products")
+                                        .document(productId!!)
+                                        .set(product)
+                                        .addOnSuccessListener {
+                                            Log.d("SellerAddProduct", product.toString())
+
+                                            startActivity(Intent(this, SellerProducts::class.java))
+                                            finish()
+
+                                        }.addOnFailureListener {
+                                            Toast.makeText(
+                                                this,
+                                                "Failed to add product",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                }
+
+
+                            }?.addOnFailureListener {
+
+                                Log.d("image exe", it.message.toString())
                             }
+
+
                     } else {
                         Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
                     }
@@ -124,7 +137,7 @@ class SellerAddProduct : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            imageUri = data?.data!!
+            imageUri = data?.data
             imgUrl = imageUri.toString()
             productImage.setImageURI(imageUri)
             Log.d("image", "changed")
