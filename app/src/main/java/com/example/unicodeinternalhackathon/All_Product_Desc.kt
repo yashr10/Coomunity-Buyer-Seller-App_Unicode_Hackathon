@@ -110,7 +110,8 @@ class All_Product_Desc : AppCompatActivity() {
                             "PICost" to dp.toString(),
                             "TotalAmount" to totalAmount.toString(),
                             "Image" to img.toString(),
-                            "Name" to name.toString()
+                            "Name" to name.toString(),
+                            "Description" to desc.toString()
                         )
 
                         db.collection("buyer")

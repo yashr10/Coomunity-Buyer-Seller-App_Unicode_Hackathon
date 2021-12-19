@@ -87,9 +87,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:padding="8dp"
                 android:textStyle="bold"
                 android:text="Product Name"/>
-            <EditText
+
+            <TextView
                 android:id="@+id/tv_productDetails_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +112,7 @@
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/tv_productDetails_desc"
                 android:layout_width="match_parent"
                 android:padding="8dp"
@@ -130,13 +132,13 @@
                     android:id="@+id/tv_productDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignBaseline="@id/tv_productDetails_mrp"
-                    android:text="MRP:"
+                    android:layout_alignBaseline="@id/tv_order_quantity"
+                    android:text="Quantity:"
                     android:textStyle="bold" />
 
 
                 <EditText
-                    android:id="@+id/tv_productDetails_mrp"
+                    android:id="@+id/tv_order_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/tv_productDetails"
@@ -145,22 +147,23 @@
 
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/tv_productDetails_dp"
+                <TextView
+                    android:id="@+id/tv_totalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:enabled="false"
                     android:textColor="@color/black"
+                    android:layout_alignBaseline="@id/tv_order_quantity"
 
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignBaseline="@id/tv_productDetails_dp"
-                    android:layout_toLeftOf="@id/tv_productDetails_dp"
-                    android:text="Discounted Price:"
+                    android:layout_alignBaseline="@id/tv_totalAmount"
+                    android:layout_toLeftOf="@id/tv_totalAmount"
+                    android:text="Total Amount:"
                     android:textStyle="bold"
 
                     />
@@ -168,29 +171,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:id="@+id/aaa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Minimun Quantity for discount:" />
-
-                <EditText
-                    android:id="@+id/tv_productDetails_minQuantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignBaseline="@id/aaa"
-                    android:layout_marginTop="12dp"
-                    android:layout_toRightOf="@id/aaa"
-                    android:textColor="@color/black"
-                    android:enabled="false"
-                    android:padding="8dp" />
-
-            </RelativeLayout>
 
 
             <RelativeLayout
@@ -198,20 +179,20 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/bt_productDetails_edit"
+                    android:id="@+id/bt_orderDetails_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="32dp"
-                    android:text="Edit Details" />
+                    android:text="Edit Order" />
 
                 <Button
-                    android:id="@+id/bt_productDetails_update"
+                    android:id="@+id/bt_orderDetails_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="32dp"
-                    android:text="Update Details"
+                    android:text="Update Order"
                     android:visibility="invisible" />
 
             </RelativeLayout>
@@ -239,4 +220,4 @@
 
 
 
-    </LinearLayout>
+</LinearLayout>
