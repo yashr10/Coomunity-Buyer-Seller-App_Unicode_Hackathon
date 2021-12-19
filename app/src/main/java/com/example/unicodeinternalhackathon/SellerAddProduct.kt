@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class SellerAddProduct : AppCompatActivity() {
@@ -22,6 +23,8 @@ class SellerAddProduct : AppCompatActivity() {
     private var imageUri: Uri? = null
     private lateinit var productImage: ImageView
     private lateinit var imageText: TextView
+    private val storage = Firebase.storage
+    private val storageRef = storage.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,7 @@ class SellerAddProduct : AppCompatActivity() {
 
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             val chooser = Intent.createChooser(intent, "choose")
-            intent.type = "image/"
+            intent.type = "image/*"
             startActivityForResult(chooser, 100)
         }
 
@@ -105,6 +108,8 @@ class SellerAddProduct : AppCompatActivity() {
             Log.d("image", "changed")
 
             mAuth = FirebaseAuth.getInstance()
+
+
 
             val currentUser = mAuth.currentUser
             imageText.isVisible = false
