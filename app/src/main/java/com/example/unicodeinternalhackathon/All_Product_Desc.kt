@@ -26,7 +26,7 @@ class All_Product_Desc : AppCompatActivity() {
         val mrp = intent.extras!!.getString("mrp")
 
         //setting findview by id to put value sin the fields of product details page
-        val tvName = findViewById<TextView>(R.id.tv_all_products_name)
+        val tvName = findViewById<TextView>(R.id.tv_product_desc_name)
         val imgProd = findViewById<ImageView>(R.id.im_products_desc)
         val tvDesc = findViewById<TextView>(R.id.tv_product_desc_desc)
         val tvDp = findViewById<TextView>(R.id.tv_product_desc_dp)
@@ -47,18 +47,18 @@ class All_Product_Desc : AppCompatActivity() {
         val req = findViewById<Button>(R.id.bt_prod_desc_req)
         req.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
-            val inflater = LayoutInflater.from(applicationContext)
-            val view = inflater.inflate(R.layout.dialog_input, null)
-            dialog.setView(view)
+            val inflater = layoutInflater
+            val layout = inflater.inflate(R.layout.dialog_input, null)
             dialog.setTitle("Add requirement")
             dialog.setMessage("Enter your required quantity")
             dialog.setPositiveButton("Ok") { _, _ ->
-                val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                val input = layout.findViewById<EditText>(R.id.et_dialog_input)
             }
             dialog.setNegativeButton("Cancel") { _, _ ->
 
             }
-            dialog.create()
+            dialog.setView(layout)
+            dialog.show()
         }
 
     }

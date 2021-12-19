@@ -69,7 +69,7 @@ class Seller_All_Products : AppCompatActivity() {
             .addOnSuccessListener { sellers ->
                 for (i in sellers) {
                     db.collection("seller")
-                        .document("33")
+                        .document(i["user_id"].toString())
                         .collection("products")
                         .get()
                         .addOnSuccessListener { products ->
