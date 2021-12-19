@@ -6,5 +6,8 @@ data class data_all_products(
     var Image: String = "",
     var MRP: String = "",
     var MinQuantity: String = "",
-    var Name: String = ""
+    var Name: String = "",
+    var QuantityFulfilled:String = "",
+    var ProductId:String = "",
+    var SellerId:String = ""
 )
