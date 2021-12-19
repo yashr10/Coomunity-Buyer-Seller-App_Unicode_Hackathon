@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -30,8 +31,8 @@ class All_Product_Desc : AppCompatActivity() {
         val min = intent.extras!!.getString("min")
         val mrp = intent.extras!!.getString("mrp")
         val qf = intent.extras!!.getString("qf")
-        var pId = intent.extras!!.getString("pId")
-        var sId = intent.extras!!.getString("sId")
+        val pId = intent.extras!!.getString("pId")
+        val sId = intent.extras!!.getString("sId")
 
         //setting findview by id to put value sin the fields of product details page
         val tvName = findViewById<TextView>(R.id.tv_product_desc_name)
@@ -78,20 +79,46 @@ class All_Product_Desc : AppCompatActivity() {
                 val total:Int =  add.toInt() + qf!!.toInt()
 
                 tvQf.text = total.toString()
+
+                //storing data to firebase as per the requirement
                 db.collection("sellers")
                     .document(sId.toString())
                     .collection("products")
                     .document(pId.toString())
                     .update("QuantityFulfilled",total.toString())
                     .addOnSuccessListener {
-                        val intent = Intent(this,Buyer_orders::class.java)
-                        intent.putExtra("name",tvName.text.toString())
-                        intent.putExtra("quantity",add)
-                        intent.putExtra("ppItem",tvDp.text.toString())
-                        intent.putExtra("image",img)
+
+                        val tA = tvDp.text.toString().toInt() * add.toInt()
+
+                        val order = hashMapOf(
+                            "ProductId" to pId.toString(),
+                            "SellerId" to sId.toString(),
+                            "BuyerId" to mAuth.currentUser!!.uid,
+                            "Quantity" to add,
+                            "PICost" to tvDp.text.toString(),
+                            "TotalAmount" to tA.toString(),
+                            "Image" to img.toString(),
+                            "Name" to tvName.toString()
+                        )
+
+                        db.collection("buyer")
+                            .document(mAuth.currentUser!!.uid)
+                            .collection("orders")
+                            .document(pId.toString())
+                            .set(order)
+                            .addOnSuccessListener {
+                                Log.d("order msg","data store in buyer order")
+                            }
+                            .addOnFailureListener {
+                                Log.d("order msg","data not stored in buyer order")
+                            }
+//                        val intent = Intent(this,Buyer_orders::class.java)
+//                        intent.putExtra("name",tvName.text.toString())
+//                        intent.putExtra("quantity",add)
+//                        intent.putExtra("ppItem",tvDp.text.toString())
+//                        intent.putExtra("image",img)
                     }
             }
-
             dialog.setNegativeButton("Cancel") { _, _ ->
 
             }

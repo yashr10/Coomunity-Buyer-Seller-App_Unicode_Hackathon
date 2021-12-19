@@ -36,7 +36,7 @@ class SellerOrdersAdapter() : RecyclerView.Adapter<SellerOrdersAdapter.ViewHolde
 
         val v = inflater.inflate(R.layout.card_activity_seller_order,parent,false)
 
-        return SellerOrdersAdapter.ViewHolder(v)
+        return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

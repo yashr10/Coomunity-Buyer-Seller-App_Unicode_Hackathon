@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -104,7 +103,7 @@ class Seller_All_Products : AppCompatActivity() {
                     finish()
                 }
                 R.id.nav_seller_products->{
-                    val Intent = Intent(this,SellerAddProduct::class.java)
+                    val Intent = Intent(this, SellerAddProduct::class.java)
                     startActivity(intent)
                     finish()
                 }
