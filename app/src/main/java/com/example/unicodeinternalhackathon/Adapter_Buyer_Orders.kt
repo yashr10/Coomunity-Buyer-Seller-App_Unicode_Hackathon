@@ -23,10 +23,9 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
 
 
         holder.itemView.setOnClickListener {
-
             val intent = Intent(context,Buyer_OrderDescription::class.java)
-
             intent.putExtra("order",data[position])
+            context.startActivity(intent)
         }
     }
 

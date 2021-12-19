@@ -31,7 +31,7 @@ class All_Product_Desc : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 for(j in document)
                 {
-                    if(j["user_id"] == "ABi3Se4zp4YH3IjGMOWm5Xc9kFl2")
+                    if(j["user_id"] == mAuth.currentUser!!.uid)
                         req.visibility = View.VISIBLE
                 }
             }
@@ -99,13 +99,12 @@ class All_Product_Desc : AppCompatActivity() {
                     .document(pId.toString())
                     .update("QuantityFulfilled",total.toString())
                     .addOnSuccessListener {
-                        Log.d("msg","loo1")
                         val totalAmount = dp.toString().toInt() * a
 
                         val order = hashMapOf(
                             "ProductId" to pId.toString(),
                             "SellerId" to sId.toString(),
-                            "BuyerId" to "ABi3Se4zp4YH3IjGMOWm5Xc9kFl2",
+                            "BuyerId" to mAuth.currentUser!!.uid,
                             "Quantity" to a.toString(),
                             "PICost" to dp.toString(),
                             "TotalAmount" to totalAmount.toString(),
@@ -115,23 +114,21 @@ class All_Product_Desc : AppCompatActivity() {
                         )
 
                         db.collection("buyer")
-                            .document("ABi3Se4zp4YH3IjGMOWm5Xc9kFl2")
+                            .document(mAuth.currentUser!!.uid)
                             .collection("orders")
                             .document(pId.toString())
                             .set(order)
                             .addOnSuccessListener {
-                                Log.d("msg","loo2")
                                 val intent = Intent(this,Buyer_orders::class.java)
                                 startActivity(intent)
                                 Log.d("order msg","data store in buyer order")
                             }
                             .addOnFailureListener {
-                                Log.d("msg","loo3")
                                 Log.d("order msg","data not stored in buyer order")
                             }
                     }
                     .addOnFailureListener {
-                        Log.d("msg","loo4")
+                        Log.d("order msg","somme error")
                     }
             }
             dialog.setNegativeButton("Cancel") { _, _ ->
