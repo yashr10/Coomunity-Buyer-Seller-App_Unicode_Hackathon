@@ -31,6 +31,7 @@ class SellerAddProduct : AppCompatActivity() {
     private  var imgUrl: String? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_add_product)
@@ -104,14 +105,6 @@ class SellerAddProduct : AppCompatActivity() {
                                         .set(product)
                                         .addOnSuccessListener {
                                             Log.d("SellerAddProduct", product.toString())
-                                            /*productName.text = null
-                                            productDesc.text = null
-                                            productMrp.text = null
-                                            productDiscountedPrice.text = null
-                                            productMinQuantity.text = null*/
-                                            imageText.isVisible = true
-                                            imageUri = null
-                                            productImage.setImageURI(imageUri)
 
                                             startActivity(Intent(this, SellerProducts::class.java))
 
@@ -126,35 +119,12 @@ class SellerAddProduct : AppCompatActivity() {
                                 }
 
 
-
                             }?.addOnFailureListener {
 
-                                Log.d("iamge exce", it.message.toString())
+                                Log.d("image exe", it.message.toString())
                             }
 
-                        /* db.collection("seller")
-                                .document(Firebase.auth.currentUser!!.uid)
-                            // .document("33")
-                             .collection("products")
-                             .document(productId!!)
-                             .set(product)
-                             .addOnSuccessListener {
-                                 Log.d("SellerAddProduct","Product added")
-                                 productName.text = null
-                                 productDesc.text = null
-                                 productMrp.text = null
-                                 productDiscountedPrice.text = null
-                                 productMinQuantity.text = null
-                                 imageText.isVisible = true
-                                 imageUri = null
-                                 productImage.setImageURI(imageUri)
 
-                             //    startActivity(Intent(this,SellerProducts::class.java))
-
-
-                             }.addOnFailureListener {
-                                 Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
-                             }*/
                     } else {
                         Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
                     }

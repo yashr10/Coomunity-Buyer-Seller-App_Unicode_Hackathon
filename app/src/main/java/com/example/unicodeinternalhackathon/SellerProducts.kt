@@ -70,19 +70,15 @@ class SellerProducts : AppCompatActivity() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("ACtivity","onPause")
-    }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("ACtivity","onResume")
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("ACtivity","onRestart")
         val productList : ArrayList<data_all_products> = ArrayList()
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
-//            .document("33")
             .collection("products")
             .get()
             .addOnSuccessListener { querySnapshot ->
@@ -101,6 +97,7 @@ class SellerProducts : AppCompatActivity() {
 
             }
     }
+
 }
 
 class SellerProductsAdapter(
