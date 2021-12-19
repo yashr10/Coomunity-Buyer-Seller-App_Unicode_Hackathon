@@ -17,16 +17,3 @@ data class data_all_products(
 ):Parcelable
 
 
-/*
-val product = hashMapOf(
-    "Name" to productName.text.toString(),
-    "Description" to productDesc.text.toString(),
-    "MRP" to productMrp.text.toString(),
-    "DiscountedPrice" to productDiscountedPrice.text.toString(),
-    "MinQuantity" to productMinQuantity.text.toString(),
-    "Image" to imgUrl,
-    "ProductId" to productId.toString(),
-    "QuantityFulfilled" to "0",
-    "SellerId" to mAuth.currentUser!!.uid
-)
-*/
