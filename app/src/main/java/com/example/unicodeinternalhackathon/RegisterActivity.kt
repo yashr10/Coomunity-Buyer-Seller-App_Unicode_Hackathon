@@ -158,7 +158,7 @@ class RegisterActivity : AppCompatActivity() {
                                         Log.d("data in Firestore",it.message.toString() )
                                     }
 
-                                startActivity(Intent(this,SellerOrders::class.java))
+                                startActivity(Intent(this,SellerAddProduct::class.java))
                                 finish()
 
                             } else {

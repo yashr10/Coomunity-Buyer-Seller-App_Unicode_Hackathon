@@ -1,5 +1,9 @@
 package com.example.unicodeinternalhackathon
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class data_all_products(
     var Description: String = "",
     var DiscountedPrice: String = "",
@@ -10,4 +14,5 @@ data class data_all_products(
     var QuantityFulfilled:String = "",
     var ProductId:String = "",
     var SellerId:String = ""
-)
+):Parcelable
+
