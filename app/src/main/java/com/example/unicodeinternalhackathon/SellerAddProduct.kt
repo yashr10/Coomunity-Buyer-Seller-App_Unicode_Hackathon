@@ -48,7 +48,6 @@ class SellerAddProduct : AppCompatActivity() {
 
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
 
-
             val chooser = Intent.createChooser(intent,"choose")
             intent.type = "image/"
             startActivityForResult(chooser,100)
