@@ -11,15 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import java.io.File
 
 class SellerProducts : AppCompatActivity() {
 
@@ -27,7 +25,7 @@ class SellerProducts : AppCompatActivity() {
     lateinit var recyclerView : RecyclerView
     val db = Firebase.firestore
     private lateinit var myAdapter: SellerProductsAdapter
-    private val productList : ArrayList<data_all_products> = ArrayList()
+
     private val imageList : ArrayList<Uri> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +34,14 @@ class SellerProducts : AppCompatActivity() {
         Log.d("OnCreate","reached")
 
         recyclerView = findViewById(R.id.rv_seller_products)
-
+         val productList : ArrayList<data_all_products> = ArrayList()
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
 
 
         db.collection("seller")
-//            .document(Firebase.auth.currentUser!!.uid)
-            .document("33")
+           .document(Firebase.auth.currentUser!!.uid)
+//            .document("33")
             .collection("products")
             .get()
             .addOnSuccessListener { querySnapshot ->
@@ -61,7 +59,45 @@ class SellerProducts : AppCompatActivity() {
 
             }
 
+        val floatingActionButton : FloatingActionButton = findViewById(R.id.floatingButton)
+
+        floatingActionButton.setOnClickListener {
+
+            startActivity(Intent(this,SellerAddProduct::class.java))
+
+        }
+
+
     }
+
+
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("ACtivity","onRestart")
+        val productList : ArrayList<data_all_products> = ArrayList()
+
+        db.collection("seller")
+            .document(Firebase.auth.currentUser!!.uid)
+            .collection("products")
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+
+                querySnapshot.documentChanges.forEach{
+
+                    productList.add(it.document.toObject(data_all_products::class.java))
+
+                    Log.d("msg", productList.toString())
+
+                }
+
+                myAdapter = SellerProductsAdapter(productList,this)
+                recyclerView.adapter = myAdapter
+                recyclerView.adapter!!.notifyDataSetChanged()
+
+            }
+    }
+
 }
 
 class SellerProductsAdapter(
@@ -98,11 +134,10 @@ class SellerProductsAdapter(
      //   holder.image.setImageURI(imageList[position])
 
 
-
         holder.itemView.setOnClickListener {
 
             val activity = it.context as AppCompatActivity
-            val intent = Intent(context,ProductDetails::class.java)
+            val intent = Intent(context, ProductDetails::class.java)
 
             intent.putExtra("product",productList[position])
 

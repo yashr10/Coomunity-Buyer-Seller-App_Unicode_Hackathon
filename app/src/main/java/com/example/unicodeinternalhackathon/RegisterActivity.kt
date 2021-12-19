@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
@@ -159,6 +158,8 @@ class RegisterActivity : AppCompatActivity() {
                                     }
 
                                 startActivity(Intent(this,SellerProducts::class.java))
+
+               
                                 finish()
 
                             } else {
@@ -256,7 +257,7 @@ class RegisterActivity : AppCompatActivity() {
                                         Log.d("data in Firestore",it.message.toString() )
                                     }
 
-                                startActivity(Intent(this,Buyer_All_Products::class.java))
+                                startActivity(Intent(this, Buyer_All_Products::class.java))
                                 finish()
 
                             } else {
