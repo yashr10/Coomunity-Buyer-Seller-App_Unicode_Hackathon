@@ -48,11 +48,18 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
             val quant = binding.tvOrderQuantity.text.toString()
 
+            val price = order.PICost.toInt()
+            val quantity = quant.toInt()
+            val amount = price*quantity
+
             db.collection("buyer")
                 .document(Firebase.auth.currentUser!!.uid)
                 .collection("orders")
                 .document(order.ProductId)
-                .update("Quantity",quant)
+                .update(mapOf(
+                    "Quantity" to quant,
+                    "TotalAmount" to amount.toString()
+                ))
                 .addOnSuccessListener {
 
                     Log.d("Order Updated",quant)
