@@ -23,18 +23,13 @@
             android:name=".All_Products"
             android:exported="false" />
         <activity
-            android:name=".Seller_All_Products"
+            android:name=".SellerAddProduct"
             android:exported="true">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
-            android:name=".SellerProducts"
+            android:name=".Seller_All_Products"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -46,11 +41,17 @@
             android:name=".Buyer_All_Products"
             android:exported="true" />
         <activity
-            android:name=".SellerAddProduct"
+            android:name=".SellerProducts"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

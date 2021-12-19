@@ -10,8 +10,9 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.w3c.dom.Text
 
-class Adapter_All_Products(var data: ArrayList<data_all_products>, private val context:Context) :
+class Adapter_All_Products(var data: ArrayList<data_all_products>, private val context: Context) :
     RecyclerView.Adapter<Adapter_All_Products.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -23,17 +24,20 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
         val input = data[position]
 
         //function for showing data in recyclerView fields
-        holder.bind(input,context)
+        holder.bind(input, context)
 
         //on click of recycler sends data to new activity and open new activity
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,All_Product_Desc::class.java)
-            intent.putExtra("name",data[position].Name)
-            intent.putExtra("img",data[position].Image)
-            intent.putExtra("desc",data[position].Description)
-            intent.putExtra("dp",data[position].DiscountedPrice)
-            intent.putExtra("min",data[position].MinQuantity)
-            intent.putExtra("mrp",data[position].MRP)
+            val intent = Intent(context, All_Product_Desc::class.java)
+            intent.putExtra("name", data[position].Name)
+            intent.putExtra("img", data[position].Image)
+            intent.putExtra("desc", data[position].Description)
+            intent.putExtra("dp", data[position].DiscountedPrice)
+            intent.putExtra("min", data[position].MinQuantity)
+            intent.putExtra("mrp", data[position].MRP)
+            intent.putExtra("qf", data[position].QuantityFulfilled)
+            intent.putExtra("pId",data[position].ProductId)
+            intent.putExtra("sId",data[position].SellerId)
             context.startActivity(intent)
         }
     }
@@ -51,7 +55,7 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
         var img: ImageView = v.findViewById(R.id.im_all_products_img)
 
         // function that assigns data to recyclerview fields
-        fun bind(data: data_all_products,context: Context) {
+        fun bind(data: data_all_products, context: Context) {
             tvName.text = data.Name
             tvDp.text = data.DiscountedPrice
             tvMrp.text = data.MRP

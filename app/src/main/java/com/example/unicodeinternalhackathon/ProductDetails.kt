@@ -1,13 +1,14 @@
 package com.example.unicodeinternalhackathon
 
-import android.net.Uri
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.net.toUri
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.unicodeinternalhackathon.databinding.ActivityProductDetailsBinding
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -42,11 +43,17 @@ class ProductDetails : AppCompatActivity() {
         binding.delete.setOnClickListener{
 
             db.collection("seller")
-                //   .document(Firebase.auth.currentUser!!.uid)
-                .document("33")
+                   .document(Firebase.auth.currentUser!!.uid)
+             //   .document("33")
                 .collection("products")
                 .document(product.ProductId)
                 .delete()
+                .addOnSuccessListener {
+
+                    Toast.makeText(this, "Product Removed Successfully", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,SellerProducts::class.java))
+
+                }
 
 
         }
@@ -89,14 +96,14 @@ class ProductDetails : AppCompatActivity() {
                 "DiscountedPrice"  to  binding.tvProductDetailsDp.text.toString(),
                 "MinQuantity" to  binding.tvProductDetailsMinQuantity.text.toString(),
                 "Image" to imageUri,
-                "ProductId" to product.ProductId
-
+                "ProductId" to product.ProductId,
+                "SellerId" to Firebase.auth.currentUser!!.uid
 
             )
 
             db.collection("seller")
-                //   .document(Firebase.auth.currentUser!!.uid)
-                .document("33")
+                   .document(Firebase.auth.currentUser!!.uid)
+      //          .document("33")
                 .collection("products")
                 .document(product.ProductId)
                 .set(input)

@@ -1,13 +1,13 @@
 package com.example.unicodeinternalhackathon
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Adapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -74,12 +74,10 @@ class Buyer_All_Products : AppCompatActivity() {
                         .collection("products")
                         .get()
                         .addOnSuccessListener { products ->
-                            Toast.makeText(this,"inner loop1", Toast.LENGTH_SHORT).show()
                             for (j in products) {
-                                Toast.makeText(this,"inner loop", Toast.LENGTH_SHORT).show()
                                 data.add(j.toObject(data_all_products::class.java))
                             }
-                            rv.adapter = Adapter_All_Products(data,this@Buyer_All_Products)
+                            rv.adapter = Adapter_All_Products(data, this@Buyer_All_Products)
                             rv.adapter!!.notifyDataSetChanged()
                         }
                         .addOnFailureListener {
@@ -91,20 +89,23 @@ class Buyer_All_Products : AppCompatActivity() {
                 Log.d("msg seller", "error retrieving the seller")
             }
 
-//                nav.setNavigationItemSelectedListener {
-//            when(it.itemId)
-//            {
-//                R.id.nav_buyer_all_products->{
+        nav.setNavigationItemSelectedListener {
+            drawer.closeDrawer(GravityCompat.START)
+            when (it.itemId) {
+                R.id.nav_buyer_all_products -> {
+                    val intent = Intent(this, All_Product_Desc::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+//                R.id.nav_buyer_orders -> {
 //
 //                }
-//                R.id.nav_buyer_orders->{
+//                R.id.nav_buyer_profile -> {
 //
 //                }
-//                R.id.nav_buyer_profile->{
-//
-//                }
-//            }
-//        }
+            }
+            true
+        }
 
 
     }
