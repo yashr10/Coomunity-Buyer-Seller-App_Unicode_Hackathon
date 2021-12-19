@@ -1,11 +1,9 @@
 package com.example.unicodeinternalhackathon
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -13,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Text
 
 class All_Product_Desc : AppCompatActivity() {
     //variables of firebase
@@ -22,6 +19,22 @@ class All_Product_Desc : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_product_desc)
+
+        //button for adding requirement
+        val req = findViewById<Button>(R.id.bt_prod_desc_req)
+        req.visibility =  View.INVISIBLE
+
+
+        //showing button of adding requirement only to buyer
+        db.collection("buyer")
+            .get()
+            .addOnSuccessListener { document ->
+                for(j in document)
+                {
+                    if(j["user_id"] == "ABi3Se4zp4YH3IjGMOWm5Xc9kFl2")
+                        req.visibility = View.VISIBLE
+                }
+            }
 
         //getting data from recyclerview using intent and assigning to the variables
         val name = intent.extras!!.getString("name")
@@ -56,16 +69,6 @@ class All_Product_Desc : AppCompatActivity() {
             .into(imgProd)
 
 
-        //button for adding requirement
-        val req = findViewById<Button>(R.id.bt_prod_desc_req)
-
-        //showing button of adding requirement only to buyer
-        db.collection("sellers")
-            .whereEqualTo("user_id",mAuth.currentUser!!.uid)
-            .get()
-            .addOnSuccessListener {
-                req.visibility =  View.INVISIBLE
-            }
 
         //adding functionality of opening dialog box to button
         req.setOnClickListener {
@@ -75,48 +78,59 @@ class All_Product_Desc : AppCompatActivity() {
             dialog.setTitle("Add requirement")
             dialog.setPositiveButton("Ok") { _, _ ->
                 //adding code to update the quantity of a product when buyer adds his requirement
-                val add:String = layout.findViewById<EditText>(R.id.et_dialog_input).toString()
-                val total:Int =  add.toInt() + qf!!.toInt()
+                val add = layout.findViewById<EditText>(R.id.et_dialog_input)
+                val a  = add.text.toString().toInt()
+                var total:Int = 0
+                if(qf.toString().isEmpty())
+                {
+                    total = a
+                }
+                else{
+                    val b = qf.toString().toInt()
+                    total = a+b
+                }
 
                 tvQf.text = total.toString()
 
                 //storing data to firebase as per the requirement
-                db.collection("sellers")
+                db.collection("seller")
                     .document(sId.toString())
                     .collection("products")
                     .document(pId.toString())
                     .update("QuantityFulfilled",total.toString())
                     .addOnSuccessListener {
-
-                        val tA = tvDp.text.toString().toInt() * add.toInt()
+                        Log.d("msg","loo1")
+                        val totalAmount = dp.toString().toInt() * a
 
                         val order = hashMapOf(
                             "ProductId" to pId.toString(),
                             "SellerId" to sId.toString(),
-                            "BuyerId" to mAuth.currentUser!!.uid,
-                            "Quantity" to add,
-                            "PICost" to tvDp.text.toString(),
-                            "TotalAmount" to tA.toString(),
+                            "BuyerId" to "ABi3Se4zp4YH3IjGMOWm5Xc9kFl2",
+                            "Quantity" to a.toString(),
+                            "PICost" to dp.toString(),
+                            "TotalAmount" to totalAmount.toString(),
                             "Image" to img.toString(),
-                            "Name" to tvName.toString()
+                            "Name" to name.toString()
                         )
 
                         db.collection("buyer")
-                            .document(mAuth.currentUser!!.uid)
+                            .document("ABi3Se4zp4YH3IjGMOWm5Xc9kFl2")
                             .collection("orders")
                             .document(pId.toString())
                             .set(order)
                             .addOnSuccessListener {
+                                Log.d("msg","loo2")
+                                val intent = Intent(this,Buyer_orders::class.java)
+                                startActivity(intent)
                                 Log.d("order msg","data store in buyer order")
                             }
                             .addOnFailureListener {
+                                Log.d("msg","loo3")
                                 Log.d("order msg","data not stored in buyer order")
                             }
-//                        val intent = Intent(this,Buyer_orders::class.java)
-//                        intent.putExtra("name",tvName.text.toString())
-//                        intent.putExtra("quantity",add)
-//                        intent.putExtra("ppItem",tvDp.text.toString())
-//                        intent.putExtra("image",img)
+                    }
+                    .addOnFailureListener {
+                        Log.d("msg","loo4")
                     }
             }
             dialog.setNegativeButton("Cancel") { _, _ ->

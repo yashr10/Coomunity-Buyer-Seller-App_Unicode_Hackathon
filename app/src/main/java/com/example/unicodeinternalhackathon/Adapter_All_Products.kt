@@ -49,7 +49,7 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
         //variables for recyclerview fields
         private var tvName: TextView = v.findViewById(R.id.tv_all_products_name)
         private var tvMrp: TextView = v.findViewById(R.id.tv_all_products_mrp)
-        private var tvDp: TextView = v.findViewById(R.id.tv_buyer_order_amount)
+        private var tvDp: TextView = v.findViewById(R.id.tv_all_products_dp)
         var img: ImageView = v.findViewById(R.id.im_all_products_img)
 
         // function that assigns data to recyclerview fields
