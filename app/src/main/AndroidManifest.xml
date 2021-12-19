@@ -23,7 +23,7 @@
             android:name=".All_Products"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Seller_All_Products"
             android:exported="true">
 
             <intent-filter>
@@ -49,7 +49,7 @@
             android:name=".SellerAddProduct"
             android:exported="true" />
         <activity
-            android:name=".Seller_All_Products"
+            android:name=".LoginActivity"
             android:exported="true">
         </activity>
     </application>
