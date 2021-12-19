@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Unicode Internal Hackathon</string>
+    <string name="open">Open Navigation drawer</string>
+    <string name="close">Close Navigation drawer</string>
     <string name="user_name">User Name</string>
     <string name="all_products">All Products</string>
     <string name="orders">Orders</string>
     <string name="your_products">Your Products</string>
     <string name="min_amount">Min Amount</string>
     <string name="account">Account</string>
-    <string name="open">Open Navigation Drawer</string>
-    <string name="close">Close Navigation Drawer</string>
     <string name="profile">Profile</string>
     <string name="new_user_register_now">New User? &#160;<b>Register now</b> </string>
     <string name="already_a_user_login">Already a User? &#160;<b>Login</b> </string>

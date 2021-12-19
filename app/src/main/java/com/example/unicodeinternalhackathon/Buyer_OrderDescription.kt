@@ -61,7 +61,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
                     "TotalAmount" to amount.toString()
                 ))
                 .addOnSuccessListener {
-
+                    binding.tvTotalAmount.setText(amount.toString())
                     Log.d("Order Updated",quant)
                 }.addOnFailureListener {
                     Log.d("Update UNSUCCESSFUL",quant)

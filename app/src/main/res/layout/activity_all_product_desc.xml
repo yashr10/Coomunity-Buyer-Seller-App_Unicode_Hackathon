@@ -32,18 +32,33 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:hint="Product name"
-            android:paddingLeft="5dp" />
+            android:paddingLeft="5dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/t5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_product_desc_name"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="25dp"
+            android:paddingLeft="5dp"
+            android:text="Description : "
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_desc"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_product_desc_name"
+            android:layout_below="@+id/t5"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:hint="description"
             android:paddingLeft="5dp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.559"
@@ -58,10 +73,11 @@
             android:layout_below="@+id/tv_product_desc_desc"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
             android:text="MRP : "
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_mrp"
@@ -69,11 +85,12 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/tv_product_desc_desc"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t1"
             android:hint="mrp"
             android:paddingLeft="5dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/t2"
@@ -82,22 +99,24 @@
             android:layout_below="@+id/t1"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
             android:text="Discounted Price : "
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_product_desc_mrp"
-            android:paddingLeft="5dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t2"
             android:hint="discount"
-            android:textColor="@color/black" />
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/t3"
@@ -106,10 +125,11 @@
             android:layout_below="@+id/t2"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
             android:text="Min Quantity : "
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_min"
@@ -117,11 +137,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_product_desc_dp"
             android:layout_marginStart="0dp"
-            android:paddingLeft="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t3"
             android:hint="quantity"
-            android:textColor="@color/black" />
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/t4"
@@ -130,10 +151,11 @@
             android:layout_below="@+id/t3"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
             android:text="Quantity fulfilled : "
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_quantityful"
@@ -141,20 +163,21 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/tv_product_desc_min"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t4"
             android:hint="quantity"
             android:paddingLeft="5dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/bt_prod_desc_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_product_desc_min"
+            android:layout_below="@+id/t4"
             android:layout_alignParentStart="true"
             android:layout_marginStart="105dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="35dp"
             android:text="Add requirement" />
 
 

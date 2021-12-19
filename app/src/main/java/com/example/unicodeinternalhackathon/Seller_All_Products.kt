@@ -47,7 +47,7 @@ class Seller_All_Products : AppCompatActivity() {
         nav = findViewById(R.id.seller_nav)
         val header = nav.getHeaderView(0)
         val userName = header.findViewById<TextView>(R.id.tv_left_nav_name)
-//        userName.text = mAuth.currentUser!!.displayName
+        userName.text = mAuth.currentUser!!.displayName
 
         //assigning toolbar and drawer to work simultaneously
         toolbar = findViewById(R.id.seller_toolbar)
@@ -94,22 +94,22 @@ class Seller_All_Products : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             when(it.itemId)
             {
-//                R.id.nav_seller_orders->{
-//
-//                }
-                R.id.nav_seller_all_products->{
-                    val Intent = Intent(this,Seller_All_Products::class.java)
+                R.id.nav_seller_orders->{
+                    val intent = Intent(this, SellerOrders::class.java)
                     startActivity(intent)
                     finish()
+                }
+                R.id.nav_seller_all_products->{
+                    drawer.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_seller_products->{
-                    val Intent = Intent(this, SellerAddProduct::class.java)
+                    val intent = Intent(this, SellerAddProduct::class.java)
                     startActivity(intent)
                     finish()
                 }
-                R.id.nav_seller_min_amount->{
-
-                }
+//                R.id.nav_seller_min_amount->{
+//
+//                }
 //                R.id.nav_seller_profile->{
 //
 //                }
