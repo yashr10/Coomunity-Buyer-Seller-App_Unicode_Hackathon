@@ -98,7 +98,8 @@ class All_Product_Desc : AppCompatActivity() {
                             "PICost" to tvDp.text.toString(),
                             "TotalAmount" to tA.toString(),
                             "Image" to img.toString(),
-                            "Name" to tvName.toString()
+                            "Name" to tvName.toString(),
+                            "Description" to desc.toString()
                         )
 
                         db.collection("buyer")

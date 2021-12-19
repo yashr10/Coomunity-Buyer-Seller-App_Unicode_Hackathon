@@ -12,5 +12,6 @@ data class data_orders(
  var PICost : String = "",
  var TotalAmount : String = "",
  var Image:String = "",
- var Name :String = ""
+ var Name :String = "",
+ var Description : String = ""
 ):Parcelable
