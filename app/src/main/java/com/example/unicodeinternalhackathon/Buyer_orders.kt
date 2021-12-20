@@ -3,8 +3,10 @@ package com.example.unicodeinternalhackathon
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -108,4 +110,38 @@ class Buyer_orders : AppCompatActivity() {
             true
         }
     }
+
+    //search bar code
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val search_btn = menu.findItem(R.id.search)
+        val search = search_btn?.actionView as SearchView
+        search.queryHint = "Search Here"
+
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != "")
+                {
+                    val new_data = data.filter { data_buyer_orders ->
+                        val s = (data_buyer_orders.name).lowercase()
+                        newText!!.lowercase().let { s.startsWith(it) }
+                    }
+                    rv.adapter = Adapter_Buyer_Orders(new_data as ArrayList<data_buyer_orders>,this@Buyer_orders)
+                    rv.adapter?.notifyDataSetChanged()
+                }
+                if (newText == "") {
+                    rv.adapter = Adapter_Buyer_Orders(data,this@Buyer_orders)
+                    rv.adapter?.notifyDataSetChanged()
+                }
+                return true
+            }
+
+        })
+        return true
+    }
+
 }

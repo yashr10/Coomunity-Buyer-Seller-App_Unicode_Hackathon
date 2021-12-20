@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
@@ -13,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -39,10 +41,13 @@ class SellerOrders : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var recyclerView: RecyclerView
     private lateinit var myAdapter: SellerOrdersAdapter
+    private lateinit var data:ArrayList<data_seller_order>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_orders)
+
+        data = arrayListOf()
 
         // variable of navigation view,
         // header variable for header of navigation
@@ -182,6 +187,39 @@ class SellerOrders : AppCompatActivity() {
                 recyclerView.adapter = myAdapter
             }
     }
+
+    //search bar code
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val search_btn = menu.findItem(R.id.search)
+        val search = search_btn?.actionView as SearchView
+        search.queryHint = "Search Here"
+
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != "")
+                {
+                    val new_data = data.filter { data_seller_order ->
+                        val s = (data_seller_order.name).lowercase()
+                        newText!!.lowercase().let { s.startsWith(it) }
+                    }
+                    recyclerView.adapter = SellerOrdersAdapter(new_data as ArrayList<data_seller_order>, context = this@SellerOrders)
+                    recyclerView.adapter?.notifyDataSetChanged()
+                }
+                if (newText == "") {
+                    recyclerView.adapter = SellerOrdersAdapter(data, context = this@SellerOrders)
+                    recyclerView.adapter?.notifyDataSetChanged()
+                }
+                return true
+            }
+
+        })
+        return true
+    }
 }
 
 class SellerOrdersAdapter(
@@ -241,5 +279,6 @@ class SellerOrdersAdapter(
     override fun getItemCount(): Int {
       return orderList.size
     }
+
 
 }
