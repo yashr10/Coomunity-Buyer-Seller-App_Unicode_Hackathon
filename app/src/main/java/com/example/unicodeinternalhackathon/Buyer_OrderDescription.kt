@@ -48,17 +48,17 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
         //changing visibility of edit button as per the status of the order
         db.collection("buyer")
-            .document(order.BuyerID)
+            .document(Firebase.auth.currentUser!!.uid)
             .collection("orders")
             .document(order.ProductId)
             .get()
             .addOnSuccessListener {
                 if (it["Status"] == "0") {
-                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
+                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
                 }
                 else
                 {
-                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
+                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
                 }
             }
 

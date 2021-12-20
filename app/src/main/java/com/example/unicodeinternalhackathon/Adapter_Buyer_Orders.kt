@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -38,6 +40,7 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
 
     class ViewHolder(v: View):RecyclerView.ViewHolder(v)
     {
+        val mAuth = Firebase.auth
         val db = Firebase.firestore
         var status :TextView = v.findViewById(R.id.buyer_order_status)
         val tvName :TextView = v.findViewById(R.id.tv_buyer_order_name)
@@ -52,26 +55,27 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
             Glide.with(context)
                 .load(data.Image.toString())
                 .into(img)
-            db.collection("buyer")
-                .document(data.BuyerID)
+            db.collection("seller")
+                .document(data.SellerId)
                 .collection("orders")
                 .document(data.ProductId)
                 .get()
                 .addOnSuccessListener {
-                    if(it["status"].toString() == "0")
+                    if(it["Status"].toString() == "2")
                     {
-                        status.text = "Pending"
-                        status.setTextColor(Color.parseColor("#2CDC06"));
+                        status.text = "Rejected"
+                        status.setTextColor(ContextCompat.getColor(context, R.color.design_default_color_error))
                     }
-                    else if(it["status"].toString() == "1")
+                    else if(it["Status"].toString() == "1")
                     {
                         status.text = "Confirmed"
-                        status.setTextColor(Color.parseColor("#302A2A"));
+                        status.setTextColor(Color.parseColor("#2CDC06"));
                     }
                     else
                     {
-                        status.text = "Rejected"
-                        status.setTextColor(Color.parseColor("#D51B1B"));
+                        status.text = "Pending"
+                        status.setTextColor(Color.parseColor("#302A2A"))
+
                     }
                 }
         }
