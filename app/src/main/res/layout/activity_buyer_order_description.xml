@@ -73,16 +73,6 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pending" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirmed"
-                android:textColor="@color/teal_200"/>
-
             <ImageView
                 android:id="@+id/iv_productDetails_image"
                 android:layout_width="120dp"
@@ -192,6 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="32dp"
+                    android:visibility="invisible"
                     android:text="Edit Order" />
 
                 <Button

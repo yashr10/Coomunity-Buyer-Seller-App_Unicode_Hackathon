@@ -156,10 +156,9 @@ class RegisterActivity : AppCompatActivity() {
                                     .addOnFailureListener {
                                         Log.d("data in Firestore",it.message.toString() )
                                     }
-
-                                startActivity(Intent(this,SellerProducts::class.java))
-
-               
+                                val intent = Intent(this,SellerProducts::class.java)
+                                intent.putExtra("origin","Register")
+                                startActivity(intent)
                                 finish()
 
                             } else {
