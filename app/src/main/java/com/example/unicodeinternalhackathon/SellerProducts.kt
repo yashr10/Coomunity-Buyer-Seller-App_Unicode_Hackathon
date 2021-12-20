@@ -46,7 +46,6 @@ class SellerProducts : AppCompatActivity() {
     val db = Firebase.firestore
     private lateinit var myAdapter: SellerProductsAdapter
     private lateinit var productList: ArrayList<data_all_products>
-    private lateinit var data: ArrayList<data_all_products>
 
     var MinAmount: String = ""
     var origin: String = ""
@@ -55,7 +54,6 @@ class SellerProducts : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_products)
 
-        data = arrayListOf()
         productList = arrayListOf()
         recyclerView = findViewById(R.id.rv_seller_products)
 
@@ -63,39 +61,31 @@ class SellerProducts : AppCompatActivity() {
 
         try {
             origin = intent.extras!!.getString("origin").toString()
-
+            Log.d("msg","Hello world")
             if (origin == "Register") {
                 db.collection("seller")
                     .document(Firebase.auth.currentUser!!.uid)
                     .get()
                     .addOnSuccessListener {
 
-
-                        if (it["MinAmount"].toString().isNullOrEmpty()) {
-
-                            val dialog = AlertDialog.Builder(this)
-                            dialog.setTitle("Minimum Order Amount")
-                            dialog.setMessage("Enter Minimum Order Amount")
-                            val inflater = layoutInflater
-                            val view = inflater.inflate(R.layout.dialog_input, null)
-                            dialog.setPositiveButton("Save") { _, _ ->
-                                val input = view.findViewById<EditText>(R.id.et_dialog_input)
-                                MinAmount = input.text.toString()
-                                db.collection("seller")
-                                    .document(mAuth.currentUser!!.uid)
-                                    .update("MinAmount", MinAmount)
-                            }
-                            dialog.setNegativeButton("Cancel") { _, _ ->
-
-                            }
-                            dialog.setCancelable(false)
-                            dialog.setView(view)
-                            dialog.show()
+                        val dialog = AlertDialog.Builder(this)
+                        dialog.setTitle("Minimum Order Amount")
+                        dialog.setMessage("Enter Minimum Order Amount")
+                        val inflater = layoutInflater
+                        val view = inflater.inflate(R.layout.dialog_input, null)
+                        dialog.setPositiveButton("Save") { _, _ ->
+                            val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                            MinAmount = input.text.toString()
+                            db.collection("seller")
+                                .document(mAuth.currentUser!!.uid)
+                                .update("MinAmount", MinAmount)
                         }
+                        dialog.setCancelable(false)
+                        dialog.setView(view)
+                        dialog.show()
                     }
-
-
             }
+
 
         } catch (e: Exception) {
             Log.d("msg", e.message.toString())
@@ -201,6 +191,9 @@ class SellerProducts : AppCompatActivity() {
                             .document(mAuth.currentUser!!.uid)
                             .update("MinAmount", MinAmount)
                     }
+                    dialog.setNegativeButton("Cancel") { _, _ ->
+
+                    }
                     dialog.setCancelable(false)
                     dialog.setView(view)
                     dialog.show()
@@ -254,7 +247,7 @@ class SellerProducts : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != "") {
-                    val new_data = data.filter { data_all_products ->
+                    val new_data = productList.filter { data_all_products ->
                         val s = (data_all_products.Name).lowercase()
                         newText!!.lowercase().let { s.startsWith(it) }
                     }
@@ -266,7 +259,7 @@ class SellerProducts : AppCompatActivity() {
                 }
                 if (newText == "") {
                     recyclerView.adapter =
-                        SellerProductsAdapter(data, context = this@SellerProducts)
+                        SellerProductsAdapter(productList, context = this@SellerProducts)
                     recyclerView.adapter?.notifyDataSetChanged()
                 }
                 return true

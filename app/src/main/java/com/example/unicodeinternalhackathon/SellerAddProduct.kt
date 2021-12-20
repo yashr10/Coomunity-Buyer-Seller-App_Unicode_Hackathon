@@ -123,12 +123,6 @@ class SellerAddProduct : AppCompatActivity() {
 //                                    "SellerId" to mAuth.currentUser!!.uid
 //                                )
 
-                                db.collection("orders1")
-                                    .document(Firebase.auth.currentUser!!.uid)
-                                    .collection("products")
-                                    .document(productId!!)
-                                    .set(product)
-
 
                                 db.collection("seller")
                                     .document(Firebase.auth.currentUser!!.uid)
