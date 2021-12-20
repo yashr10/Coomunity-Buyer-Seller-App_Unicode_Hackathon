@@ -26,8 +26,10 @@ class RegisterActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         bt_buyer.setOnClickListener {
-            bt_buyer.background = AppCompatResources.getDrawable(this,R.drawable.back_button_clicked)
-            bt_seller.background = AppCompatResources.getDrawable(this,R.drawable.back_button)
+            bt_buyer.background = AppCompatResources.getDrawable(this,
+                R.drawable.register_bs_button_clicked)
+            bt_seller.background = AppCompatResources.getDrawable(this,
+                R.drawable.register_bs_button_unclicked)
             isBuyer = true
             et_bName_register.visibility = View.VISIBLE
             et_bAddress_register.visibility = View.VISIBLE
@@ -48,9 +50,9 @@ class RegisterActivity : AppCompatActivity() {
         }
         bt_seller.setOnClickListener {
             bt_seller.background = AppCompatResources.getDrawable(this,
-                R.drawable.back_button_clicked)
+                R.drawable.register_bs_button_clicked)
             bt_buyer.background = AppCompatResources.getDrawable(this,
-                R.drawable.back_button)
+                R.drawable.register_bs_button_unclicked)
             isBuyer = false
             et_shopName_register.visibility = View.VISIBLE
             et_sAddress_register.visibility = View.VISIBLE

@@ -39,6 +39,10 @@ class Buyer_OrderDescription : AppCompatActivity() {
         binding.tvOrderQuantity.setText(order.Quantity)
         binding.tvTotalAmount.text = order.TotalAmount
 
+        binding.imgBuyerOrderDescBack.setOnClickListener {
+            finish()
+        }
+
         binding.btOrderDetailsEdit.setOnClickListener {
 
             binding.btOrderDetailsEdit.isVisible = false
