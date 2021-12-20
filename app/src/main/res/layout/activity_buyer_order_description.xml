@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProductDetails" >
+    tools:context=".ProductDetails">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -28,8 +28,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_board"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            >
+            android:layout_height="?attr/actionBarSize">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -39,11 +39,12 @@
                     android:id="@+id/textView"
                     android:layout_width="178dp"
                     android:layout_height="35dp"
-                    android:text="TextView"
                     android:gravity="start|center"
+                    android:text="TextView"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
 
                 <ImageView
                     android:id="@+id/delete"
@@ -55,7 +56,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         </androidx.appcompat.widget.Toolbar>
@@ -73,6 +73,16 @@
             android:orientation="vertical"
             android:padding="8dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmed"
+                android:textColor="@color/teal_200"/>
+
             <ImageView
                 android:id="@+id/iv_productDetails_image"
                 android:layout_width="120dp"
@@ -88,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:padding="8dp"
-                android:textStyle="bold"
-                android:text="Product Name"/>
+                android:text="Product Name"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_productDetails_name"
@@ -107,26 +117,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Description"
                 android:padding="8dp"
+                android:text="Description"
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_productDetails_desc"
                 android:layout_width="match_parent"
-                android:padding="8dp"
+                android:layout_height="wrap_content"
                 android:enabled="false"
-                android:textColor="@color/black"
-                android:layout_height="wrap_content" />
+                android:padding="8dp"
+                android:textColor="@color/black" />
 
 
             <RelativeLayout
                 android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="12dp"
+                android:padding="12dp">
 
                 <TextView
                     android:id="@+id/tv_productDetails"
@@ -151,10 +161,10 @@
                     android:id="@+id/tv_totalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignBaseline="@id/tv_order_quantity"
                     android:layout_alignParentEnd="true"
                     android:enabled="false"
                     android:textColor="@color/black"
-                    android:layout_alignBaseline="@id/tv_order_quantity"
 
                     android:textStyle="bold" />
 
@@ -170,8 +180,6 @@
 
 
             </RelativeLayout>
-
-
 
 
             <RelativeLayout
@@ -198,26 +206,10 @@
             </RelativeLayout>
 
 
-
-
-
-
-
-
-
-
-
         </LinearLayout>
 
 
-
-
-
-
-
     </ScrollView>
-
-
 
 
 </LinearLayout>
