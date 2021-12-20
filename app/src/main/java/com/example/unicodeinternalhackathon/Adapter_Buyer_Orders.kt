@@ -3,6 +3,7 @@ package com.example.unicodeinternalhackathon
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,14 +31,14 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_buyer_orders>, val context: C
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,Buyer_OrderDescription::class.java)
-//            intent.putExtra("order",data[position])
-            intent.putExtra("name",data[position].name)
+           intent.putExtra("order",data[position])
+            /*intent.putExtra("name",data[position].name)
             intent.putExtra("desc",data[position].description)
             intent.putExtra("dp",data[position].discountedPrice)
             intent.putExtra("min",data[position].minAmount)
             intent.putExtra("mrp",data[position].mrp)
             intent.putExtra("pId",data[position].productId)
-            intent.putExtra("sId",data[position].sellerId)
+            intent.putExtra("sId",data[position].sellerId)*/
             context.startActivity(intent)
         }
     }
@@ -67,8 +68,50 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_buyer_orders>, val context: C
 
             db.collection("seller")
                 .document(data.sellerId)
-                .collection("orders")
-                .document(data.productId)
+                .collection("sOrder")
+                .get()
+                .addOnSuccessListener { a->
+
+                    a.forEach {
+
+                     val array : ArrayList<String>? = it["buyerOrderIdAl"] as ArrayList<String>?
+
+                        Log.d("array",array.toString())
+                        Log.d("array contains",data.userOrderId)
+                        if (array!!.contains(data.userOrderId)){
+                            Log.d("array contains",data.userOrderId)
+
+                            when {
+                                it["Status"].toString() == "2" -> {
+                                    status.text = "Rejected"
+                                    status.setTextColor(ContextCompat.getColor(context, R.color.design_default_color_error))
+                                }
+                                it["Status"].toString() == "1" -> {
+                                    status.text = "Confirmed"
+                                    status.setTextColor(Color.parseColor("#2CDC06"))
+                                }
+                                it["Status"].toString() == "0" -> {
+                                    status.text = "Pending"
+                                    status.setTextColor(Color.parseColor("#302A2A"))
+                                }
+                                else -> {
+                                    status.text = "Placed"
+                                    status.setTextColor(Color.parseColor("#302A2A"))
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+
+                }
+
+
+
+                /*.document(data.orderId)
                 .get()
                 .addOnSuccessListener {
                     if(it["Status"].toString() == "2")
@@ -87,7 +130,7 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_buyer_orders>, val context: C
                         status.setTextColor(Color.parseColor("#302A2A"))
 
                     }
-                }
+                }*/
         }
     }
 }

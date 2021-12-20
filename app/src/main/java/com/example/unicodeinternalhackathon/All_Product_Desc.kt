@@ -51,6 +51,7 @@ class All_Product_Desc : AppCompatActivity() {
         val dp = intent.extras!!.getString("dp")
         val min = intent.extras!!.getString("min")
         val mrp = intent.extras!!.getString("mrp")
+
         val pId = intent.extras!!.getString("pId")
         val sId = intent.extras!!.getString("sId")
 
@@ -68,6 +69,7 @@ class All_Product_Desc : AppCompatActivity() {
         tvDp.text = dp
         tvMin.text = min
         tvMrp.text = mrp
+
 
         Glide.with(this)
             .load(img.toString())
@@ -93,13 +95,9 @@ class All_Product_Desc : AppCompatActivity() {
                 //adding code to update the quantity of a product when buyer adds his requirement
                 val add = layout.findViewById<EditText>(R.id.et_dialog_input)
                 val quant = add.text.toString().toInt()
-                var total = quant *dp.toString().toInt()
-//                if (qf.toString().isEmpty()) {
-//                    total = a
-//                } else {
-//                    val b = qf.toString().toInt()
-//                    total = a + b
-//                }
+
+
+                val total = quant *dp.toString().toInt()
 
 
                 val orderId = UUID.randomUUID()
@@ -160,6 +158,7 @@ class All_Product_Desc : AppCompatActivity() {
                                         "description" to document["description"].toString(),
                                         "Status" to "0",
                                         "orderId" to document["orderId"].toString(),
+                                        "buyerOrderIdAl" to document["buyerOrderIdAl"]
 
 
                                         )
@@ -263,7 +262,9 @@ class All_Product_Desc : AppCompatActivity() {
                                                 "image" to document["image"].toString(),
                                                 "description" to document["description"].toString(),
                                                 "Status" to "0",
-                                                "orderId" to document["orderId"].toString()
+                                                "orderId" to document["orderId"].toString(),
+                                                "buyerOrderIdAl" to document["buyerOrderIdAl"]
+
                                             )
                                             db.collection("seller")
                                                 .document(sId.toString())
@@ -329,16 +330,21 @@ class All_Product_Desc : AppCompatActivity() {
 
 
                             when {
-                                quant >= min.toString().toInt() -> {
+
+                                quant>=min.toString().toInt() -> {
+
+                                    Log.d("quant",quant.toString())
+
 
                                     Log.d("quant", quant.toString())
+
 
                                     val order = hashMapOf(
                                         "totalAmount" to total.toString(),
                                         "quantity" to quant.toString(),
                                         "buyerAl" to buyerAl,
                                         "buyerOrderIdAl" to buyerOrderIdAl,
-                                        "usable" to "0",
+                                        "usable"   to "0",
                                         "productId" to pId.toString(),
                                         "orderId" to orderId.toString(),
                                         "name" to name.toString(),
@@ -352,7 +358,8 @@ class All_Product_Desc : AppCompatActivity() {
                                         .document(orderId.toString())
                                         .set(order)
                                         .addOnSuccessListener {
-                                            Log.d("ORDER", "received 1")
+
+                                            Log.d("ORDER","received 1")
 
                                         }
                                     val sOrder = hashMapOf(
@@ -363,7 +370,8 @@ class All_Product_Desc : AppCompatActivity() {
                                         "name" to name.toString(),
                                         "image" to img.toString(),
                                         "description" to desc.toString(),
-                                        "Status" to "0"
+                                        "Status" to "0",
+                                        "buyerOrderIdAl" to buyerOrderIdAl
                                     )
                                     db.collection("seller")
                                         .document(sId.toString())
@@ -371,11 +379,13 @@ class All_Product_Desc : AppCompatActivity() {
                                         .document(orderId.toString())
                                         .set(sOrder)
                                         .addOnSuccessListener {
+
                                             Log.d("ORDER", "received 11")
                                         }
 
                                 }
                                 totalAmount1 + total > MinAmount -> {
+
 
                                     val order = hashMapOf(
                                         "totalAmount" to total.toString(),
@@ -396,7 +406,7 @@ class All_Product_Desc : AppCompatActivity() {
                                         .document(orderId.toString())
                                         .set(order)
                                         .addOnSuccessListener {
-                                            Log.d("ORDER", "received 2")
+                                            Log.d("ORDER","received 2")
 
                                             db.collection("orders")
                                                 .document(sId.toString())
@@ -406,10 +416,7 @@ class All_Product_Desc : AppCompatActivity() {
 
                                                     mainDo.forEach { document ->
 
-                                                        Log.d(
-                                                            "hashmap set",
-                                                            document["name"].toString()
-                                                        )
+                                                        Log.d("hashmap set",document["name"].toString())
 
                                                         val sOrder = hashMapOf(
                                                             "quantity" to document["quantity"].toString(),
@@ -419,7 +426,8 @@ class All_Product_Desc : AppCompatActivity() {
                                                             "image" to document["image"].toString(),
                                                             "description" to document["description"].toString(),
                                                             "Status" to "0",
-                                                            "orderId" to document["orderId"].toString()
+                                                            "orderId" to document["orderId"].toString(),
+                                                            "buyerOrderIdAl" to document["buyerOrderIdAl"]
                                                         )
                                                         db.collection("seller")
                                                             .document(sId.toString())
@@ -427,14 +435,14 @@ class All_Product_Desc : AppCompatActivity() {
                                                             .document(document["orderId"].toString())
                                                             .set(sOrder)
                                                             .addOnSuccessListener {
-                                                                Log.d("ORDER", "received 22")
+                                                                Log.d("ORDER","received 22")
                                                             }
 
                                                         db.collection("orders")
                                                             .document(sId.toString())
                                                             .collection("mOrders")
                                                             .document(document["orderId"].toString())
-                                                            .update("usable", "0")
+                                                            .update("usable","0")
                                                     }
 
                                                 }
@@ -449,7 +457,7 @@ class All_Product_Desc : AppCompatActivity() {
                                         "quantity" to quant.toString(),
                                         "buyerAl" to buyerAl,
                                         "buyerOrderIdAl" to buyerOrderIdAl,
-                                        "usable" to "1",
+                                        "usable"   to "1",
                                         "productId" to pId.toString(),
                                         "orderId" to orderId.toString(),
                                         "name" to name.toString(),
@@ -462,7 +470,8 @@ class All_Product_Desc : AppCompatActivity() {
                                         .document(orderId.toString())
                                         .set(order)
                                         .addOnSuccessListener {
-                                            Log.d("ORDER", "received 3")
+                                      Log.d("ORDER", "received 3")
+
                                         }
 
 
@@ -478,262 +487,8 @@ class All_Product_Desc : AppCompatActivity() {
                     }
 
 
-//                tvQf.text = total.toString()
 
-                //storing data to seller collection in firebase as per the requirement
-                db.collection("seller")
-                    .document(sId.toString())
-                    .collection("products")
-                    .document(pId.toString())
-                    .update("QuantityFulfilled", total.toString())
-                    .addOnSuccessListener {
-                        val totalAmount = dp.toString().toInt() * total
 
-                        val order = hashMapOf(
-                            "ProductId" to pId.toString(),
-                            "SellerId" to sId.toString(),
-                            "BuyerId" to mAuth.currentUser!!.uid,
-                            "Quantity" to total.toString(),
-                            "PICost" to dp.toString(),
-                            "TotalAmount" to totalAmount.toString(),
-                            "Image" to img.toString(),
-                            "Name" to name.toString(),
-                            "Description" to desc.toString(),
-                            "Status" to "0"
-                        )
-
-                        db.collection("buyer")
-                            .document(mAuth.currentUser!!.uid)
-                            .collection("orders")
-                            .document(pId.toString())
-                            .set(order)
-                            .addOnSuccessListener {
-
-                                // this is like a formula to allot orders are per conditions to seller
-                                db.collection("seller")
-                                    .document(sId.toString())
-                                    .collection("products")
-                                    .get()
-                                    .addOnSuccessListener { products ->
-                                        tAmount = 0
-                                        for (i in products) {
-                                            //checking if products are above a minimum quantity as told by seller
-                                            if (i["QuantityFulfilled"].toString()
-                                                    .toInt() >= i["MinQuantity"].toString().toInt()
-                                            ) {
-                                                val totalAmount2 = i["DiscountedPrice"].toString()
-                                                    .toInt() * i["QuantityFulfilled"].toString()
-                                                    .toInt()
-                                                val sellerOrder = hashMapOf(
-                                                    "Name" to i["Name"],
-                                                    "Quantity" to i["QuantityFulfilled"].toString(),
-                                                    "TotalAmount" to totalAmount2.toString(),
-                                                    "OrderId" to i["ProductId"].toString(),
-                                                    "Image" to i["Image"].toString(),
-                                                    "Description" to i["Description"].toString(),
-                                                    "PICost" to i["DiscountedPrice"].toString(),
-                                                    "Status" to "0",
-                                                )
-
-                                                db.collection("seller")
-                                                    .document(sId.toString())
-                                                    .collection("orders")
-                                                    .document(i["ProductId"].toString())
-                                                    .set(sellerOrder)
-                                                    .addOnSuccessListener {
-                                                        Log.d("order", "order placed for seller")
-                                                    }
-                                                    .addOnFailureListener {
-                                                        Log.d(
-                                                            "order",
-                                                            "order not placed for seller"
-                                                        )
-                                                    }
-
-                                                db.collection("seller")
-                                                    .document(sId.toString())
-                                                    .collection("products")
-                                                    .document(i["ProductId"].toString())
-                                                    .update("QuantityFulfilled", "0")
-
-                                            } else {
-                                                //from here those products will added to seller orders which did not cross
-                                                //minimum quantity but their sum crosses minimum value
-                                                tAmount += (i["QuantityFulfilled"].toString()
-                                                    .toInt() * i["DiscountedPrice"].toString()
-                                                    .toInt())
-
-                                                if (tAmount >= MinAmount) {
-                                                    db.collection("seller")
-                                                        .document(sId.toString())
-                                                        .collection("products")
-                                                        .get()
-                                                        .addOnSuccessListener { products2 ->
-                                                            // iterating and adding only those products which did not cross
-                                                            // minimum quantity
-                                                            for (j in products2) {
-                                                                if (j["QuantityFulfilled"].toString()
-                                                                        .toInt() < j["MinQuantity"].toString()
-                                                                        .toInt()
-                                                                ) {
-                                                                    db.collection("seller")
-                                                                        .document(sId.toString())
-                                                                        .collection("orders")
-                                                                        .get()
-                                                                        .addOnSuccessListener { orders ->
-                                                                            Log.d("ms1", "Hello")
-                                                                            Log.d(
-                                                                                "size",
-                                                                                orders.size()
-                                                                                    .toString()
-                                                                            )
-                                                                            val x = orders.size()
-                                                                            if (x == 0 && j["QuantityFulfilled"].toString()
-                                                                                    .toInt() != 0
-                                                                            ) {
-                                                                                val sellerOrder =
-                                                                                    hashMapOf(
-                                                                                        "Name" to j["Name"],
-                                                                                        "Quantity" to j["QuantityFulfilled"].toString(),
-                                                                                        "TotalAmount" to (j["DiscountedPrice"].toString()
-                                                                                            .toInt() * j["QuantityFulfilled"].toString()
-                                                                                            .toInt()).toString(),
-                                                                                        "Order id" to j["ProductId"].toString(),
-                                                                                        "Image" to j["Image"].toString(),
-                                                                                        "Description" to j["Description"].toString(),
-                                                                                        "PICost" to j["DiscountedPrice"].toString(),
-                                                                                        "Status" to "0"
-                                                                                    )
-                                                                                db.collection("seller")
-                                                                                    .document(sId.toString())
-                                                                                    .collection("orders")
-                                                                                    .document(j["ProductId"].toString())
-                                                                                    .set(sellerOrder)
-                                                                                    .addOnSuccessListener {
-                                                                                        Log.d(
-                                                                                            "order",
-                                                                                            "order placed for seller"
-                                                                                        )
-                                                                                    }
-                                                                                    .addOnFailureListener {
-                                                                                        Log.d(
-                                                                                            "order",
-                                                                                            "order not placed for seller"
-                                                                                        )
-                                                                                    }
-
-                                                                                db.collection("seller")
-                                                                                    .document(sId.toString())
-                                                                                    .collection("products")
-                                                                                    .document(j["ProductId"].toString())
-                                                                                    .update(
-                                                                                        "QuantityFulfilled",
-                                                                                        "0"
-                                                                                    )
-                                                                            } else {
-                                                                                var count = 0;
-                                                                                for (k in orders) {
-                                                                                    if (j["ProductId"].toString() != k["Order id"].toString()) {
-                                                                                        count += 1
-                                                                                    } else {
-                                                                                        break
-                                                                                    }
-                                                                                }
-
-                                                                                for (k in orders) {
-                                                                                    if (count != orders.size()) {
-                                                                                        Log.d(
-                                                                                            "id",
-                                                                                            j["ProductId"].toString()
-                                                                                        )
-                                                                                        Log.d(
-                                                                                            "id",
-                                                                                            k["Order id"].toString()
-                                                                                        )
-                                                                                        val sellerOrder =
-                                                                                            hashMapOf(
-                                                                                                "Name" to j["Name"],
-                                                                                                "Quantity" to j["QuantityFulfilled"].toString(),
-                                                                                                "TotalAmount" to (j["DiscountedPrice"].toString()
-                                                                                                    .toInt() * j["QuantityFulfilled"].toString()
-                                                                                                    .toInt()).toString(),
-                                                                                                "Order id" to j["ProductId"].toString(),
-                                                                                                "Image" to j["Image"].toString(),
-                                                                                                "Description" to j["Description"].toString(),
-                                                                                                "PICost" to j["DiscountedPrice"].toString(),
-                                                                                                "Status" to "0"
-                                                                                            )
-                                                                                        db.collection(
-                                                                                            "seller"
-                                                                                        )
-                                                                                            .document(
-                                                                                                sId.toString()
-                                                                                            )
-                                                                                            .collection(
-                                                                                                "orders"
-                                                                                            )
-                                                                                            .document(
-                                                                                                j["ProductId"].toString()
-                                                                                            )
-                                                                                            .set(
-                                                                                                sellerOrder
-                                                                                            )
-                                                                                            .addOnSuccessListener {
-                                                                                                Log.d(
-                                                                                                    "order",
-                                                                                                    "order placed for seller"
-                                                                                                )
-                                                                                            }
-                                                                                            .addOnFailureListener {
-                                                                                                Log.d(
-                                                                                                    "order",
-                                                                                                    "order not placed for seller"
-                                                                                                )
-                                                                                            }
-
-                                                                                        db.collection(
-                                                                                            "seller"
-                                                                                        )
-                                                                                            .document(
-                                                                                                sId.toString()
-                                                                                            )
-                                                                                            .collection(
-                                                                                                "products"
-                                                                                            )
-                                                                                            .document(
-                                                                                                j["ProductId"].toString()
-                                                                                            )
-                                                                                            .update(
-                                                                                                "QuantityFulfilled",
-                                                                                                "0"
-                                                                                            )
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                        .addOnFailureListener {
-                                                                            Log.d("ms", "Hello")
-                                                                        }
-                                                                }
-                                                            }
-
-                                                        }
-                                                }
-                                            }
-                                        }
-                                    }
-                                val intent = Intent(this, Buyer_orders::class.java)
-                                startActivity(intent)
-                                finish()
-                                Log.d("order msg", "data store in buyer order")
-                            }
-                            .addOnFailureListener {
-                                Log.d("order msg", "data not stored in buyer order")
-                            }
-                    }
-                    .addOnFailureListener {
-                        Log.d("order msg", "somme error")
-                    }
             }
             dialog.setNegativeButton("Cancel") { _, _ ->
 

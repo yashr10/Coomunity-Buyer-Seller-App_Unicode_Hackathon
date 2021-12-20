@@ -27,17 +27,17 @@ class Buyer_OrderDescription : AppCompatActivity() {
         binding = ActivityBuyerOrderDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val order = intent.getParcelableExtra<data_orders>("order")
+        val order = intent.getParcelableExtra<data_buyer_orders>("order")
         val mAuth =  Firebase.auth
 
         Glide.with(this)
-            .load(order!!.Image)
+            .load(order!!.image)
             .into(binding.ivProductDetailsImage)
 
-        binding.tvProductDetailsName.text = order.Name
-        binding.tvProductDetailsDesc.text = order.Description
-        binding.tvOrderQuantity.setText(order.Quantity)
-        binding.tvTotalAmount.text = order.TotalAmount
+        binding.tvProductDetailsName.text = order.name
+        binding.tvProductDetailsDesc.text = order.description
+        binding.tvOrderQuantity.setText(order.quantity)
+        binding.tvTotalAmount.text = order.totalAmount
 
         binding.imgBuyerOrderDescBack.setOnClickListener {
             finish()
@@ -224,7 +224,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
 //
 //        }
 
-        binding.delete.setOnClickListener {
+       /* binding.delete.setOnClickListener {
 
             db.collection("buyer")
                 .document(Firebase.auth.currentUser!!.uid)
@@ -237,7 +237,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
                 }
 
 
-        }
+        }*/
 
 
     }

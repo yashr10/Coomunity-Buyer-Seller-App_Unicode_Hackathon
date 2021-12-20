@@ -14,8 +14,8 @@ data class data_buyer_orders(
     var description: String = "",
     var Status: String = "0",
     var userOrderId: String = "",
-    var orderId: String,
-    var discountedPrice: String,
-    var mrp: String,
-    var minAmount: String,
+    var orderId: String = "",
+    var discountedPrice: String = "",
+    var mrp: String= "",
+    var minAmount: String= "",
 ) : Parcelable

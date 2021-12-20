@@ -13,7 +13,6 @@ data class data_seller_order(
     var description: String = "",
     var Status: String = "0",
     var productId: String = ""
-
 ) : Parcelable
 
 
