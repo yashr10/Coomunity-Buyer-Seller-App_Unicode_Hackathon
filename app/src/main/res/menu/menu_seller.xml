@@ -8,10 +8,10 @@
             android:icon="@drawable/ic_orders"/>
         <item android:title="@string/all_products"
             android:id="@+id/nav_seller_all_products"
-            android:icon="@drawable/ic_orders"/>
+            android:icon="@drawable/ic_shop"/>
         <item android:id="@+id/nav_seller_min_amount"
             android:title="@string/min_amount"
-            android:icon="@drawable/ic_orders"/>
+            android:icon="@drawable/ic_min"/>
     <group android:checkableBehavior="single">
         <item android:title="@string/account">
             <menu>
@@ -22,8 +22,4 @@
         </item>
 
     </group>
-    <item android:id="@+id/search_seller"
-        android:title="Search_Seller"
-        android:icon = "@drawable/ic_search"
-        android:showAsAction="always"/>
 </menu>

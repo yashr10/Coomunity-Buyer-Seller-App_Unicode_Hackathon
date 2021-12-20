@@ -18,8 +18,6 @@
             </menu>
         </item>
     </group>
-    <item android:id="@+id/search_buyer"
-        android:title="Search_Seller"
-        android:icon = "@drawable/ic_search"
-        app:showAsAction="always"/>
+
+
 </menu>

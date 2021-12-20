@@ -118,9 +118,6 @@ class Buyer_All_Products : AppCompatActivity() {
                     startActivity(Intent(this,LoginActivity::class.java))
                     finish()
                 }
-//                R.id.nav_buyer_profile -> {
-//
-//                }
             }
             true
         }
@@ -167,38 +164,38 @@ class Buyer_All_Products : AppCompatActivity() {
 
     }
 
+    //search bar code
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val search_btn = menu.findItem(R.id.search)
+        val search = search_btn?.actionView as SearchView
+        search.queryHint = "Search Here"
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.menu_buyer, menu)
-//        val search_btn = menu.findItem(R.id.search_buyer)
-//        val search = search_btn?.actionView as SearchView
-//        search.queryHint = "Search Here"
-//        super.onCreateOptionsMenu(menu,inflater)
-//
-//
-//        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return true
-//            }
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                if (newText != "")
-//                {
-//                    val new_data = data.filter { data_all_products ->
-//                        val s = (data_all_products.Name).lowercase()
-//                        newText!!.lowercase().let { s.startsWith(it) }
-//                    }
-//                    rv.adapter = Adapter_All_Products(new_data as ArrayList<data_all_products>,this@Buyer_All_Products)
-//                    rv.adapter?.notifyDataSetChanged()
-//                }
-//                if (newText == "") {
-//                    rv.adapter = Adapter_All_Products(data,this@Buyer_All_Products)
-//                    rv.adapter?.notifyDataSetChanged()
-//                }
-//                return true
-//            }
 
-//        })
-//    }
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != "")
+                {
+                    val new_data = data.filter { data_all_products ->
+                        val s = (data_all_products.Name).lowercase()
+                        newText!!.lowercase().let { s.startsWith(it) }
+                    }
+                    rv.adapter = Adapter_All_Products(new_data as ArrayList<data_all_products>,this@Buyer_All_Products)
+                    rv.adapter?.notifyDataSetChanged()
+                }
+                if (newText == "") {
+                    rv.adapter = Adapter_All_Products(data,this@Buyer_All_Products)
+                    rv.adapter?.notifyDataSetChanged()
+                }
+                return true
+            }
+
+        })
+        return true
+    }
 
 
 }

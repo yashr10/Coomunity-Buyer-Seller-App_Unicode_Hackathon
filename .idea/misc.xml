@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_orders.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_phone_login.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_profile.xml" value="0.16458333333333333" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_search.xml" value="0.24375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_all_product_desc.xml" value="0.264" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_all_products.xml" value="0.2234375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_buyer_order_description.xml" value="0.4" />
@@ -34,19 +35,14 @@
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/product_details.xml" value="0.2" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/rv_all_products.xml" value="0.1" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/seller_all_products.xml" value="0.12" />
-        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/menu/menu_buyer.xml" value="0.2234375" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/menu/menu_buyer.xml" value="0.3157894736842105" />
+        <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/menu/menu_search.xml" value="0.2234375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/menu/menu_seller.xml" value="0.2234375" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Meet Mehta/Desktop/Unicode-Internal-Hackathon/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back1.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back_button.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back_button_clicked.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back1.xml" value="0.2222222222222222" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back_button.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/back_button_clicked.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/button_text_color_bs_register.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_arrow_back.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_email.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_home.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_lock.xml" value="0.26614583333333336" />

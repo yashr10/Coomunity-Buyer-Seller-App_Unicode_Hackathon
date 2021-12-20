@@ -6,13 +6,11 @@ import android.os.Bundle
 import android.util.Log
 
 import android.view.Menu
-import android.view.MenuInflater
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import android.widget.EditText
-
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -55,7 +53,7 @@ class Seller_All_Products : AppCompatActivity() {
         val header = nav.getHeaderView(0)
         val userName = header.findViewById<TextView>(R.id.tv_left_nav_name)
         userName.text = mAuth.currentUser!!.displayName
-        var MinAmount:String = ""
+        var MinAmount: String = ""
 
         //assigning toolbar and drawer to work simultaneously
         toolbar = findViewById(R.id.seller_toolbar)
@@ -116,13 +114,13 @@ class Seller_All_Products : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+
                 R.id.nav_seller_all_products -> {
                     drawer.closeDrawer(GravityCompat.START)
                 }
 
                 R.id.nav_seller_products -> {
-                    val intent = Intent(this, SellerAddProduct::class.java)
-
+                    val intent = Intent(this, SellerProducts::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -132,66 +130,66 @@ class Seller_All_Products : AppCompatActivity() {
                     finish()
                 }
 
-//                R.id.nav_seller_min_amount->{
-
-                R.id.nav_seller_min_amount->{
+                R.id.nav_seller_min_amount -> {
                     val dialog = AlertDialog.Builder(this)
                     dialog.setTitle("Minimum Order Amount")
                     dialog.setMessage("Enter Minimum Order Amount")
                     val inflater = layoutInflater
-                    val view = inflater.inflate(R.layout.dialog_input,null)
-                    dialog.setPositiveButton("Save"){_,_ ->
+                    val view = inflater.inflate(R.layout.dialog_input, null)
+                    dialog.setPositiveButton("Save") { _, _ ->
                         val input = view.findViewById<EditText>(R.id.et_dialog_input)
                         MinAmount = input.text.toString()
                         db.collection("seller")
                             .document(mAuth.currentUser!!.uid)
-                            .update("MinAmount",MinAmount)
+                            .update("MinAmount", MinAmount)
                     }
-                    dialog.setNegativeButton("Cancel"){_,_ ->
+                    dialog.setNegativeButton("Cancel") { _, _ ->
 
                     }
                     dialog.setView(view)
                     dialog.show()
                 }
-//                R.id.nav_seller_profile->{
-//
-//                }
             }
             true
         }
     }
 
+    //search bar code
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val search_btn = menu.findItem(R.id.search)
+        val search = search_btn?.actionView as SearchView
+        search.queryHint = "Search Here"
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu)
-//        inflater.inflate(R.menu.menu_seller, menu)
-//
-//        val search_btn = menu.findItem(R.id.search_buyer)
-//        val search = search_btn?.actionView as SearchView
-//        search.queryHint = "Search Here"
-//
-//        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return true
-//            }
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                if (newText != "")
-//                {
-//                    val new_data = data.filter { data_all_products ->
-//                        val s = (data_all_products.Name).lowercase()
-//                        newText!!.lowercase().let { s.startsWith(it) }
-//                    }
-//                    rv.adapter = Adapter_All_Products(new_data as ArrayList<data_all_products>,this@Seller_All_Products)
-//                    rv.adapter?.notifyDataSetChanged()
-//                }
-//                if (newText == "") {
-//                    rv.adapter = Adapter_All_Products(data,this@Seller_All_Products)
-//                    rv.adapter?.notifyDataSetChanged()
-//                }
-//                return true
-//            }
-//
-//        })
-//    }
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != "") {
+                    val new_data = data.filter { data_all_products ->
+                        val s = (data_all_products.Name).lowercase()
+                        newText!!.lowercase().let { s.startsWith(it) }
+                    }
+                    rv.adapter = Adapter_All_Products(
+                        new_data as ArrayList<data_all_products>,
+                        this@Seller_All_Products
+                    )
+                    rv.adapter?.notifyDataSetChanged()
+                }
+                if (newText == "") {
+                    rv.adapter = Adapter_All_Products(data, this@Seller_All_Products)
+                    rv.adapter?.notifyDataSetChanged()
+                }
+                return true
+            }
+
+        })
+        return true
+    }
+
 
 }
+
