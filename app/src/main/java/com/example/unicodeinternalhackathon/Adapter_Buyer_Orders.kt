@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context):RecyclerView.Adapter<Adapter_Buyer_Orders.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.card_view_buyer_order,parent,false)
@@ -40,7 +41,8 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
 
     class ViewHolder(v: View):RecyclerView.ViewHolder(v)
     {
-        val mAuth = Firebase.auth
+        val mAuth =  Firebase.auth
+
         val db = Firebase.firestore
         var status :TextView = v.findViewById(R.id.buyer_order_status)
         val tvName :TextView = v.findViewById(R.id.tv_buyer_order_name)
@@ -55,6 +57,7 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
             Glide.with(context)
                 .load(data.Image.toString())
                 .into(img)
+
             db.collection("seller")
                 .document(data.SellerId)
                 .collection("orders")

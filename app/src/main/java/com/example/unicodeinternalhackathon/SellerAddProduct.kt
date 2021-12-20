@@ -16,6 +16,7 @@ import com.google.firebase.storage.ktx.storage
 import android.os.Messenger
 
 import android.content.pm.PackageManager
+import kotlinx.android.synthetic.main.activity_seller_add_product.*
 import java.security.AccessController.getContext
 
 
@@ -53,6 +54,9 @@ class SellerAddProduct : AppCompatActivity() {
             Toast.makeText(this, "Please Fill in all details", Toast.LENGTH_SHORT).show()
         }
 
+        img_seller_add_prod_back.setOnClickListener {
+            finish()
+        }
 
         imageText.setOnClickListener {
 

@@ -6,49 +6,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_buyer"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="142dp"
+                    android:background="@drawable/register_bs_button_unclicked"
+                    android:padding="5dp"
+                    android:text="Buyer"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.465"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-//Buyer
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_buyer"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginTop="78dp"
-            android:padding="5dp"
-            android:background="@drawable/back_button"
-            android:text="Buyer"
-            android:textStyle="normal"
-            android:textSize="11sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_seller"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="78dp"
-            android:padding="5dp"
-            android:text="Seller"
-            android:textStyle="normal"
-            android:textSize="11sp"
-            android:textColor="@color/white"
-            android:background="@drawable/back_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_seller"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="142dp"
+                    android:padding="5dp"
+                    android:background="@drawable/register_bs_button_unclicked"
+                    android:text="Seller"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_bName_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="145dp"
             android:drawableLeft="@drawable/ic_profile"
             android:drawablePadding="12dp"
             android:background="@drawable/back1"
@@ -176,14 +174,11 @@
             app:layout_constraintVertical_bias="0.0"/>
 
 
-
-                //Seller
-
                 <TextView
                     android:id="@+id/tv_already_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="450dp"
+                    android:layout_marginTop="530dp"
                     android:text="@string/already_a_user_login"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -196,7 +191,7 @@
             android:id="@+id/et_shopName_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="145dp"
             android:drawableLeft="@drawable/ic_profile"
             android:drawablePadding="12dp"
             android:background="@drawable/back1"

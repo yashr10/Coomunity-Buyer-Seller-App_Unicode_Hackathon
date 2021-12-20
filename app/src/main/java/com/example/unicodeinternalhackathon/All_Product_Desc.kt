@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_all_product_desc.*
 
 class All_Product_Desc : AppCompatActivity() {
     //variables of firebase
@@ -20,6 +21,11 @@ class All_Product_Desc : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_product_desc)
+
+
+        img_all_prod_desc_back.setOnClickListener{
+            finish()
+        }
 
         //button for adding requirement
         val req = findViewById<Button>(R.id.bt_prod_desc_req)

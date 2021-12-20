@@ -20,6 +20,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
     private val db = Firebase.firestore
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,6 +28,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
         setContentView(binding.root)
 
         val order = intent.getParcelableExtra<data_orders>("order")
+        val mAuth =  Firebase.auth
 
         Glide.with(this)
             .load(order!!.Image)
@@ -36,6 +38,10 @@ class Buyer_OrderDescription : AppCompatActivity() {
         binding.tvProductDetailsDesc.text = order.Description
         binding.tvOrderQuantity.setText(order.Quantity)
         binding.tvTotalAmount.text = order.TotalAmount
+
+        binding.imgBuyerOrderDescBack.setOnClickListener {
+            finish()
+        }
 
         binding.btOrderDetailsEdit.setOnClickListener {
 
@@ -48,7 +54,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
         //changing visibility of edit button as per the status of the order
         db.collection("buyer")
-            .document(Firebase.auth.currentUser!!.uid)
+            .document(mAuth.currentUser!!.uid)
             .collection("orders")
             .document(order.ProductId)
             .get()
