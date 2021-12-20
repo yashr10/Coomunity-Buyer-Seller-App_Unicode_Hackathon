@@ -56,6 +56,7 @@ class Buyer_orders : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.isDrawerIndicatorEnabled = true
+        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 

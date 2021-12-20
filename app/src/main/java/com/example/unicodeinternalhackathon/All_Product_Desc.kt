@@ -143,7 +143,8 @@ class All_Product_Desc : AppCompatActivity() {
                                                     "OrderId" to i["ProductId"].toString(),
                                                     "Image" to i["Image"].toString(),
                                                     "Description" to i["Description"].toString(),
-                                                    "PICost" to i["PICost"].toString()
+                                                    "PICost" to i["PICost"].toString(),
+                                                    "Status" to "0",
 
                                                 )
 
