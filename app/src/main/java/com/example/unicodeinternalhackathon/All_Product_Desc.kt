@@ -3,6 +3,7 @@ package com.example.unicodeinternalhackathon
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -97,13 +98,13 @@ class All_Product_Desc : AppCompatActivity() {
                     .document(pId.toString())
                     .update("QuantityFulfilled", total.toString())
                     .addOnSuccessListener {
-                        val totalAmount = dp.toString().toInt() * a
+                        val totalAmount = dp.toString().toInt() * total
 
                         val order = hashMapOf(
                             "ProductId" to pId.toString(),
                             "SellerId" to sId.toString(),
                             "BuyerId" to mAuth.currentUser!!.uid,
-                            "Quantity" to a.toString(),
+                            "Quantity" to total.toString(),
                             "PICost" to dp.toString(),
                             "TotalAmount" to totalAmount.toString(),
                             "Image" to img.toString(),
@@ -127,18 +128,25 @@ class All_Product_Desc : AppCompatActivity() {
                                     .addOnSuccessListener { products ->
                                         tAmount = 0
                                         for (i in products) {
+                                            Log.d("quant",
+                                                i["QuantityFulfilled"].toString()
+                                            )
                                             //checking if products are above a minimum quantity as told by seller
-                                            if (i["QuantityFulfilled"].toString()
-                                                    .toInt() >= i["MinQuantity"].toString().toInt()
+                                            if (i["QuantityFulfilled"].toString().toInt() >=
+                                                i["MinQuantity"].toString().toInt()
                                             ) {
                                                 val sellerOrder = hashMapOf(
                                                     "Name" to i["Name"],
                                                     "Quantity" to i["QuantityFulfilled"].toString(),
-                                                    "TotalAmount" to (i["PICost"].toString()
-                                                        .toInt() * i["QuantityFulfilled"].toString()
-                                                        .toInt()).toString(),
-                                                    "Order id" to i["ProductId"].toString()
+                                                    "TotalAmount" to (i["DiscountedPrice"].toString()
+                                                        .toInt() * i["QuantityFulfilled"].toString().toInt()).toString(),
+                                                    "OrderId" to i["ProductId"].toString(),
+                                                    "Image" to i["Image"].toString(),
+                                                    "Description" to i["Description"].toString(),
+                                                    "PICost" to i["PICost"].toString()
+
                                                 )
+
                                                 db.collection("seller")
                                                     .document(sId.toString())
                                                     .collection("orders")
@@ -162,8 +170,10 @@ class All_Product_Desc : AppCompatActivity() {
                                             } else {
                                                 //from here those products will added to seller orders which did not cross
                                                 //minimum quantity but their sum crosses minimum value
-                                                tAmount += i["QuantityFulfilled"].toString()
-                                                    .toInt() * i["PICost"].toString().toInt()
+                                                tAmount += i["Quantity"].toString().toInt() *
+                                                        i["PICost"].toString().toInt()
+                                                //delete later
+                                                val MinAmount = 50
                                                 if (tAmount >= MinAmount) {
                                                     db.collection("seller")
                                                         .document(sId.toString())
@@ -183,7 +193,10 @@ class All_Product_Desc : AppCompatActivity() {
                                                                         "TotalAmount" to (j["PICost"].toString()
                                                                             .toInt() * j["QuantityFulfilled"].toString()
                                                                             .toInt()).toString(),
-                                                                        "Order id" to j["ProductId"].toString()
+                                                                        "Order id" to j["ProductId"].toString(),
+                                                                        "Image" to j["Image"].toString(),
+                                                                        "Description" to j["Description"].toString(),
+                                                                        "PICost" to j["PICost"].toString()
                                                                     )
                                                                     db.collection("seller")
                                                                         .document(sId.toString())
@@ -207,10 +220,7 @@ class All_Product_Desc : AppCompatActivity() {
                                                                         .document(sId.toString())
                                                                         .collection("products")
                                                                         .document(j["ProductId"].toString())
-                                                                        .update(
-                                                                            "QuantityFulfilled",
-                                                                            "0"
-                                                                        )
+                                                                        .update("QuantityFulfilled", "0")
                                                                 }
                                                             }
 

@@ -13,13 +13,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import android.os.Messenger
+
+import android.content.pm.PackageManager
+import java.security.AccessController.getContext
 
 
 class SellerAddProduct : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     val db = Firebase.firestore
-    private var imageUri: Uri? = null
+    private lateinit var imageUri: Uri
     private lateinit var productImage: ImageView
     private lateinit var imageText: TextView
 
@@ -28,7 +32,7 @@ class SellerAddProduct : AppCompatActivity() {
     private val storageRef = storage.reference
 
     //variable to store imageUrl
-    private var imgUrl: String? = null
+    private lateinit var imgUrl: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +56,11 @@ class SellerAddProduct : AppCompatActivity() {
 
         imageText.setOnClickListener {
 
-
             val intent = Intent()
             intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
+            intent.action = Intent.ACTION_OPEN_DOCUMENT
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivityForResult(intent, 100)
         }
 
@@ -74,53 +79,50 @@ class SellerAddProduct : AppCompatActivity() {
 
 
                         val filename = productId
-                        imageUri?.let { it1 -> storageRef.child("image/$filename").putFile(it1) }
-                            ?.addOnSuccessListener {
-                                storageRef.child("image/$filename").downloadUrl.addOnSuccessListener {
+                        val a = storageRef.child("image/$filename")
+                        storageRef.child("image/$filename").putFile(imageUri)
+                            .addOnSuccessListener {
+
+                       //         imgUrl = it.storage.downloadUrl.toString()
+                                a.downloadUrl.addOnSuccessListener {
 
                                     imgUrl = it.toString()
-                                    Log.d("image added", imgUrl!!.toString())
-
-
-                                    val product = hashMapOf(
-                                        "Name" to productName.text.toString(),
-                                        "Description" to productDesc.text.toString(),
-                                        "MRP" to productMrp.text.toString(),
-                                        "DiscountedPrice" to productDiscountedPrice.text.toString(),
-                                        "MinQuantity" to productMinQuantity.text.toString(),
-                                        "Image" to imgUrl.toString(),
-                                        "ProductId" to productId.toString(),
-                                        "QuantityFulfilled" to "0",
-                                        "SellerId" to mAuth.currentUser!!.uid
-                                    )
-
-                                    db.collection("seller")
-                                        .document(Firebase.auth.currentUser!!.uid)
-                                        .collection("products")
-                                        .document(productId!!)
-                                        .set(product)
-                                        .addOnSuccessListener {
-                                            Log.d("SellerAddProduct", product.toString())
-
-                                            startActivity(Intent(this, SellerProducts::class.java))
-                                            finish()
-
-                                        }.addOnFailureListener {
-                                            Toast.makeText(
-                                                this,
-                                                "Failed to add product",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
+                                    Log.d("image added", imgUrl)
                                 }
 
 
-                            }?.addOnFailureListener {
 
-                                Log.d("image exe", it.message.toString())
+                                val product = hashMapOf(
+                                    "Name" to productName.text.toString(),
+                                    "Description" to productDesc.text.toString(),
+                                    "MRP" to productMrp.text.toString(),
+                                    "DiscountedPrice" to productDiscountedPrice.text.toString(),
+                                    "MinQuantity" to productMinQuantity.text.toString(),
+                                    "Image" to imgUrl.toString(),
+                                    "ProductId" to productId.toString(),
+                                    "QuantityFulfilled" to "0",
+                                    "SellerId" to mAuth.currentUser!!.uid
+                                )
+
+                                db.collection("seller")
+                                    .document(Firebase.auth.currentUser!!.uid)
+                                    .collection("products")
+                                    .document(productId!!)
+                                    .set(product)
+                                    .addOnSuccessListener {
+                                        Log.d("SellerAddProduct", product.toString())
+
+                                        startActivity(Intent(this, SellerProducts::class.java))
+                                        finish()
+
+                                    }.addOnFailureListener {
+                                        Toast.makeText(
+                                            this,
+                                            "Failed to add product",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
                             }
-
-
                     } else {
                         Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
                     }
@@ -137,7 +139,7 @@ class SellerAddProduct : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            imageUri = data?.data
+            imageUri = data?.data!!
             imgUrl = imageUri.toString()
             productImage.setImageURI(imageUri)
             Log.d("image", "changed")
@@ -153,4 +155,19 @@ class SellerAddProduct : AppCompatActivity() {
         }
 
     }
+
+   /* override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            General.REQUESTPERMISSION -> if (grantResults.length > 0 && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                //reload my activity with permission granted or use the features that required the permission
+            } else {
+               // Messenger.makeToast(getContext(), R.string.noPermissionMarshmallow)
+            }
+        }
+    }*/
 }

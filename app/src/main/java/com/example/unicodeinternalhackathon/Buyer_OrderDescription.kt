@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.unicodeinternalhackathon.databinding.ActivityBuyerOrderDescriptionBinding
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -65,6 +66,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
             val quant = binding.tvOrderQuantity.text.toString()
 
+            val prevQuantity = order.Quantity.toInt()
             val price = order.PICost.toInt()
             val quantity = quant.toInt()
             val amount = price * quantity
@@ -82,6 +84,127 @@ class Buyer_OrderDescription : AppCompatActivity() {
                 .addOnSuccessListener {
                     binding.tvTotalAmount.text = amount.toString()
                     Log.d("Order Updated", quant)
+                        val a  : Long= prevQuantity.toLong()-quantity.toLong()
+                    val b = order.PICost.toLong()*a
+
+                        db.collection("seller")
+                            .document(order.SellerId)
+                            .collection("orders")
+                            .document(order.ProductId)
+                            .update("QuantityFulfilled",FieldValue.increment(-1*a))
+                    db.collection("seller")
+                        .document(order.SellerId)
+                        .collection("orders")
+                        .document(order.ProductId)
+                        .update("TotalAmount",FieldValue.increment(-1*a))
+//                        .addOnSuccessListener {
+//
+//                            db.collection("seller")
+//                                .document(order.SellerId)
+//                                .collection("orders")
+//                                .get()
+//                                .addOnSuccessListener {
+//                                    // this is like a formula to allot orders are per conditions to seller
+//                                    db.collection("seller")
+//                                        .document(sId.toString())
+//                                        .collection("products")
+//                                        .get()
+//                                        .addOnSuccessListener { products ->
+//                                            tAmount = 0
+//                                            for (i in products) {
+//                                                //checking if products are above a minimum quantity as told by seller
+//                                                if (i["QuantityFulfilled"].toString()
+//                                                        .toInt() >= i["MinQuantity"].toString().toInt()
+//                                                ) {
+//                                                    val sellerOrder = hashMapOf(
+//                                                        "Name" to i["Name"],
+//                                                        "Quantity" to i["QuantityFulfilled"].toString(),
+//                                                        "TotalAmount" to (i["PICost"].toString()
+//                                                            .toInt() * i["QuantityFulfilled"].toString()
+//                                                            .toInt()).toString(),
+//                                                        "Order id" to i["ProductId"].toString()
+//                                                    )
+//                                                    db.collection("seller")
+//                                                        .document(sId.toString())
+//                                                        .collection("orders")
+//                                                        .document(i["ProductId"].toString())
+//                                                        .set(sellerOrder)
+//                                                        .addOnSuccessListener {
+//                                                            Log.d("order", "order placed for seller")
+//                                                        }
+//                                                        .addOnFailureListener {
+//                                                            Log.d(
+//                                                                "order",
+//                                                                "order not placed for seller"
+//                                                            )
+//                                                        }
+//
+//                                                    db.collection("seller")
+//                                                        .document(sId.toString())
+//                                                        .collection("products")
+//                                                        .document(i["ProductId"].toString())
+//                                                        .update("QuantityFulfilled", "0")
+//                                                } else {
+//                                                    //from here those products will added to seller orders which did not cross
+//                                                    //minimum quantity but their sum crosses minimum value
+//                                                    tAmount += i["QuantityFulfilled"].toString()
+//                                                        .toInt() * i["PICost"].toString().toInt()
+//                                                    if (tAmount >= MinAmount) {
+//                                                        db.collection("seller")
+//                                                            .document(sId.toString())
+//                                                            .collection("products")
+//                                                            .get()
+//                                                            .addOnSuccessListener { products2 ->
+//                                                                // iterating and adding only those products which did not cross
+//                                                                // minimum quantity
+//                                                                for (j in products2) {
+//                                                                    if (j["QuantityFulfilled"].toString()
+//                                                                            .toInt() < j["MinQuantity"].toString()
+//                                                                            .toInt()
+//                                                                    ) {
+//                                                                        val sellerOrder = hashMapOf(
+//                                                                            "Name" to j["Name"],
+//                                                                            "Quantity" to j["QuantityFulfilled"].toString(),
+//                                                                            "TotalAmount" to (j["PICost"].toString()
+//                                                                                .toInt() * j["QuantityFulfilled"].toString()
+//                                                                                .toInt()).toString(),
+//                                                                            "Order id" to j["ProductId"].toString()
+//                                                                        )
+//                                                                        db.collection("seller")
+//                                                                            .document(sId.toString())
+//                                                                            .collection("orders")
+//                                                                            .document(j["ProductId"].toString())
+//                                                                            .set(sellerOrder)
+//                                                                            .addOnSuccessListener {
+//                                                                                Log.d(
+//                                                                                    "order",
+//                                                                                    "order placed for seller"
+//                                                                                )
+//                                                                            }
+//                                                                            .addOnFailureListener {
+//                                                                                Log.d(
+//                                                                                    "order",
+//                                                                                    "order not placed for seller"
+//                                                                                )
+//                                                                            }
+//
+//                                                                        db.collection("seller")
+//                                                                            .document(sId.toString())
+//                                                                            .collection("products")
+//                                                                            .document(j["ProductId"].toString())
+//                                                                            .update(
+//                                                                                "QuantityFulfilled",
+//                                                                                "0"
+//                                                                            )
+//                                                                    }
+//                                                                }
+//
+//                                                            }
+//                                                    }
+//                                                }
+
+
+
                 }.addOnFailureListener {
                     Log.d("Update UNSUCCESSFUL", quant)
                 }
