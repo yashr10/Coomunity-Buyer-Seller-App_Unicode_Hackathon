@@ -83,6 +83,9 @@ class SellerProducts : AppCompatActivity() {
                                     .document(mAuth.currentUser!!.uid)
                                     .update("MinAmount",MinAmount)
                             }
+                            dialog.setNegativeButton("Cancel"){_,_ ->
+
+                            }
                             dialog.setCancelable(false)
                             dialog.setView(view)
                             dialog.show()
@@ -156,6 +159,13 @@ class SellerProducts : AppCompatActivity() {
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
+        //assigning header username
+        db.collection("seller").document(mAuth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                userName.text = it["shop_name"].toString()
+            }
+
 //        setting nav for accessing activities through left nav
         nav.setNavigationItemSelectedListener {
             drawer.closeDrawer(GravityCompat.START)
@@ -165,7 +175,6 @@ class SellerProducts : AppCompatActivity() {
                     intent.putExtra("origin","Seller Products")
                     startActivity(intent)
                     finish()
-
                 }
                 R.id.nav_seller_all_products -> {
                     val intent = Intent(this, Seller_All_Products::class.java)
@@ -179,6 +188,23 @@ class SellerProducts : AppCompatActivity() {
                     Firebase.auth.signOut()
                     startActivity(Intent(this,LoginActivity::class.java))
                     finish()
+                }
+                R.id.nav_seller_min_amount ->{
+                    val dialog = AlertDialog.Builder(this)
+                    dialog.setTitle("Minimum Order Amount")
+                    dialog.setMessage("Enter Minimum Order Amount")
+                    val inflater = layoutInflater
+                    val view = inflater.inflate(R.layout.dialog_input,null)
+                    dialog.setPositiveButton("Save"){_,_ ->
+                        val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                        MinAmount = input.text.toString()
+                        db.collection("seller")
+                            .document(mAuth.currentUser!!.uid)
+                            .update("MinAmount",MinAmount)
+                    }
+                    dialog.setCancelable(false)
+                    dialog.setView(view)
+                    dialog.show()
                 }
             }
             true

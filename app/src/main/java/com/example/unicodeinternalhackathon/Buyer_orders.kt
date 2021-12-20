@@ -31,7 +31,7 @@ class Buyer_orders : AppCompatActivity() {
     val mAuth = Firebase.auth
 
     //variable for data in recyclerView
-    private lateinit var data:ArrayList<data_orders>
+    private lateinit var data:ArrayList<data_buyer_orders>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,14 +67,21 @@ class Buyer_orders : AppCompatActivity() {
             adapter = Adapter_Buyer_Orders(data, this@Buyer_orders)
         }
 
+        //assigning header username
+        db.collection("buyer").document(mAuth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                userName.text = it["Name"].toString()
+            }
+
         //getting data from firebase and displaying it in
         db.collection("buyer")
             .document(mAuth.currentUser!!.uid)
-            .collection("orders")
+            .collection("bOrders")
             .get()
             .addOnSuccessListener { orders ->
                 for (i in orders) {
-                    data.add(i.toObject(data_orders::class.java))
+                    data.add(i.toObject(data_buyer_orders::class.java))
                 }
                 rv.adapter!!.notifyDataSetChanged()
             }
@@ -92,7 +99,7 @@ class Buyer_orders : AppCompatActivity() {
                 R.id.nav_buyer_orders -> {
                     drawer.closeDrawer(GravityCompat.START)
                 }
-                R.id.nav_seller_logout -> {
+                R.id.nav_buyer_logout -> {
                     Firebase.auth.signOut()
                     startActivity(Intent(this,LoginActivity::class.java))
                     finish()

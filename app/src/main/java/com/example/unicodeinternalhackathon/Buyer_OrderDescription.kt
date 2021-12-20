@@ -27,82 +27,82 @@ class Buyer_OrderDescription : AppCompatActivity() {
         binding = ActivityBuyerOrderDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val order = intent.getParcelableExtra<data_orders>("order")
+        val order = intent.getParcelableExtra<data_buyer_orders>("order")
         val mAuth =  Firebase.auth
 
         Glide.with(this)
-            .load(order!!.Image)
+            .load(order!!.image)
             .into(binding.ivProductDetailsImage)
 
-        binding.tvProductDetailsName.text = order.Name
-        binding.tvProductDetailsDesc.text = order.Description
-        binding.tvOrderQuantity.setText(order.Quantity)
-        binding.tvTotalAmount.text = order.TotalAmount
+        binding.tvProductDetailsName.text = order.name
+        binding.tvProductDetailsDesc.text = order.description
+        binding.tvOrderQuantity.setText(order.quantity)
+        binding.tvTotalAmount.text = order.totalAmount
 
         binding.imgBuyerOrderDescBack.setOnClickListener {
             finish()
         }
 
-        binding.btOrderDetailsEdit.setOnClickListener {
-
-            binding.btOrderDetailsEdit.isVisible = false
-            binding.btOrderDetailsUpdate.isVisible = true
-
-            binding.tvOrderQuantity.isEnabled = true
-
-        }
+//        binding.btOrderDetailsEdit.setOnClickListener {
+//
+//            binding.btOrderDetailsEdit.isVisible = false
+//            binding.btOrderDetailsUpdate.isVisible = true
+//
+//            binding.tvOrderQuantity.isEnabled = true
+//
+//        }
 
         //changing visibility of edit button as per the status of the order
-        db.collection("buyer")
-            .document(mAuth.currentUser!!.uid)
-            .collection("orders")
-            .document(order.ProductId)
-            .get()
-            .addOnSuccessListener {
-                if (it["Status"] == "0") {
-                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
-                }
-                else
-                {
-                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
-                }
-            }
-
-        binding.btOrderDetailsUpdate.setOnClickListener {
-
-            val quant = binding.tvOrderQuantity.text.toString()
-
-            val prevQuantity = order.Quantity.toInt()
-            val price = order.PICost.toInt()
-            val quantity = quant.toInt()
-            val amount = price * quantity
-
-            db.collection("buyer")
-                .document(Firebase.auth.currentUser!!.uid)
-                .collection("orders")
-                .document(order.ProductId)
-                .update(
-                    mapOf(
-                        "Quantity" to quant,
-                        "TotalAmount" to amount.toString()
-                    )
-                )
-                .addOnSuccessListener {
-                    binding.tvTotalAmount.text = amount.toString()
-                    Log.d("Order Updated", quant)
-                        val a  : Long= prevQuantity.toLong()-quantity.toLong()
-                    val b = order.PICost.toLong()*a
-
-                        db.collection("seller")
-                            .document(order.SellerId)
-                            .collection("orders")
-                            .document(order.ProductId)
-                            .update("QuantityFulfilled",FieldValue.increment(-1*a))
-                    db.collection("seller")
-                        .document(order.SellerId)
-                        .collection("orders")
-                        .document(order.ProductId)
-                        .update("TotalAmount",FieldValue.increment(-1*a))
+//        db.collection("buyer")
+//            .document(mAuth.currentUser!!.uid)
+//            .collection("orders")
+//            .document(order.ProductId)
+//            .get()
+//            .addOnSuccessListener {
+//                if (it["Status"] == "0") {
+//                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
+//                }
+//                else
+//                {
+//                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
+//                }
+//            }
+//
+//        binding.btOrderDetailsUpdate.setOnClickListener {
+//
+//            val quant = binding.tvOrderQuantity.text.toString()
+//
+//            val prevQuantity = order.Quantity.toInt()
+//            val price = order.PICost.toInt()
+//            val quantity = quant.toInt()
+//            val amount = price * quantity
+//
+//            db.collection("buyer")
+//                .document(Firebase.auth.currentUser!!.uid)
+//                .collection("orders")
+//                .document(order.ProductId)
+//                .update(
+//                    mapOf(
+//                        "Quantity" to quant,
+//                        "TotalAmount" to amount.toString()
+//                    )
+//                )
+//                .addOnSuccessListener {
+//                    binding.tvTotalAmount.text = amount.toString()
+//                    Log.d("Order Updated", quant)
+//                        val a  : Long= prevQuantity.toLong()-quantity.toLong()
+//                    val b = order.PICost.toLong()*a
+//
+//                        db.collection("seller")
+//                            .document(order.SellerId)
+//                            .collection("orders")
+//                            .document(order.ProductId)
+//                            .update("QuantityFulfilled",FieldValue.increment(-1*a))
+//                    db.collection("seller")
+//                        .document(order.SellerId)
+//                        .collection("orders")
+//                        .document(order.ProductId)
+//                        .update("TotalAmount",FieldValue.increment(-1*a))
 //                        .addOnSuccessListener {
 //
 //                            db.collection("seller")
@@ -208,23 +208,23 @@ class Buyer_OrderDescription : AppCompatActivity() {
 //                                                            }
 //                                                    }
 //                                                }
+//
+//
+//
+//
+//                }.addOnFailureListener {
+//                    Log.d("Update UNSUCCESSFUL", quant)
+//                }
+//
+//            binding.btOrderDetailsEdit.isVisible = true
+//            binding.btOrderDetailsUpdate.isVisible = false
+//
+//            binding.tvOrderQuantity.isEnabled = false
+//
+//
+//        }
 
-
-
-
-                }.addOnFailureListener {
-                    Log.d("Update UNSUCCESSFUL", quant)
-                }
-
-            binding.btOrderDetailsEdit.isVisible = true
-            binding.btOrderDetailsUpdate.isVisible = false
-
-            binding.tvOrderQuantity.isEnabled = false
-
-
-        }
-
-        binding.delete.setOnClickListener {
+       /* binding.delete.setOnClickListener {
 
             db.collection("buyer")
                 .document(Firebase.auth.currentUser!!.uid)
@@ -237,7 +237,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
                 }
 
 
-        }
+        }*/
 
 
     }

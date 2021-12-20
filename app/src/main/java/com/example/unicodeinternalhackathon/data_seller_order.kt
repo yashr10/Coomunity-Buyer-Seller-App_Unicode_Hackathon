@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class data_seller_order(
 
+
     var name : String = "",
     var quantity : String = "",
     var totalAmount : String = "",
@@ -14,6 +15,7 @@ data class data_seller_order(
     var description : String = "",
     var Status: String = "0",
     var productId : String = ""
+
 
 
 ):Parcelable

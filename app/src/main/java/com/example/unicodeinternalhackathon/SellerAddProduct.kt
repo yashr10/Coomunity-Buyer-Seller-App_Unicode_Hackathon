@@ -18,6 +18,7 @@ import android.os.Messenger
 import android.content.pm.PackageManager
 import kotlinx.android.synthetic.main.activity_seller_add_product.*
 import java.security.AccessController.getContext
+import java.util.*
 
 
 class SellerAddProduct : AppCompatActivity() {
@@ -95,7 +96,6 @@ class SellerAddProduct : AppCompatActivity() {
                                 }
 
 
-
                                 val product = hashMapOf(
                                     "Name" to productName.text.toString(),
                                     "Description" to productDesc.text.toString(),
@@ -105,8 +105,30 @@ class SellerAddProduct : AppCompatActivity() {
                                     "Image" to imgUrl.toString(),
                                     "ProductId" to productId.toString(),
                                     "QuantityFulfilled" to "0",
-                                    "SellerId" to mAuth.currentUser!!.uid
+                                    "SellerId" to mAuth.currentUser!!.uid,
+                                    "totalAmount" to "0"
                                 )
+
+//                                val x = UUID.randomUUID().toString()
+//                                val mOrder = hashMapOf(
+//                                    "OrderId" to x,
+//                                    "Name" to productName.text.toString(),
+//                                    "Description" to productDesc.text.toString(),
+//                                    "MRP" to productMrp.text.toString(),
+//                                    "DiscountedPrice" to productDiscountedPrice.text.toString(),
+//                                    "MinQuantity" to productMinQuantity.text.toString(),
+//                                    "Image" to imgUrl,
+//                                    "ProductId" to productId.toString(),
+//                                    "QuantityFulfilled" to "0",
+//                                    "SellerId" to mAuth.currentUser!!.uid
+//                                )
+
+                                db.collection("orders1")
+                                    .document(Firebase.auth.currentUser!!.uid)
+                                    .collection("products")
+                                    .document(productId!!)
+                                    .set(product)
+
 
                                 db.collection("seller")
                                     .document(Firebase.auth.currentUser!!.uid)
