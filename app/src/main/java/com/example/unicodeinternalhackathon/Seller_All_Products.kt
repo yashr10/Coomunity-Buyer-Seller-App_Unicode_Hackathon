@@ -67,6 +67,13 @@ class Seller_All_Products : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@Seller_All_Products)
         }
 
+        //assigning header username
+        db.collection("seller").document(mAuth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                userName.text = it["shop_name"].toString()
+            }
+
         //getting product details from firestore
         db.collection("seller")
             .get()
@@ -106,7 +113,7 @@ class Seller_All_Products : AppCompatActivity() {
                     drawer.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_seller_products->{
-                    val intent = Intent(this, SellerAddProduct::class.java)
+                    val intent = Intent(this, SellerProducts::class.java)
                     startActivity(intent)
                     finish()
                 }

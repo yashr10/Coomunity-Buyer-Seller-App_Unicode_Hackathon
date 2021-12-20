@@ -60,7 +60,8 @@
             android:layout_marginEnd="16dp"
             android:hint="Product Name"
             android:padding="8dp"
-            android:textColorHint="#808080" />
+            android:textColorHint="#808080"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/et_productDesc"
@@ -71,7 +72,8 @@
             android:layout_marginEnd="16dp"
             android:hint="Product Description"
             android:padding="8dp"
-            android:textColorHint="#808080" />
+            android:textColorHint="#808080"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/et_MRP"
@@ -83,7 +85,8 @@
             android:hint="MRP"
             android:inputType="number"
             android:padding="8dp"
-            android:textColorHint="#808080" />
+            android:textColorHint="#808080"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/et_product_discountedPrice"
@@ -95,7 +98,8 @@
             android:hint="Discounted Price"
             android:inputType="number"
             android:padding="8dp"
-            android:textColorHint="#808080" />
+            android:textColorHint="#808080"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_minQuantity"
@@ -107,7 +111,8 @@
             android:hint="Minimum Quantity for discount"
             android:inputType="number"
             android:padding="8dp"
-            android:textColorHint="#808080" />
+            android:textColorHint="#808080"
+            android:textColor="@color/black" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

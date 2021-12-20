@@ -184,38 +184,6 @@
 
             </RelativeLayout>
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/bt_orderDetails_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="32dp"
-                    android:visibility="invisible"
-                    android:padding = "10dp"
-                    android:text="Edit Order"
-                    android:textColor="@color/white"
-                    android:background="@drawable/back_button"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/bt_orderDetails_update"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="32dp"
-                    android:padding = "10dp"
-                    android:text="Update Order"
-                    android:textColor="@color/white"
-                    android:visibility="invisible"
-                    android:background="@drawable/back_button"/>
-
-            </RelativeLayout>
-
-
         </LinearLayout>
 
 

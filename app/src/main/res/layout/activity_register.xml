@@ -16,7 +16,7 @@
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="142dp"
-                    android:background="@drawable/register_bs_button_unclicked"
+                    android:background="@drawable/register_bs_button_clicked"
                     android:padding="5dp"
                     android:text="Buyer"
                     android:textColor="@color/black"
@@ -42,11 +42,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:text="Registration"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bt_buyer"/>
+
         <EditText
             android:id="@+id/et_bName_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="145dp"
+            android:layout_marginTop="120dp"
             android:drawableLeft="@drawable/ic_profile"
             android:drawablePadding="12dp"
             android:background="@drawable/back1"
@@ -55,11 +68,10 @@
             android:padding="8dp"
             android:textColorHint="#808080"
             android:textColor="@color/black"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/bt_buyer"/>
+            app:layout_constraintTop_toBottomOf="@id/bt_buyer"/>
 
         <EditText
             android:id="@+id/et_bAddress_register"
@@ -70,7 +82,6 @@
             android:drawablePadding="12dp"
             android:background="@drawable/back1"
             android:hint="Address"
-            android:visibility="gone"
             android:inputType="textPostalAddress"
             android:padding="8dp"
             android:textColorHint="#808080"
@@ -91,7 +102,6 @@
             android:hint="Registration Number"
             android:inputType = "numberDecimal"
             android:padding="8dp"
-            android:visibility="gone"
             android:textColorHint="#808080"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +118,6 @@
             android:drawablePadding="12dp"
             android:background="@drawable/back1"
             android:hint="Phone Number"
-            android:visibility="gone"
             android:inputType = "numberDecimal"
             android:padding="8dp"
             android:textColorHint="#808080"
@@ -129,7 +138,6 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="8dp"
-            android:visibility="gone"
             android:textColorHint="#808080"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +156,6 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="8dp"
-            android:visibility="gone"
             android:textColorHint="#808080"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -160,38 +167,33 @@
             android:id="@+id/bt_bRegister_register"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:padding="5dp"
             android:text="Register"
             android:background="@drawable/back_button"
             android:textColor="@color/white"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_bPassword_register"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintTop_toBottomOf="@id/et_bPassword_register"/>
 
 
                 <TextView
                     android:id="@+id/tv_already_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="530dp"
+                    android:layout_marginTop="535dp"
                     android:text="@string/already_a_user_login"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintTop_toBottomOf="@id/bt_buyer"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <EditText
             android:id="@+id/et_shopName_register"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="145dp"
+                    android:layout_marginTop="120dp"
             android:drawableLeft="@drawable/ic_profile"
             android:drawablePadding="12dp"
             android:background="@drawable/back1"
@@ -204,7 +206,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/bt_buyer"/>
+            app:layout_constraintTop_toBottomOf="@id/bt_buyer"/>
 
         <EditText
             android:id="@+id/et_sAddress_register"
@@ -305,17 +307,14 @@
             android:id="@+id/bt_sRegister_register"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:padding="5dp"
             android:text="Register"
             android:background="@drawable/back_button"
             android:textColor="@color/white"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_sPassword_register"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@id/et_sPassword_register" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

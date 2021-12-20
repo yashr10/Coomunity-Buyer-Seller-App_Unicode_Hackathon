@@ -61,6 +61,13 @@ class SellerOrders : AppCompatActivity() {
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
+        //assigning header username
+        db.collection("seller").document(mAuth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                userName.text = it["shop_name"].toString()
+            }
+
         nav.setNavigationItemSelectedListener {
             drawer.closeDrawer(GravityCompat.START)
             when (it.itemId) {

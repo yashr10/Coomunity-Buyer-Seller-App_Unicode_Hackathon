@@ -67,6 +67,13 @@ class Buyer_orders : AppCompatActivity() {
             adapter = Adapter_Buyer_Orders(data, this@Buyer_orders)
         }
 
+        //assigning header username
+        db.collection("buyer").document(mAuth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                userName.text = it["Name"].toString()
+            }
+
         //getting data from firebase and displaying it in
         db.collection("buyer")
             .document(mAuth.currentUser!!.uid)

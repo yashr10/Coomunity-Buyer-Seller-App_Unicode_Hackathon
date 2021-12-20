@@ -18,6 +18,7 @@
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/ic_registration.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/register_bs_button.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/register_bs_button_clicked.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/drawable/register_bs_button_unclicked.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_all_product_desc.xml" value="0.2" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_all_products.xml" value="0.25" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_buyer_order_description.xml" value="0.25" />
@@ -25,7 +26,7 @@
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_phone_login_register.xml" value="0.25" />
-        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_product_details.xml" value="0.25" />
+        <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_product_details.xml" value="0.2" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_seller_add_product.xml" value="0.25" />
         <entry key="..\:/Users/Sahil Doshi/OneDrive/Desktop/Unicode-Internal-Hackathon/app/src/main/res/layout/activity_seller_order_description.xml" value="0.25" />
