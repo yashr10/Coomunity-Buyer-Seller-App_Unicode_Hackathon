@@ -5,42 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_all_products"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <LinearLayout
+        android:id="@+id/ll_image_seller_order"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#f8f8f8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height = "match_parent">
+        app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/im_all_products_img"
                 android:layout_width="80dp"
-                android:layout_height="85dp"
+                android:layout_height="120dp"
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_profile"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
+                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_all_products_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="30dp"
                 android:hint="Hello"
                 android:paddingLeft="5dp"
+                android:textSize="26sp"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.109"
-                app:layout_constraintStart_toEndOf="@+id/im_all_products_img"
+                app:layout_constraintStart_toEndOf="@+id/ll_image_seller_order"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -48,20 +42,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:paddingLeft="5dp"
                 android:text="Total Quantity: "
+                android:textSize="16sp"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/im_all_products_img"
+                app:layout_constraintStart_toEndOf="@+id/ll_image_seller_order"
                 app:layout_constraintTop_toBottomOf="@+id/tv_all_products_name" />
 
             <TextView
                 android:id="@+id/tv_all_products_mrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:hint="MRP"
                 android:paddingLeft="5dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -76,8 +72,9 @@
                 android:layout_marginTop="8dp"
                 android:paddingLeft="5dp"
                 android:text="TotalAmount: "
+                android:textSize="16sp"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/im_all_products_img"
+                app:layout_constraintStart_toEndOf="@+id/ll_image_seller_order"
                 app:layout_constraintTop_toBottomOf="@+id/tv_all_products_mrp" />
 
             <TextView
@@ -87,6 +84,7 @@
                 android:layout_marginTop="8dp"
                 android:hint="discounted price"
                 android:paddingLeft="5dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -100,12 +98,15 @@
                 android:text="Confirmed"
                 android:textColor="#2CDC06"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.913"
-                app:layout_constraintStart_toEndOf="@+id/tv_all_products_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.065" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toTopOf="parent"  />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#9A9A9A"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
