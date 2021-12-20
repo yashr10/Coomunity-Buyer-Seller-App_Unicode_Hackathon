@@ -54,10 +54,9 @@ class SellerProducts : AppCompatActivity() {
 
 
         productList = arrayListOf()
-
+        recyclerView = findViewById(R.id.rv_seller_products)
 
         Log.d("OnCreate", "reached")
-
 
         try {
             origin = intent.extras!!.getString("origin").toString()
@@ -109,7 +108,6 @@ class SellerProducts : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(i in documents)
                 {
-
                     productList.add(i.toObject(data_all_products::class.java))
                 }
 
@@ -117,9 +115,7 @@ class SellerProducts : AppCompatActivity() {
 
                     recyclerView.isVisible = false
                 }else{
-
                     text.isVisible = false
-
                     linearLayoutManager = LinearLayoutManager(this)
                     recyclerView.layoutManager = linearLayoutManager
                     myAdapter = SellerProductsAdapter(productList, this)

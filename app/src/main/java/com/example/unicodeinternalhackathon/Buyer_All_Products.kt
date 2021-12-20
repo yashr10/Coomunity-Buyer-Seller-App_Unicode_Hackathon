@@ -119,5 +119,42 @@ class Buyer_All_Products : AppCompatActivity() {
 
     }
 
+    override fun onRestart() {
+        super.onRestart()
 
+        data = arrayListOf()
+
+        //assinging rv and adapter
+        rv = findViewById(R.id.rv_buyer_products)
+        rv.apply {
+            layoutManager = LinearLayoutManager(this@Buyer_All_Products)
+        }
+
+
+        //getting product details from firestore
+        db.collection("seller")
+            .get()
+            .addOnSuccessListener { sellers ->
+                for (i in sellers) {
+                    db.collection("seller")
+                        .document(i["user_id"].toString())
+                        .collection("products")
+                        .get()
+                        .addOnSuccessListener { products ->
+                            for (j in products) {
+                                data.add(j.toObject(data_all_products::class.java))
+                            }
+                            rv.adapter = Adapter_All_Products(data, this@Buyer_All_Products)
+                            rv.adapter!!.notifyDataSetChanged()
+                        }
+                        .addOnFailureListener {
+                            Log.d("msg product", "some error retrieving the products")
+                        }
+                }
+            }
+            .addOnFailureListener {
+                Log.d("msg seller", "error retrieving the seller")
+            }
+
+    }
 }

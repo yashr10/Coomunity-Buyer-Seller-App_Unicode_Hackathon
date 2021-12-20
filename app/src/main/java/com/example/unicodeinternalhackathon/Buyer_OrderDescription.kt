@@ -60,11 +60,11 @@ class Buyer_OrderDescription : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 if (it["Status"] == "0") {
-                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
+                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
                 }
                 else
                 {
-                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
+                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
                 }
             }
 
