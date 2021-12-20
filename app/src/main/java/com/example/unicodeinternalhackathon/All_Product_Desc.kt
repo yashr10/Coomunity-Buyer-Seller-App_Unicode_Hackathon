@@ -140,7 +140,8 @@ class All_Product_Desc : AppCompatActivity() {
                                                         .toInt()).toString(),
                                                     "OrderId" to i["ProductId"].toString(),
                                                     "Image" to i["Image"].toString(),
-                                                    "Description" to i["Description"].toString()
+                                                    "Description" to i["Description"].toString(),
+                                                    "Status" to "0",
 
                                                 )
 

@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,10 +50,9 @@ class SellerProducts : AppCompatActivity() {
 
         Log.d("OnCreate", "reached")
 
-        recyclerView = findViewById(R.id.rv_seller_products)
-        linearLayoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = linearLayoutManager
 
+
+        val text : TextView = findViewById(R.id.tv)
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
@@ -61,11 +61,23 @@ class SellerProducts : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(i in documents)
                 {
-                    Log.d("msg", productList.toString())
+
                     productList.add(i.toObject(data_all_products::class.java))
                 }
-                myAdapter = SellerProductsAdapter(productList, this)
-                recyclerView.adapter = myAdapter
+
+                if (productList.isEmpty()){
+
+                    recyclerView.isVisible = false
+                }else{
+
+                    recyclerView = findViewById(R.id.rv_seller_products)
+                    linearLayoutManager = LinearLayoutManager(this)
+                    recyclerView.layoutManager = linearLayoutManager
+                    myAdapter = SellerProductsAdapter(productList, this)
+                    recyclerView.adapter = myAdapter
+                }
+
+
 
             }
 
@@ -131,6 +143,7 @@ class SellerProducts : AppCompatActivity() {
         Log.d("ACtivity", "onRestart")
 //        val productList: ArrayList<data_all_products> = ArrayList()
 //
+
         productList = arrayListOf()
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
@@ -142,12 +155,12 @@ class SellerProducts : AppCompatActivity() {
 
                     productList.add(it.toObject(data_all_products::class.java))
 
-                    Log.d("msg", productList.toString())
-
                 }
+
 
                 myAdapter = SellerProductsAdapter(productList, this)
                 recyclerView.adapter = myAdapter
+
                 recyclerView.adapter!!.notifyDataSetChanged()
 
             }

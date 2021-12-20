@@ -82,6 +82,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
 
 
+
                 }.addOnFailureListener {
                     Log.d("Update UNSUCCESSFUL",quant)
                 }
