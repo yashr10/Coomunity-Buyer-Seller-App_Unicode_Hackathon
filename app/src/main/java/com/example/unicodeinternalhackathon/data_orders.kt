@@ -13,5 +13,6 @@ data class data_orders(
  var TotalAmount : String = "",
  var Image:String = "",
  var Name :String = "",
- var Description : String = ""
+ var Description : String = "",
+ var Status: String = ""
 ):Parcelable

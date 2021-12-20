@@ -11,10 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -32,7 +35,7 @@ class SellerOrders : AppCompatActivity() {
     private val db = Firebase.firestore
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var recyclerView: RecyclerView
-    private lateinit var myAdapter: SellerProducts.SellerProductsAdapter
+    private lateinit var myAdapter: SellerOrdersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,15 +89,71 @@ class SellerOrders : AppCompatActivity() {
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
 
+     /*   val sellerOrder = hashMapOf(
+            "Name" to i["Name"],
+            "Quantity" to i["QuantityFulfilled"].toString(),
+            "TotalAmount" to (i["DiscountedPrice" +
+                    "" +
+                    ""].toString()
+                .toInt() * i["QuantityFulfilled"].toString()
+                .toInt()).toString(),
+            "OrderId" to i["ProductId"].toString(),
+            "Image" to i["Image"].toString(),
+            "Description" to i["Description"].toString()
 
+        )
+
+        db.collection("seller")
+            .document(sId.toString())
+            .collection("orders")
+            .document(i["ProductId"].toString())
+            .set(sellerOrder)*/
+
+        val orderList : ArrayList<data_seller_order> = ArrayList()
+
+        db.collection("seller")
+            .document(Firebase.auth.currentUser!!.uid)
+            .collection("orders")
+            .get()
+            .addOnSuccessListener {
+
+                it.forEach { queryDocumentSnapshot ->
+
+                    orderList.add(queryDocumentSnapshot.toObject(data_seller_order::class.java))
+
+                }
+                myAdapter = SellerOrdersAdapter(orderList,this)
+                recyclerView.adapter = myAdapter
+            }
 
 
 
 
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        val orderList : ArrayList<data_seller_order> = ArrayList()
+
+        db.collection("seller")
+            .document(Firebase.auth.currentUser!!.uid)
+            .collection("orders")
+            .get()
+            .addOnSuccessListener {
+
+                it.forEach { queryDocumentSnapshot ->
+
+                    orderList.add(queryDocumentSnapshot.toObject(data_seller_order::class.java))
+
+                }
+                myAdapter = SellerOrdersAdapter(orderList,this)
+                recyclerView.adapter = myAdapter
+            }
+    }
 }
 
 class SellerOrdersAdapter(
+    val orderList: ArrayList<data_seller_order>,
     val context: Context
 ) : RecyclerView.Adapter<SellerOrdersAdapter.ViewHolder>(){
 
@@ -104,6 +163,7 @@ class SellerOrdersAdapter(
         val name: TextView = v.findViewById<TextView>(R.id.tv_all_products_name)
         val amount: TextView= v.findViewById<TextView>(R.id.tv_all_products_dp)
         val quantity: TextView= v.findViewById<TextView>(R.id.tv_all_products_mrp)
+        val status: TextView= v.findViewById<TextView>(R.id.tv_status)
 
     }
 
@@ -116,15 +176,38 @@ class SellerOrdersAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.name.text = orderList[position].Name
+        holder.amount.text = orderList[position].TotalAmount
+        holder.quantity.text = orderList[position].Quantity
+
+        Glide.with(context)
+            .load(orderList[position].Image)
+            .into(holder.image)
+
+        when(orderList[position].Status){
+
+            "0" -> holder.status.isVisible = false
+            "1"-> holder.status.isVisible = true
+            "2"-> {
+                holder.status.isVisible = true
+                holder.status.text = "Rejected"
+                holder.status.setTextColor( ContextCompat.getColor(context, R.color.design_default_color_error))
+
+            }
+        }
+
+
+
         holder.itemView.setOnClickListener {
             val intent = Intent(context,Seller_OrderDescription::class.java)
-
+            intent.putExtra("Seller order",orderList[position])
             context.startActivity(intent)
         }
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+      return orderList.size
     }
 
 }

@@ -17,6 +17,13 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/black"/>
 
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Orders yet. Check again later"
+            android:layout_centerInParent="true"
+            />
         <androidx.recyclerview.widget.RecyclerView
            android:paddingTop="12dp"
             android:id="@+id/rv_seller_products"

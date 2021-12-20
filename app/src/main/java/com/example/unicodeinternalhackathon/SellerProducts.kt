@@ -9,11 +9,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +27,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class SellerProducts : AppCompatActivity() {
 
@@ -40,19 +45,49 @@ class SellerProducts : AppCompatActivity() {
     private lateinit var myAdapter: SellerProductsAdapter
     private lateinit var productList: ArrayList<data_all_products>
 
+    var MinAmount:String = ""
+    var origin:String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_products)
+
 
         productList = arrayListOf()
 
 
         Log.d("OnCreate", "reached")
 
-        recyclerView = findViewById(R.id.rv_seller_products)
-        linearLayoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = linearLayoutManager
 
+        try {
+            origin = intent.extras!!.getString("origin").toString()
+
+            if(origin == "Register")
+            {
+                val dialog = AlertDialog.Builder(this)
+                dialog.setTitle("Minimum Order Amount")
+                dialog.setMessage("Enter Minimum Order Amount")
+                val inflater = layoutInflater
+                val view = inflater.inflate(R.layout.dialog_input,null)
+                dialog.setPositiveButton("Save"){_,_ ->
+                    val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                    MinAmount = input.text.toString()
+                    db.collection("seller")
+                        .document(mAuth.currentUser!!.uid)
+                        .update("MinAmount",MinAmount)
+                }
+                dialog.setCancelable(false)
+                dialog.setView(view)
+                dialog.show()
+            }
+
+        }
+        catch(e:Exception){
+            Log.d("msg",e.message.toString())
+        }
+
+
+        val text : TextView = findViewById(R.id.tv)
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
@@ -61,11 +96,23 @@ class SellerProducts : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(i in documents)
                 {
-                    Log.d("msg", productList.toString())
+
                     productList.add(i.toObject(data_all_products::class.java))
                 }
-                myAdapter = SellerProductsAdapter(productList, this)
-                recyclerView.adapter = myAdapter
+
+                if (productList.isEmpty()){
+
+                    recyclerView.isVisible = false
+                }else{
+
+                    recyclerView = findViewById(R.id.rv_seller_products)
+                    linearLayoutManager = LinearLayoutManager(this)
+                    recyclerView.layoutManager = linearLayoutManager
+                    myAdapter = SellerProductsAdapter(productList, this)
+                    recyclerView.adapter = myAdapter
+                }
+
+
 
             }
 
@@ -103,9 +150,11 @@ class SellerProducts : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             when (it.itemId) {
                 R.id.nav_seller_orders -> {
-                    val intent = Intent(this, SellerOrders::class.java)
+                    val intent = Intent(this,SellerProducts::class.java)
+                    intent.putExtra("origin","Seller Products")
                     startActivity(intent)
                     finish()
+
                 }
                 R.id.nav_seller_all_products -> {
                     val intent = Intent(this, Seller_All_Products::class.java)
@@ -131,6 +180,7 @@ class SellerProducts : AppCompatActivity() {
         Log.d("ACtivity", "onRestart")
 //        val productList: ArrayList<data_all_products> = ArrayList()
 //
+
         productList = arrayListOf()
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
@@ -142,12 +192,12 @@ class SellerProducts : AppCompatActivity() {
 
                     productList.add(it.toObject(data_all_products::class.java))
 
-                    Log.d("msg", productList.toString())
-
                 }
+
 
                 myAdapter = SellerProductsAdapter(productList, this)
                 recyclerView.adapter = myAdapter
+
                 recyclerView.adapter!!.notifyDataSetChanged()
 
             }
