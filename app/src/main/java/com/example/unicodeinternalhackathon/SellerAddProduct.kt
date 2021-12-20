@@ -62,7 +62,7 @@ class SellerAddProduct : AppCompatActivity() {
 
             val intent = Intent()
             intent.type = "image/*"
-            intent.action = Intent.ACTION_OPEN_DOCUMENT
+            intent.action = Intent.ACTION_GET_CONTENT
             intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivityForResult(intent, 100)

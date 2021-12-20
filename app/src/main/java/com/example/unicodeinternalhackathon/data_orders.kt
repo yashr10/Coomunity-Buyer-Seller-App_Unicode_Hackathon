@@ -14,5 +14,5 @@ data class data_orders(
  var Image:String = "",
  var Name :String = "",
  var Description : String = "",
- var Status: String = ""
+ var Status: String = "0"
 ):Parcelable
