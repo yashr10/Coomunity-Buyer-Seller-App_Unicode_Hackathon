@@ -1,6 +1,7 @@
 package com.example.unicodeinternalhackathon
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 class ProductDetails : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailsBinding
-    private var imageUri : String?= null
+    private var imageUri : String = ""
     private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +35,14 @@ class ProductDetails : AppCompatActivity() {
 
         Glide.with(this)
             .load(product.Image)
-            .into( binding.ivProductDetailsImage)
+            .into(binding.ivProductDetailsImage)
 
         imageUri = product.Image
 
 
+        binding.imgProdDetailsBack.setOnClickListener {
+            finish()
+        }
 
         binding.delete.setOnClickListener{
 

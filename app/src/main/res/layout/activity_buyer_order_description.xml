@@ -86,22 +86,29 @@
             android:orientation="vertical"
             android:padding="8dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f8f8f8"
+                android:gravity="center">
+
             <ImageView
                 android:id="@+id/iv_productDetails_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:enabled="false"
                 android:padding="8dp"
                 android:src="@color/black" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:padding="8dp"
+                android:layout_marginStart="20dp"
                 android:text="Product Name"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -110,9 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:enabled="false"
-                android:padding="8dp"
-                android:textAlignment="center"
+                android:layout_marginStart="14dp"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -120,18 +125,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:padding="8dp"
+                android:layout_marginStart="20dp"
                 android:text="Description"
                 android:textColor="@color/black"
                 android:textAlignment="viewStart"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/tv_productDetails_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:enabled="false"
-                android:padding="8dp"
+                android:textSize="20sp"
                 android:textColor="@color/black" />
 
 
@@ -139,26 +146,28 @@
                 android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:padding="12dp">
+                android:layout_marginTop="12dp">
 
                 <TextView
                     android:id="@+id/tv_productDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignBaseline="@id/tv_order_quantity"
+                    android:layout_marginStart="20dp"
                     android:text="Quantity:"
                     android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
 
-                <EditText
+                <TextView
                     android:id="@+id/tv_order_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/tv_productDetails"
                     android:enabled="false"
                     android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -169,7 +178,7 @@
                     android:layout_alignParentEnd="true"
                     android:enabled="false"
                     android:textColor="@color/black"
-
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -178,43 +187,12 @@
                     android:layout_alignBaseline="@id/tv_totalAmount"
                     android:layout_toLeftOf="@id/tv_totalAmount"
                     android:text="Total Amount:"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/bt_orderDetails_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="32dp"
-                    android:visibility="invisible"
-                    android:padding = "10dp"
-                    android:text="Edit Order"
-                    android:textColor="@color/white"
-                    android:background="@drawable/back_button"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/bt_orderDetails_update"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="32dp"
-                    android:padding = "10dp"
-                    android:text="Update Order"
-                    android:textColor="@color/white"
-                    android:visibility="invisible"
-                    android:background="@drawable/back_button"/>
-
-            </RelativeLayout>
-
 
         </LinearLayout>
 
