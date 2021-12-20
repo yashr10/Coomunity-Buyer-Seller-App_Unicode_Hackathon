@@ -91,10 +91,12 @@ class SellerProducts : AppCompatActivity() {
         toolbar = findViewById(R.id.seller_products_toolbar)
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.seller_products_left_nav)
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 //        setting nav for accessing activities through left nav
         nav.setNavigationItemSelectedListener {

@@ -50,10 +50,12 @@ class SellerOrders : AppCompatActivity() {
         toolbar = findViewById(R.id.seller_orders_toolbar)
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.seller_orders_left_nav)
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         nav.setNavigationItemSelectedListener {
             drawer.closeDrawer(GravityCompat.START)
@@ -70,6 +72,11 @@ class SellerOrders : AppCompatActivity() {
                     val intent = Intent(this, SellerProducts::class.java)
                     startActivity(intent)
                     finish()
+                }
+                R.id.nav_seller_logout -> {
+                Firebase.auth.signOut()
+                startActivity(Intent(this,LoginActivity::class.java))
+                finish()
                 }
 
             }
