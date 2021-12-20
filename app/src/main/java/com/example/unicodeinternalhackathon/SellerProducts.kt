@@ -165,7 +165,7 @@ class SellerProducts : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             when (it.itemId) {
                 R.id.nav_seller_orders -> {
-                    val intent = Intent(this,SellerProducts::class.java)
+                    val intent = Intent(this,SellerOrders::class.java)
                     intent.putExtra("origin","Seller Products")
                     startActivity(intent)
                     finish()
