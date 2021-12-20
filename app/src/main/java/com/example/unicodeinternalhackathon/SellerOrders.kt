@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -143,7 +144,7 @@ class SellerOrders : AppCompatActivity() {
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
-            .collection("orders")
+            .collection("sOrder")
             .get()
             .addOnSuccessListener {
 
@@ -154,6 +155,7 @@ class SellerOrders : AppCompatActivity() {
                 }
                 myAdapter = SellerOrdersAdapter(orderList,this)
                 recyclerView.adapter = myAdapter
+                Log.d("Seller Order",orderList.toString())
             }
 
 
@@ -167,7 +169,7 @@ class SellerOrders : AppCompatActivity() {
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
-            .collection("orders")
+            .collection("sOrder")
             .get()
             .addOnSuccessListener {
 
@@ -207,12 +209,12 @@ class SellerOrdersAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.name.text = orderList[position].Name
-        holder.amount.text = orderList[position].TotalAmount
-        holder.quantity.text = orderList[position].Quantity
+        holder.name.text = orderList[position].name
+        holder.amount.text = orderList[position].totalAmount
+        holder.quantity.text = orderList[position].quantity
 
         Glide.with(context)
-            .load(orderList[position].Image)
+            .load(orderList[position].image)
             .into(holder.image)
 
         when(orderList[position].Status){
