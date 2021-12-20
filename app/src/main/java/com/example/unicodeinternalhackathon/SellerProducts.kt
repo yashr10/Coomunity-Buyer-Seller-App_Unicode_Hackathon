@@ -9,9 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -23,6 +26,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class SellerProducts : AppCompatActivity() {
 
@@ -40,9 +44,13 @@ class SellerProducts : AppCompatActivity() {
     private lateinit var myAdapter: SellerProductsAdapter
     private lateinit var productList: ArrayList<data_all_products>
 
+    var MinAmount:String = ""
+    var origin:String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_products)
+
 
         productList = arrayListOf()
 
@@ -52,6 +60,33 @@ class SellerProducts : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv_seller_products)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
+
+        try {
+            origin = intent.extras!!.getString("origin").toString()
+
+            if(origin == "Register")
+            {
+                val dialog = AlertDialog.Builder(this)
+                dialog.setTitle("Minimum Order Amount")
+                dialog.setMessage("Enter Minimum Order Amount")
+                val inflater = layoutInflater
+                val view = inflater.inflate(R.layout.dialog_input,null)
+                dialog.setPositiveButton("Save"){_,_ ->
+                    val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                    MinAmount = input.text.toString()
+                    db.collection("seller")
+                        .document(mAuth.currentUser!!.uid)
+                        .update("MinAmount",MinAmount)
+                }
+                dialog.setCancelable(false)
+                dialog.setView(view)
+                dialog.show()
+            }
+
+        }
+        catch(e:Exception){
+            Log.d("msg",e.message.toString())
+        }
 
 
         db.collection("seller")
@@ -103,9 +138,11 @@ class SellerProducts : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             when (it.itemId) {
                 R.id.nav_seller_orders -> {
-                    val intent = Intent(this, SellerOrders::class.java)
+                    val intent = Intent(this,SellerProducts::class.java)
+                    intent.putExtra("origin","Seller Products")
                     startActivity(intent)
                     finish()
+
                 }
                 R.id.nav_seller_all_products -> {
                     val intent = Intent(this, Seller_All_Products::class.java)

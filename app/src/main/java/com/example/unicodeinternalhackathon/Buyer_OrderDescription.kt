@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
@@ -14,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 
 class Buyer_OrderDescription : AppCompatActivity() {
 
-    private lateinit var binding : ActivityBuyerOrderDescriptionBinding
+    private lateinit var binding: ActivityBuyerOrderDescriptionBinding
 
     private val db = Firebase.firestore
 
@@ -44,27 +45,45 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
         }
 
+        //changing visibility of edit button as per the status of the order
+        db.collection("buyer")
+            .document(order.BuyerID)
+            .collection("orders")
+            .document(order.ProductId)
+            .get()
+            .addOnSuccessListener {
+                if (it["Status"] == "0") {
+                    binding.btOrderDetailsEdit.visibility = View.INVISIBLE
+                }
+                else
+                {
+                    binding.btOrderDetailsEdit.visibility = View.VISIBLE
+                }
+            }
+
         binding.btOrderDetailsUpdate.setOnClickListener {
 
             val quant = binding.tvOrderQuantity.text.toString()
 
             val price = order.PICost.toInt()
             val quantity = quant.toInt()
-            val amount = price*quantity
+            val amount = price * quantity
 
             db.collection("buyer")
                 .document(Firebase.auth.currentUser!!.uid)
                 .collection("orders")
                 .document(order.ProductId)
-                .update(mapOf(
-                    "Quantity" to quant,
-                    "TotalAmount" to amount.toString()
-                ))
+                .update(
+                    mapOf(
+                        "Quantity" to quant,
+                        "TotalAmount" to amount.toString()
+                    )
+                )
                 .addOnSuccessListener {
-                    binding.tvTotalAmount.setText(amount.toString())
-                    Log.d("Order Updated",quant)
+                    binding.tvTotalAmount.text = amount.toString()
+                    Log.d("Order Updated", quant)
                 }.addOnFailureListener {
-                    Log.d("Update UNSUCCESSFUL",quant)
+                    Log.d("Update UNSUCCESSFUL", quant)
                 }
 
             binding.btOrderDetailsEdit.isVisible = true
@@ -84,14 +103,11 @@ class Buyer_OrderDescription : AppCompatActivity() {
                 .delete()
                 .addOnSuccessListener {
                     Toast.makeText(this, "Order Removed Successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,Buyer_orders::class.java))
+                    startActivity(Intent(this, Buyer_orders::class.java))
                 }
 
 
         }
-
-
-
 
 
     }

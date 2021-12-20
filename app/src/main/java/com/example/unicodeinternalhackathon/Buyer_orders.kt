@@ -78,6 +78,8 @@ class Buyer_orders : AppCompatActivity() {
                 rv.adapter!!.notifyDataSetChanged()
             }
 
+
+        //setting navigation for left nav
         nav.setNavigationItemSelectedListener {
             drawer.closeDrawer(GravityCompat.START)
             when (it.itemId) {

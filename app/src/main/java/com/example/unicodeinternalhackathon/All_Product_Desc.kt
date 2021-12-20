@@ -16,7 +16,7 @@ class All_Product_Desc : AppCompatActivity() {
     //variables of firebase
     private val db = Firebase.firestore
     private val mAuth = Firebase.auth
-
+    val MinAmount = 10000
     private var tAmount: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,13 +70,13 @@ class All_Product_Desc : AppCompatActivity() {
             .into(imgProd)
 
 
-        //adding functionality of opening dialog box to button
+        //adding functionality of dialog box for taking req from buyer
         req.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
             val inflater = layoutInflater
             val layout = inflater.inflate(R.layout.dialog_input, null)
             dialog.setTitle("Add requirement")
-            dialog.setPositiveButton("Ok") { _, _ ->
+            dialog.setPositiveButton("Add") { _, _ ->
                 //adding code to update the quantity of a product when buyer adds his requirement
                 val add = layout.findViewById<EditText>(R.id.et_dialog_input)
                 val a = add.text.toString().toInt()
@@ -108,7 +108,8 @@ class All_Product_Desc : AppCompatActivity() {
                             "TotalAmount" to totalAmount.toString(),
                             "Image" to img.toString(),
                             "Name" to name.toString(),
-                            "Description" to desc.toString()
+                            "Description" to desc.toString(),
+                            "Status" to "0"
                         )
 
                         db.collection("buyer")
@@ -126,6 +127,7 @@ class All_Product_Desc : AppCompatActivity() {
                                     .addOnSuccessListener { products ->
                                         tAmount = 0
                                         for (i in products) {
+                                            //checking if products are above a minimum quantity as told by seller
                                             if (i["QuantityFulfilled"].toString()
                                                     .toInt() >= i["MinQuantity"].toString().toInt()
                                             ) {
@@ -158,6 +160,8 @@ class All_Product_Desc : AppCompatActivity() {
                                                     .document(i["ProductId"].toString())
                                                     .update("QuantityFulfilled", "0")
                                             } else {
+                                                //from here those products will added to seller orders which did not cross
+                                                //minimum quantity but their sum crosses minimum value
                                                 tAmount += i["QuantityFulfilled"].toString()
                                                     .toInt() * i["PICost"].toString().toInt()
                                                 if (tAmount >= MinAmount) {
@@ -166,6 +170,8 @@ class All_Product_Desc : AppCompatActivity() {
                                                         .collection("products")
                                                         .get()
                                                         .addOnSuccessListener { products2 ->
+                                                            // iterating and adding only those products which did not cross
+                                                            // minimum quantity
                                                             for (j in products2) {
                                                                 if (j["QuantityFulfilled"].toString()
                                                                         .toInt() < j["MinQuantity"].toString()
