@@ -37,15 +37,25 @@
                 android:layout_height="match_parent">
 
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="178dp"
-                    android:layout_height="35dp"
-                    android:gravity="start|center"
-                    android:text="TextView"
-                    android:textColor="@color/white"
+                <ImageView
+                    android:id="@+id/img_buyer_order_desc_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Add Products"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_buyer_order_desc_back"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
