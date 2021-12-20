@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.unicodeinternalhackathon.databinding.ActivityBuyerOrderDescriptionBinding
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -48,6 +49,7 @@ class Buyer_OrderDescription : AppCompatActivity() {
 
             val quant = binding.tvOrderQuantity.text.toString()
 
+            val prevQuantity = order.Quantity.toInt()
             val price = order.PICost.toInt()
             val quantity = quant.toInt()
             val amount = price*quantity
@@ -63,6 +65,23 @@ class Buyer_OrderDescription : AppCompatActivity() {
                 .addOnSuccessListener {
                     binding.tvTotalAmount.setText(amount.toString())
                     Log.d("Order Updated",quant)
+
+                        val a  : Long= prevQuantity.toLong()-quantity.toLong()
+                    val b = order.PICost.toLong()*a
+
+                        db.collection("seller")
+                            .document(order.SellerId)
+                            .collection("orders")
+                            .document(order.ProductId)
+                            .update("QuantityFulfilled",FieldValue.increment(-1*a))
+                    db.collection("seller")
+                        .document(order.SellerId)
+                        .collection("orders")
+                        .document(order.ProductId)
+                        .update("TotalAmount",FieldValue.increment(-1*a))
+
+
+
                 }.addOnFailureListener {
                     Log.d("Update UNSUCCESSFUL",quant)
                 }

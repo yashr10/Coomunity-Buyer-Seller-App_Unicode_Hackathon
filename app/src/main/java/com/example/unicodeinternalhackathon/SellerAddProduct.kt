@@ -13,6 +13,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import android.os.Messenger
+
+import android.content.pm.PackageManager
+import java.security.AccessController.getContext
 
 
 class SellerAddProduct : AppCompatActivity() {
@@ -52,9 +56,11 @@ class SellerAddProduct : AppCompatActivity() {
 
         imageText.setOnClickListener {
 
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            val intent = Intent()
             intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
+            intent.action = Intent.ACTION_OPEN_DOCUMENT
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivityForResult(intent, 100)
         }
 
@@ -73,10 +79,19 @@ class SellerAddProduct : AppCompatActivity() {
 
 
                         val filename = productId
+                        val a = storageRef.child("image/$filename")
                         storageRef.child("image/$filename").putFile(imageUri)
                             .addOnSuccessListener {
-                                imgUrl = it.storage.downloadUrl.toString()
-                                Log.d("image added", imgUrl)
+
+                       //         imgUrl = it.storage.downloadUrl.toString()
+                                a.downloadUrl.addOnSuccessListener {
+
+                                    imgUrl = it.toString()
+                                    Log.d("image added", imgUrl)
+                                }
+
+
+
                                 val product = hashMapOf(
                                     "Name" to productName.text.toString(),
                                     "Description" to productDesc.text.toString(),
@@ -140,4 +155,19 @@ class SellerAddProduct : AppCompatActivity() {
         }
 
     }
+
+   /* override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            General.REQUESTPERMISSION -> if (grantResults.length > 0 && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                //reload my activity with permission granted or use the features that required the permission
+            } else {
+               // Messenger.makeToast(getContext(), R.string.noPermissionMarshmallow)
+            }
+        }
+    }*/
 }

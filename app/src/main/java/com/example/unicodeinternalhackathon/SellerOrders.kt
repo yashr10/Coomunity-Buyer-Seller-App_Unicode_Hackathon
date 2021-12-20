@@ -1,5 +1,6 @@
 package com.example.unicodeinternalhackathon
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
@@ -27,6 +29,10 @@ class SellerOrders : AppCompatActivity() {
     private lateinit var nav: NavigationView
 
     private val mAuth = Firebase.auth
+    private val db = Firebase.firestore
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    lateinit var recyclerView: RecyclerView
+    private lateinit var myAdapter: SellerProducts.SellerProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,19 +75,28 @@ class SellerOrders : AppCompatActivity() {
             }
             true
         }
+        recyclerView = findViewById(R.id.rv_seller_orders)
+        linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManager
+
+
+
+
 
 
     }
 }
 
-class SellerOrdersAdapter() : RecyclerView.Adapter<SellerOrdersAdapter.ViewHolder>(){
+class SellerOrdersAdapter(
+    val context: Context
+) : RecyclerView.Adapter<SellerOrdersAdapter.ViewHolder>(){
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-        val image : ImageView = v.findViewById<ImageView>(R.id.iv_image)
-        val name: TextView = v.findViewById<TextView>(R.id.tv_name)
-        val amount: TextView= v.findViewById<TextView>(R.id.tv_amount)
-        val quantity: TextView= v.findViewById<TextView>(R.id.tv_quantity)
+        val image : ImageView = v.findViewById<ImageView>(R.id.im_all_products_img)
+        val name: TextView = v.findViewById<TextView>(R.id.tv_all_products_name)
+        val amount: TextView= v.findViewById<TextView>(R.id.tv_all_products_dp)
+        val quantity: TextView= v.findViewById<TextView>(R.id.tv_all_products_mrp)
 
     }
 
@@ -94,7 +109,11 @@ class SellerOrdersAdapter() : RecyclerView.Adapter<SellerOrdersAdapter.ViewHolde
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,Seller_OrderDescription::class.java)
+
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
