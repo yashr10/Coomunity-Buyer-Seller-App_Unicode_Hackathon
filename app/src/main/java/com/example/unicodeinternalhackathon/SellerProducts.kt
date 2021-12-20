@@ -70,6 +70,7 @@ class SellerProducts : AppCompatActivity() {
                     recyclerView.isVisible = false
                 }else{
 
+                    text.isVisible = false
                     recyclerView = findViewById(R.id.rv_seller_products)
                     linearLayoutManager = LinearLayoutManager(this)
                     recyclerView.layoutManager = linearLayoutManager
