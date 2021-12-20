@@ -64,21 +64,33 @@ class SellerProducts : AppCompatActivity() {
 
             if(origin == "Register")
             {
-                val dialog = AlertDialog.Builder(this)
-                dialog.setTitle("Minimum Order Amount")
-                dialog.setMessage("Enter Minimum Order Amount")
-                val inflater = layoutInflater
-                val view = inflater.inflate(R.layout.dialog_input,null)
-                dialog.setPositiveButton("Save"){_,_ ->
-                    val input = view.findViewById<EditText>(R.id.et_dialog_input)
-                    MinAmount = input.text.toString()
-                    db.collection("seller")
-                        .document(mAuth.currentUser!!.uid)
-                        .update("MinAmount",MinAmount)
-                }
-                dialog.setCancelable(false)
-                dialog.setView(view)
-                dialog.show()
+                db.collection("seller")
+                    .document(Firebase.auth.currentUser!!.uid)
+                    .get()
+                    .addOnSuccessListener {
+
+
+                        if (it["MinAmount"].toString().isNullOrEmpty()){
+
+                            val dialog = AlertDialog.Builder(this)
+                            dialog.setTitle("Minimum Order Amount")
+                            dialog.setMessage("Enter Minimum Order Amount")
+                            val inflater = layoutInflater
+                            val view = inflater.inflate(R.layout.dialog_input,null)
+                            dialog.setPositiveButton("Save"){_,_ ->
+                                val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                                MinAmount = input.text.toString()
+                                db.collection("seller")
+                                    .document(mAuth.currentUser!!.uid)
+                                    .update("MinAmount",MinAmount)
+                            }
+                            dialog.setCancelable(false)
+                            dialog.setView(view)
+                            dialog.show()
+                        }
+                    }
+
+
             }
 
         }
@@ -88,6 +100,7 @@ class SellerProducts : AppCompatActivity() {
 
 
         val text : TextView = findViewById(R.id.tv)
+        recyclerView = findViewById(R.id.rv_seller_products)
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
@@ -105,7 +118,8 @@ class SellerProducts : AppCompatActivity() {
                     recyclerView.isVisible = false
                 }else{
 
-                    recyclerView = findViewById(R.id.rv_seller_products)
+                    text.isVisible = false
+
                     linearLayoutManager = LinearLayoutManager(this)
                     recyclerView.layoutManager = linearLayoutManager
                     myAdapter = SellerProductsAdapter(productList, this)
