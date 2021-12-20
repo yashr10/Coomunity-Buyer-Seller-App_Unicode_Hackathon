@@ -34,13 +34,13 @@ class Seller_OrderDescription : AppCompatActivity() {
         val amount = binding.tvProductDetailsDp
         val image = binding.ivProductDetailsImage
 
-        name.text = order?.Name
-        description.text = order?.Description
-        quantity.text  =order?.Quantity
-        amount.text = order?.TotalAmount
+        name.text = order?.name
+        description.text = order?.description
+        quantity.text  =order?.quantity
+        amount.text = order?.totalAmount
 
         Glide.with(this)
-            .load(order?.Image)
+            .load(order?.image)
             .into(image)
 
         binding.btAccept.setOnClickListener {
@@ -48,8 +48,8 @@ class Seller_OrderDescription : AppCompatActivity() {
 
             db.collection("seller")
                 .document(Firebase.auth.currentUser!!.uid)
-                .collection("orders")
-                .document(order?.OrderId.toString())
+                .collection("sOrder")
+                .document(order?.orderId.toString())
                 .update("Status","1")
                 .addOnSuccessListener {
                     startActivity(Intent(this,SellerOrders::class.java))
@@ -64,8 +64,8 @@ class Seller_OrderDescription : AppCompatActivity() {
 
             db.collection("seller")
                 .document(Firebase.auth.currentUser!!.uid)
-                .collection("orders")
-                .document(order?.OrderId.toString())
+                .collection("sOrder")
+                .document(order?.orderId.toString())
                 .update("Status","2")
                 .addOnSuccessListener {
                     startActivity(Intent(this,SellerOrders::class.java))
