@@ -486,9 +486,9 @@ class All_Product_Desc : AppCompatActivity() {
                         Log.d("fail", it.message.toString())
                     }
 
-
-
-
+                val intent = Intent(this,Buyer_orders::class.java)
+                startActivity(intent)
+                finish()
             }
             dialog.setNegativeButton("Cancel") { _, _ ->
 

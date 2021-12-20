@@ -41,13 +41,14 @@ class SellerOrders : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var recyclerView: RecyclerView
     private lateinit var myAdapter: SellerOrdersAdapter
-    private lateinit var data:ArrayList<data_seller_order>
+    val orderList : ArrayList<data_seller_order> = ArrayList()
+//    private lateinit var data:ArrayList<data_seller_order>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_orders)
 
-        data = arrayListOf()
+//        data = arrayListOf()
 
         // variable of navigation view,
         // header variable for header of navigation
@@ -145,7 +146,7 @@ class SellerOrders : AppCompatActivity() {
             .document(i["ProductId"].toString())
             .set(sellerOrder)*/
 
-        val orderList : ArrayList<data_seller_order> = ArrayList()
+
 
         db.collection("seller")
             .document(Firebase.auth.currentUser!!.uid)
@@ -203,7 +204,7 @@ class SellerOrders : AppCompatActivity() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != "")
                 {
-                    val new_data = data.filter { data_seller_order ->
+                    val new_data = orderList.filter { data_seller_order ->
                         val s = (data_seller_order.name).lowercase()
                         newText!!.lowercase().let { s.startsWith(it) }
                     }
@@ -211,7 +212,7 @@ class SellerOrders : AppCompatActivity() {
                     recyclerView.adapter?.notifyDataSetChanged()
                 }
                 if (newText == "") {
-                    recyclerView.adapter = SellerOrdersAdapter(data, context = this@SellerOrders)
+                    recyclerView.adapter = SellerOrdersAdapter(orderList, context = this@SellerOrders)
                     recyclerView.adapter?.notifyDataSetChanged()
                 }
                 return true
