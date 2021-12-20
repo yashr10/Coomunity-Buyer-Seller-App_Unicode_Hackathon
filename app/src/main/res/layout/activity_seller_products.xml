@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".SellerProducts">
 
     <RelativeLayout
@@ -15,13 +16,16 @@
             android:id="@+id/seller_products_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"/>
+            android:background="#4586f2"
+            app:title="All Products"
+            app:titleTextColor="@color/white" />
 
         <TextView
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No Orders yet. Check again later"
+            android:textColor="@color/black"
             android:layout_centerInParent="true"
             />
 
@@ -50,6 +54,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/white"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="#3C3C3C"
+        android:theme="@style/NavigationView"
         app:headerLayout="@layout/left_nav_header"
         app:menu="@menu/menu_seller" />
 </androidx.drawerlayout.widget.DrawerLayout>

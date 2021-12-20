@@ -4,24 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".All_Product_Desc">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_board"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#4586f2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_all_prod_desc_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <ImageView
             android:id="@+id/im_products_desc"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_below="@+id/toolbar_board"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="98dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="114dp"
-
-            app:srcCompat="@drawable/ic_profile" />
+            android:background="#f8f8f8"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_profile" />
 
         <TextView
             android:id="@+id/tv_product_desc_name"
@@ -33,31 +55,22 @@
             android:layout_marginTop="30dp"
             android:hint="Product name"
             android:paddingLeft="5dp"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/t5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_product_desc_name"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="25dp"
-            android:paddingLeft="5dp"
-            android:text="Description : "
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textColorHint="@color/black"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_desc"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/t5"
+            android:layout_below="@+id/tv_product_desc_name"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="25dp"
             android:hint="description"
             android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +94,7 @@
 
         <TextView
             android:id="@+id/tv_product_desc_mrp"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@+id/tv_product_desc_desc"
             android:layout_marginStart="0dp"
@@ -90,15 +103,15 @@
             android:hint="mrp"
             android:paddingLeft="5dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/t2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/t1"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
+            android:layout_below="@+id/tv_product_desc_desc"
+            android:layout_toEndOf="@+id/tv_product_desc_mrp"
             android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
             android:text="Discounted Price : "
@@ -107,15 +120,15 @@
 
         <TextView
             android:id="@+id/tv_product_desc_dp"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_product_desc_mrp"
-            android:layout_marginStart="0dp"
+            android:layout_below="@+id/tv_product_desc_desc"
             android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t2"
             android:hint="discount"
             android:paddingLeft="5dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -133,15 +146,15 @@
 
         <TextView
             android:id="@+id/tv_product_desc_min"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_product_desc_dp"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t3"
             android:hint="quantity"
             android:paddingLeft="5dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -152,25 +165,28 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
             android:layout_marginTop="25dp"
-            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="Quantity fulfilled : "
             android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_product_desc_quantityful"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@+id/tv_product_desc_min"
             android:layout_marginStart="0dp"
             android:layout_marginTop="25dp"
             android:layout_toEndOf="@+id/t4"
             android:hint="quantity"
-            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_prod_desc_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -178,6 +194,8 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="105dp"
             android:layout_marginTop="35dp"
+            android:background="@drawable/back_button"
+            android:padding="10dp"
             android:text="Add requirement" />
 
 
