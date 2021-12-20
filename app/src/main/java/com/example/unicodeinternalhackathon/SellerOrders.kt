@@ -56,6 +56,7 @@ class SellerOrders : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         toggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(toggle)
         toggle.syncState()

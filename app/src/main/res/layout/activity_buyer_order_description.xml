@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ProductDetails">
 
@@ -28,21 +29,33 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_board"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:background="#4586f2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="178dp"
-                    android:layout_height="35dp"
-                    android:gravity="start|center"
-                    android:text="TextView"
+                <ImageView
+                    android:id="@+id/img_buyer_order_desc_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Add Products"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_buyer_order_desc_back"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -89,6 +102,7 @@
                 android:layout_marginTop="24dp"
                 android:padding="8dp"
                 android:text="Product Name"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -100,7 +114,6 @@
                 android:padding="8dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-
                 android:textSize="20sp" />
 
             <TextView
@@ -109,6 +122,7 @@
                 android:layout_marginTop="12dp"
                 android:padding="8dp"
                 android:text="Description"
+                android:textColor="@color/black"
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
@@ -134,6 +148,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignBaseline="@id/tv_order_quantity"
                     android:text="Quantity:"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
 
@@ -144,7 +159,6 @@
                     android:layout_toRightOf="@id/tv_productDetails"
                     android:enabled="false"
                     android:textColor="@color/black"
-
                     android:textStyle="bold" />
 
                 <TextView
@@ -165,8 +179,7 @@
                     android:layout_toLeftOf="@id/tv_totalAmount"
                     android:text="Total Amount:"
                     android:textStyle="bold"
-
-                    />
+                    android:textColor="@color/black" />
 
 
             </RelativeLayout>
@@ -176,23 +189,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/bt_orderDetails_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="32dp"
                     android:visibility="invisible"
-                    android:text="Edit Order" />
+                    android:padding = "10dp"
+                    android:text="Edit Order"
+                    android:textColor="@color/white"
+                    android:background="@drawable/back_button"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/bt_orderDetails_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="32dp"
+                    android:padding = "10dp"
                     android:text="Update Order"
-                    android:visibility="invisible" />
+                    android:textColor="@color/white"
+                    android:visibility="invisible"
+                    android:background="@drawable/back_button"/>
 
             </RelativeLayout>
 
