@@ -12,7 +12,8 @@ data class data_seller_order(
     var OrderId : String = "",
     var Image : String = "",
     var Description : String = "",
-    var Status: String = "0"
+    var Status: String = "0",
+    var Order_id:String = ""
 
 
 ):Parcelable
