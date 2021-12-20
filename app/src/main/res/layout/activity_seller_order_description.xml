@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ProductDetails" >
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,39 +29,34 @@
             android:id="@+id/toolbar_board"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            >
+            android:background="#4586f2">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start|center"
-                    android:text="Order"
-                    android:textSize="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.449"
-                    app:layout_constraintStart_toEndOf="@+id/back"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.727" />
-
                 <ImageView
-                    android:id="@+id/back"
+                    android:id="@+id/img_seller_order_desc_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:src="@drawable/ic_baseline_keyboard_backspace_24"
-
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Order"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_seller_order_desc_back"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -77,48 +73,58 @@
             android:orientation="vertical"
             android:padding="8dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
             <ImageView
                 android:id="@+id/iv_productDetails_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:enabled="false"
                 android:padding="8dp"
                 android:src="@color/black" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:layout_marginStart="10dp"
                 android:textStyle="bold"
-                android:text="Product Name"/>
+                android:text="Product Name"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
             <TextView
                 android:id="@+id/tv_productDetails_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_gravity="center"
                 android:enabled="false"
-                android:padding="8dp"
-                android:textAlignment="center"
                 android:textColor="@color/black"
-
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginStart="10dp"
                 android:text="Description"
-                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_productDetails_desc"
                 android:layout_width="match_parent"
-                android:padding="8dp"
+                android:layout_margin="10dp"
                 android:enabled="false"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content" />
 
@@ -128,16 +134,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="12dp"
+                android:textColor="@color/black">
 
                 <TextView
                     android:id="@+id/tv_productDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignBaseline="@id/tv_productDetails_mrp"
-                    android:text="Quantity:"
+                    android:text="Quantity: "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
-
 
                 <TextView
                     android:id="@+id/tv_productDetails_mrp"
@@ -145,9 +153,8 @@
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/tv_productDetails"
                     android:enabled="false"
-                    android:textColor="@color/black"
-
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tv_productDetails_dp"
@@ -155,25 +162,20 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:enabled="false"
-                    android:textColor="@color/black"
-
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignBaseline="@id/tv_productDetails_dp"
                     android:layout_toLeftOf="@id/tv_productDetails_dp"
-                    android:text="Total Amount:"
-                    android:textStyle="bold"
-
-                    />
-
+                    android:text="Total Amount: "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
-
-
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -181,43 +183,30 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/bt_accept"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:visibility="visible"
-                    android:text="Aceept" />
+                    android:background="@drawable/back_button"
+                    android:text="Aceept"
+                    android:textColor="@color/white"/>
 
-                <Button
-
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/bt_reject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
                     android:padding="12dp"
                     android:text="Reject"
+                    android:background="@drawable/back_button"
+                    android:textColor="@color/white"
                     android:visibility="visible" />
 
             </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
         </LinearLayout>
-
-
-
-
-
-
 
     </ScrollView>
 

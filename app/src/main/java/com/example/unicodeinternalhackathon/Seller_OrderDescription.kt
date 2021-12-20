@@ -71,7 +71,7 @@ class Seller_OrderDescription : AppCompatActivity() {
                     startActivity(Intent(this,SellerOrders::class.java))
                 }
         }
-        binding.back.setOnClickListener {
+        binding.imgSellerOrderDescBack.setOnClickListener {
 
             startActivity(Intent(this,SellerOrders::class.java))
         }
