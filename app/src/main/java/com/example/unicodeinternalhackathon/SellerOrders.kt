@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -48,6 +50,7 @@ class SellerOrders : AppCompatActivity() {
         val header = nav.getHeaderView(0)
         val userName = header.findViewById<TextView>(R.id.tv_left_nav_name)
         userName.text = mAuth.currentUser!!.displayName
+        var MinAmount: String? = ""
 
         //assigning toolbar and drawer to work simultaneously
         toolbar = findViewById(R.id.seller_orders_toolbar)
@@ -88,6 +91,25 @@ class SellerOrders : AppCompatActivity() {
                 Firebase.auth.signOut()
                 startActivity(Intent(this,LoginActivity::class.java))
                 finish()
+                }
+                R.id.nav_seller_min_amount->{
+                    val dialog = AlertDialog.Builder(this)
+                    dialog.setTitle("Minimum Order Amount")
+                    dialog.setMessage("Enter Minimum Order Amount")
+                    val inflater = layoutInflater
+                    val view = inflater.inflate(R.layout.dialog_input,null)
+                    dialog.setPositiveButton("Save"){_,_ ->
+                        val input = view.findViewById<EditText>(R.id.et_dialog_input)
+                        MinAmount = input.text.toString()
+                        db.collection("seller")
+                            .document(mAuth.currentUser!!.uid)
+                            .update("MinAmount",MinAmount)
+                    }
+                    dialog.setNegativeButton("Cancel"){_,_ ->
+
+                    }
+                    dialog.setView(view)
+                    dialog.show()
                 }
 
             }

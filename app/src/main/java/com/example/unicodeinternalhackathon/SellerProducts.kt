@@ -83,6 +83,9 @@ class SellerProducts : AppCompatActivity() {
                                     .document(mAuth.currentUser!!.uid)
                                     .update("MinAmount",MinAmount)
                             }
+                            dialog.setNegativeButton("Cancel"){_,_ ->
+
+                            }
                             dialog.setCancelable(false)
                             dialog.setView(view)
                             dialog.show()

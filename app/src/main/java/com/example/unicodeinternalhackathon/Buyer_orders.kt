@@ -99,7 +99,7 @@ class Buyer_orders : AppCompatActivity() {
                 R.id.nav_buyer_orders -> {
                     drawer.closeDrawer(GravityCompat.START)
                 }
-                R.id.nav_seller_logout -> {
+                R.id.nav_buyer_logout -> {
                     Firebase.auth.signOut()
                     startActivity(Intent(this,LoginActivity::class.java))
                     finish()
