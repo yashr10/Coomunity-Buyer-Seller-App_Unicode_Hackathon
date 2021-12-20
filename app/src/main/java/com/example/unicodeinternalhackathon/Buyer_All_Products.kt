@@ -1,6 +1,7 @@
 package com.example.unicodeinternalhackathon
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -55,6 +56,7 @@ class Buyer_All_Products : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.isDrawerIndicatorEnabled = true
+        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
