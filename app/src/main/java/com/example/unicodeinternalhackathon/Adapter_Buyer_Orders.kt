@@ -15,7 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context):RecyclerView.Adapter<Adapter_Buyer_Orders.ViewHolder>() {
+class Adapter_Buyer_Orders(val data:ArrayList<data_buyer_orders>, val context: Context):RecyclerView.Adapter<Adapter_Buyer_Orders.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,7 +30,14 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,Buyer_OrderDescription::class.java)
-            intent.putExtra("order",data[position])
+//            intent.putExtra("order",data[position])
+            intent.putExtra("name",data[position].name)
+            intent.putExtra("desc",data[position].description)
+            intent.putExtra("dp",data[position].discountedPrice)
+            intent.putExtra("min",data[position].minAmount)
+            intent.putExtra("mrp",data[position].mrp)
+            intent.putExtra("pId",data[position].productId)
+            intent.putExtra("sId",data[position].sellerId)
             context.startActivity(intent)
         }
     }
@@ -49,19 +56,19 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_orders>, val context: Context
         val tvQuant :TextView = v.findViewById(R.id.tv_buyer_order_quantity)
         val tvAmt :TextView = v.findViewById(R.id.tv_buyer_order_amount)
         val img:ImageView = v.findViewById(R.id.im_buyer_order_img)
-        fun bind(data:data_orders,context: Context)
+        fun bind(data:data_buyer_orders,context: Context)
         {
-            tvName.text = data.Name
-            tvQuant.text = data.Quantity
-            tvAmt.text = data.TotalAmount
+            tvName.text = data.name
+            tvQuant.text = data.quantity
+            tvAmt.text = data.totalAmount
             Glide.with(context)
-                .load(data.Image.toString())
+                .load(data.image.toString())
                 .into(img)
 
             db.collection("seller")
-                .document(data.SellerId)
+                .document(data.sellerId)
                 .collection("orders")
-                .document(data.ProductId)
+                .document(data.productId)
                 .get()
                 .addOnSuccessListener {
                     if(it["Status"].toString() == "2")
