@@ -60,8 +60,14 @@ class Buyer_All_Products : AppCompatActivity() {
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
+        //assigning header username
+        db.collection("buyer").document(mAuth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                userName.text = it["Name"].toString()
+            }
 
-        //assinging rv and adapter
+        //assigning rv and adapter
         rv = findViewById(R.id.rv_buyer_products)
         rv.apply {
             layoutManager = LinearLayoutManager(this@Buyer_All_Products)
