@@ -52,7 +52,7 @@ class All_Product_Desc : AppCompatActivity() {
         val dp = intent.extras!!.getString("dp")
         val min = intent.extras!!.getString("min")
         val mrp = intent.extras!!.getString("mrp")
-        val qf = intent.extras!!.getString("qf")
+    //    val qf = intent.extras!!.getString("qf")
         val pId = intent.extras!!.getString("pId")
         val sId = intent.extras!!.getString("sId")
 
@@ -71,7 +71,7 @@ class All_Product_Desc : AppCompatActivity() {
         tvDp.text = dp
         tvMin.text = min
         tvMrp.text = mrp
-        tvQf.text = qf
+    //    tvQf.text = qf
 
         Glide.with(this)
             .load(img.toString())
@@ -98,14 +98,9 @@ class All_Product_Desc : AppCompatActivity() {
                 val add = layout.findViewById<EditText>(R.id.et_dialog_input)
                 val quant = add.text.toString().toInt()
                 val total: Int = quant*dp.toString().toInt()
-               /* if (qf.toString().isEmpty()) {
-                    total = a
-                } else {
-                    val b = qf.toString().toInt()
-                    total = a + b
-                }*/
 
-                tvQf.text = total.toString()
+
+        //        tvQf.text = total.toString()
 
                 val orderId = UUID.randomUUID()
                 val userOrderId = UUID.randomUUID()
@@ -336,141 +331,142 @@ class All_Product_Desc : AppCompatActivity() {
                             buyerOrderIdAl.add(userOrderId.toString())
 
 
-                            if(quant>=min.toString().toInt()){
+                            when {
+                                quant>=min.toString().toInt() -> {
 
-                                Log.d("quant",quant.toString())
+                                    Log.d("quant",quant.toString())
 
-                                val order = hashMapOf(
-                                    "totalAmount" to total.toString(),
-                                    "quantity" to quant.toString(),
-                                    "buyerAl" to buyerAl,
-                                    "buyerOrderIdAl" to buyerOrderIdAl,
-                                    "usable"   to "0",
-                                    "productId" to pId.toString(),
-                                    "orderId" to orderId.toString(),
-                                    "name" to name.toString(),
-                                    "image" to img.toString(),
-                                    "description" to desc.toString()
-                                )
+                                    val order = hashMapOf(
+                                        "totalAmount" to total.toString(),
+                                        "quantity" to quant.toString(),
+                                        "buyerAl" to buyerAl,
+                                        "buyerOrderIdAl" to buyerOrderIdAl,
+                                        "usable"   to "0",
+                                        "productId" to pId.toString(),
+                                        "orderId" to orderId.toString(),
+                                        "name" to name.toString(),
+                                        "image" to img.toString(),
+                                        "description" to desc.toString()
+                                    )
 
-                                db.collection("orders")
-                                    .document(sId.toString())
-                                    .collection("mOrders")
-                                    .document(orderId.toString())
-                                    .set(order)
-                                    .addOnSuccessListener {
-                                        Log.d("ORDER","received 1")
+                                    db.collection("orders")
+                                        .document(sId.toString())
+                                        .collection("mOrders")
+                                        .document(orderId.toString())
+                                        .set(order)
+                                        .addOnSuccessListener {
+                                            Log.d("ORDER","received 1")
 
-                                    }
-                                val sOrder = hashMapOf(
-                                    "quantity" to quant.toString(),
-                                    "totalAmount" to total.toString(),
-                                    "productId" to pId.toString(),
-                                    "orderId" to orderId.toString(),
-                                    "name" to name.toString(),
-                                    "image" to img.toString(),
-                                    "description" to desc.toString(),
-                                    "Status" to "0"
-                                )
-                                db.collection("seller")
-                                    .document(sId.toString())
-                                    .collection("sOrder")
-                                    .document(orderId.toString())
-                                    .set(sOrder)
-                                    .addOnSuccessListener {
-                                        Log.d("ORDER","received 11")
-                                    }
+                                        }
+                                    val sOrder = hashMapOf(
+                                        "quantity" to quant.toString(),
+                                        "totalAmount" to total.toString(),
+                                        "productId" to pId.toString(),
+                                        "orderId" to orderId.toString(),
+                                        "name" to name.toString(),
+                                        "image" to img.toString(),
+                                        "description" to desc.toString(),
+                                        "Status" to "0"
+                                    )
+                                    db.collection("seller")
+                                        .document(sId.toString())
+                                        .collection("sOrder")
+                                        .document(orderId.toString())
+                                        .set(sOrder)
+                                        .addOnSuccessListener {
+                                            Log.d("ORDER","received 11")
+                                        }
 
-                            }
-                           else   if (totalAmount1+total > MinAmount){
+                                }
+                                totalAmount1+total > MinAmount -> {
 
-                                val order = hashMapOf(
-                                    "totalAmount" to total.toString(),
-                                    "quantity" to quant.toString(),
-                                    "buyerAl" to buyerAl,
-                                    "buyerOrderIdAl" to buyerOrderIdAl,
-                                    "usable"   to "0",
-                                    "productId" to pId.toString(),
-                                    "orderId" to orderId.toString(),
-                                    "name" to name.toString(),
-                                    "image" to img.toString(),
-                                    "description" to desc.toString()
-                                )
+                                    val order = hashMapOf(
+                                        "totalAmount" to total.toString(),
+                                        "quantity" to quant.toString(),
+                                        "buyerAl" to buyerAl,
+                                        "buyerOrderIdAl" to buyerOrderIdAl,
+                                        "usable"   to "0",
+                                        "productId" to pId.toString(),
+                                        "orderId" to orderId.toString(),
+                                        "name" to name.toString(),
+                                        "image" to img.toString(),
+                                        "description" to desc.toString()
+                                    )
 
-                                db.collection("orders")
-                                    .document(sId.toString())
-                                    .collection("mOrders")
-                                    .document(orderId.toString())
-                                    .set(order)
-                                    .addOnSuccessListener {
-                                        Log.d("ORDER","received 2")
+                                    db.collection("orders")
+                                        .document(sId.toString())
+                                        .collection("mOrders")
+                                        .document(orderId.toString())
+                                        .set(order)
+                                        .addOnSuccessListener {
+                                            Log.d("ORDER","received 2")
 
-                                        db.collection("orders")
-                                            .document(sId.toString())
-                                            .collection("mOrders")
-                                            .get()
-                                            .addOnSuccessListener { mainDo ->
+                                            db.collection("orders")
+                                                .document(sId.toString())
+                                                .collection("mOrders")
+                                                .get()
+                                                .addOnSuccessListener { mainDo ->
 
-                                                mainDo.forEach { document ->
+                                                    mainDo.forEach { document ->
 
-                                                    Log.d("hashmap set",document["name"].toString())
+                                                        Log.d("hashmap set",document["name"].toString())
 
-                                                    val sOrder = hashMapOf(
-                                                        "quantity" to document["quantity"].toString(),
-                                                        "totalAmount" to document["totalAmount"].toString(),
-                                                        "productId" to document["productId"].toString(),
-                                                        "name" to document["name"].toString(),
-                                                        "image" to document["image"].toString(),
-                                                        "description" to document["description"].toString(),
-                                                        "Status" to "0",
-                                                        "orderId" to document["orderId"].toString()
-                                                    )
-                                                    db.collection("seller")
-                                                        .document(sId.toString())
-                                                        .collection("sOrder")
-                                                        .document(document["orderId"].toString())
-                                                        .set(sOrder)
-                                                        .addOnSuccessListener {
-                                                            Log.d("ORDER","received 22")
-                                                        }
+                                                        val sOrder = hashMapOf(
+                                                            "quantity" to document["quantity"].toString(),
+                                                            "totalAmount" to document["totalAmount"].toString(),
+                                                            "productId" to document["productId"].toString(),
+                                                            "name" to document["name"].toString(),
+                                                            "image" to document["image"].toString(),
+                                                            "description" to document["description"].toString(),
+                                                            "Status" to "0",
+                                                            "orderId" to document["orderId"].toString()
+                                                        )
+                                                        db.collection("seller")
+                                                            .document(sId.toString())
+                                                            .collection("sOrder")
+                                                            .document(document["orderId"].toString())
+                                                            .set(sOrder)
+                                                            .addOnSuccessListener {
+                                                                Log.d("ORDER","received 22")
+                                                            }
 
-                                                    db.collection("orders")
-                                                        .document(sId.toString())
-                                                        .collection("mOrders")
-                                                        .document(document["orderId"].toString())
-                                                        .update("usable","0")
+                                                        db.collection("orders")
+                                                            .document(sId.toString())
+                                                            .collection("mOrders")
+                                                            .document(document["orderId"].toString())
+                                                            .update("usable","0")
+                                                    }
+
                                                 }
-
-                                            }
-                                    }
-                                //place seller order
+                                        }
+                                    //place seller order
 
 
+                                }
+                                else -> {
+                                    val order = hashMapOf(
+                                        "totalAmount" to total.toString(),
+                                        "quantity" to quant.toString(),
+                                        "buyerAl" to buyerAl,
+                                        "buyerOrderIdAl" to buyerOrderIdAl,
+                                        "usable"   to "1",
+                                        "productId" to pId.toString(),
+                                        "orderId" to orderId.toString(),
+                                        "name" to name.toString(),
+                                        "image" to img.toString(),
+                                        "description" to desc.toString()
+                                    )
+                                    db.collection("orders")
+                                        .document(sId.toString())
+                                        .collection("mOrders")
+                                        .document(orderId.toString())
+                                        .set(order)
+                                        .addOnSuccessListener {
+                                            Log.d("ORDER","received 3")
+                                        }
 
-                            }else{
-                                val order = hashMapOf(
-                                    "totalAmount" to total.toString(),
-                                    "quantity" to quant.toString(),
-                                    "buyerAl" to buyerAl,
-                                    "buyerOrderIdAl" to buyerOrderIdAl,
-                                    "usable"   to "1",
-                                    "productId" to pId.toString(),
-                                    "orderId" to orderId.toString(),
-                                    "name" to name.toString(),
-                                    "image" to img.toString(),
-                                    "description" to desc.toString()
-                                )
-                                db.collection("orders")
-                                    .document(sId.toString())
-                                    .collection("mOrders")
-                                    .document(orderId.toString())
-                                    .set(order)
-                                    .addOnSuccessListener {
-                                        Log.d("ORDER","received 3")
-                                    }
 
-
-
+                                }
                             }
 
                         }
