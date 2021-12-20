@@ -10,8 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-//Buyer
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_buyer"
             android:layout_width="70dp"
@@ -175,9 +173,6 @@
             app:layout_constraintTop_toBottomOf="@id/et_bPassword_register"
             app:layout_constraintVertical_bias="0.0"/>
 
-
-
-                //Seller
 
                 <TextView
                     android:id="@+id/tv_already_user"
