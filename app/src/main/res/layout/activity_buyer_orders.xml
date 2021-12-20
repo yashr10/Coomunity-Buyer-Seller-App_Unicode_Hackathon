@@ -53,7 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="#4586f2"
-                app:title="Orders" />
+                app:title="Orders"
+                app:titleTextColor="@color/white"/>
 
         </com.google.android.material.appbar.AppBarLayout>
     </RelativeLayout>

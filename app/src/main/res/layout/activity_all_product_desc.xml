@@ -88,7 +88,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
-            android:text="MRP : "
+            android:text="MRP :"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -111,10 +111,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_product_desc_desc"
-            android:layout_toEndOf="@+id/tv_product_desc_mrp"
             android:layout_marginTop="25dp"
-            android:paddingLeft="5dp"
-            android:text="Discounted Price : "
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/tv_product_desc_mrp"
+            android:text="Discounted Price :"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -140,7 +140,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="25dp"
             android:paddingLeft="5dp"
-            android:text="Min Quantity : "
+            android:text="Min Quantity :"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -167,7 +167,7 @@
             android:layout_marginTop="25dp"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:text="Quantity fulfilled : "
+            android:text="Quantity fulfilled :"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
