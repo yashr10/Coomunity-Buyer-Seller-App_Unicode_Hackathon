@@ -4,11 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+<<<<<<< HEAD
+import android.view.Menu
+import android.view.MenuInflater
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
+=======
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+>>>>>>> 459d584a7372572470e63e91ddbd6f5489c61d9a
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,7 +65,7 @@ class Seller_All_Products : AppCompatActivity() {
         toolbar = findViewById(R.id.seller_toolbar)
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.seller_left_nav)
-        toggle = ActionBarDrawerToggle(this, drawer,toolbar, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
@@ -105,26 +114,33 @@ class Seller_All_Products : AppCompatActivity() {
 
         nav.setNavigationItemSelectedListener {
             drawer.closeDrawer(GravityCompat.START)
-            when(it.itemId)
-            {
-                R.id.nav_seller_orders->{
+            when (it.itemId) {
+                R.id.nav_seller_orders -> {
                     val intent = Intent(this, SellerOrders::class.java)
                     startActivity(intent)
                     finish()
                 }
-                R.id.nav_seller_all_products->{
+                R.id.nav_seller_all_products -> {
                     drawer.closeDrawer(GravityCompat.START)
                 }
+<<<<<<< HEAD
+                R.id.nav_seller_products -> {
+                    val intent = Intent(this, SellerAddProduct::class.java)
+=======
                 R.id.nav_seller_products->{
                     val intent = Intent(this, SellerProducts::class.java)
+>>>>>>> 459d584a7372572470e63e91ddbd6f5489c61d9a
                     startActivity(intent)
                     finish()
                 }
                 R.id.nav_seller_logout -> {
                     Firebase.auth.signOut()
-                    startActivity(Intent(this,LoginActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }
+<<<<<<< HEAD
+//                R.id.nav_seller_min_amount->{
+=======
                 R.id.nav_seller_min_amount->{
                     val dialog = AlertDialog.Builder(this)
                     dialog.setTitle("Minimum Order Amount")
@@ -145,11 +161,45 @@ class Seller_All_Products : AppCompatActivity() {
                     dialog.show()
                 }
 //                R.id.nav_seller_profile->{
+>>>>>>> 459d584a7372572470e63e91ddbd6f5489c61d9a
 //
 //                }
             }
             true
         }
     }
+
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu)
+//        inflater.inflate(R.menu.menu_seller, menu)
+//
+//        val search_btn = menu.findItem(R.id.search_buyer)
+//        val search = search_btn?.actionView as SearchView
+//        search.queryHint = "Search Here"
+//
+//        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return true
+//            }
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                if (newText != "")
+//                {
+//                    val new_data = data.filter { data_all_products ->
+//                        val s = (data_all_products.Name).lowercase()
+//                        newText!!.lowercase().let { s.startsWith(it) }
+//                    }
+//                    rv.adapter = Adapter_All_Products(new_data as ArrayList<data_all_products>,this@Seller_All_Products)
+//                    rv.adapter?.notifyDataSetChanged()
+//                }
+//                if (newText == "") {
+//                    rv.adapter = Adapter_All_Products(data,this@Seller_All_Products)
+//                    rv.adapter?.notifyDataSetChanged()
+//                }
+//                return true
+//            }
+//
+//        })
+//    }
 
 }

@@ -22,4 +22,8 @@
         </item>
 
     </group>
+    <item android:id="@+id/search_seller"
+        android:title="Search_Seller"
+        android:icon = "@drawable/ic_search"
+        android:showAsAction="always"/>
 </menu>
