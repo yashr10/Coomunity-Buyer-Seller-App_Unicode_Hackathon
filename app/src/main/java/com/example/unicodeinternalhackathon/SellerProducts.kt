@@ -70,9 +70,6 @@ class SellerProducts : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener {
 
-
-                        if (it["MinAmount"].toString().isNullOrEmpty()) {
-
                             val dialog = AlertDialog.Builder(this)
                             dialog.setTitle("Minimum Order Amount")
                             dialog.setMessage("Enter Minimum Order Amount")
@@ -91,7 +88,7 @@ class SellerProducts : AppCompatActivity() {
                             dialog.setCancelable(false)
                             dialog.setView(view)
                             dialog.show()
-                        }
+
                     }
 
 

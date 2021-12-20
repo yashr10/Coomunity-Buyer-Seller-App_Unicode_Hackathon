@@ -90,18 +90,21 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_buyer_orders>, val context: C
                                     status.text = "Confirmed"
                                     status.setTextColor(Color.parseColor("#2CDC06"))
                                 }
-                                it["Status"].toString() == "0" -> {
-                                    status.text = "Pending"
+                                it["Status"].toString() == "3" -> {
+                                    status.text = "Placed"
                                     status.setTextColor(Color.parseColor("#302A2A"))
                                 }
                                 else -> {
-                                    status.text = "Placed"
+                                    status.text = "Pending"
                                     status.setTextColor(Color.parseColor("#302A2A"))
 
                                 }
                             }
 
 
+                        }else{
+                            status.text = "Pending"
+                            status.setTextColor(Color.parseColor("#302A2A"))
                         }
 
                     }

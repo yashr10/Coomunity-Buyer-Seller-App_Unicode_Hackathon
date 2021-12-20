@@ -102,7 +102,7 @@ class SellerAddProduct : AppCompatActivity() {
                                     "MRP" to productMrp.text.toString(),
                                     "DiscountedPrice" to productDiscountedPrice.text.toString(),
                                     "MinQuantity" to productMinQuantity.text.toString(),
-                                    "Image" to imgUrl.toString(),
+                                    "Image" to imgUrl,
                                     "ProductId" to productId.toString(),
                                     "QuantityFulfilled" to "0",
                                     "SellerId" to mAuth.currentUser!!.uid,
@@ -122,12 +122,6 @@ class SellerAddProduct : AppCompatActivity() {
 //                                    "QuantityFulfilled" to "0",
 //                                    "SellerId" to mAuth.currentUser!!.uid
 //                                )
-
-                                db.collection("orders1")
-                                    .document(Firebase.auth.currentUser!!.uid)
-                                    .collection("products")
-                                    .document(productId!!)
-                                    .set(product)
 
 
                                 db.collection("seller")
@@ -182,18 +176,4 @@ class SellerAddProduct : AppCompatActivity() {
 
     }
 
-   /* override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            General.REQUESTPERMISSION -> if (grantResults.length > 0 && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
-                //reload my activity with permission granted or use the features that required the permission
-            } else {
-               // Messenger.makeToast(getContext(), R.string.noPermissionMarshmallow)
-            }
-        }
-    }*/
 }
