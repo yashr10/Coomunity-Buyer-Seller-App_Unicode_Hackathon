@@ -23,7 +23,6 @@ Clicking on a particular product will open the following activity.
 Here the buyer can see the product details and place an order by clicking on the "add requirement" button.
 An Alert Dialog will open up asking for the quantity of product to be bought.
 By cicking on Add in the ALert Dialog, the order will be shown to the seller.<br>
-![u8](https://user-images.githubusercontent.com/80092236/146875618-f3a40d77-59ad-4155-9057-3577cd7c04fc.jpg)
 <br>By using the navigation drawer, the user can switch to the "Orders" Activity.<br>
 ![u13](https://user-images.githubusercontent.com/80092236/146875650-9a6dd07d-f195-4ce4-b076-c5099d7ab0c2.jpg)
 <br>Here the buyer can see the orders placed by them and also the status of the order
