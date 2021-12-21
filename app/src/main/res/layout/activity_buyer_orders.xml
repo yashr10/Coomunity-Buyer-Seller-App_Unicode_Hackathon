@@ -28,6 +28,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="No orders placed yet "
+            android:layout_centerInParent="true"/>
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_buyer_order"

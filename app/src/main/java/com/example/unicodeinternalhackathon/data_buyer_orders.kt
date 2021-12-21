@@ -18,4 +18,5 @@ data class data_buyer_orders(
     var discountedPrice: String = "",
     var mrp: String= "",
     var minAmount: String= "",
+    var shop_name :String = ""
 ) : Parcelable
