@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Add Products"
+                    android:text="Order Description"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/img_buyer_order_desc_back"
@@ -154,7 +154,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignBaseline="@id/tv_order_quantity"
                     android:layout_marginStart="20dp"
-                    android:text="Quantity:"
+                    android:text="Quantity: "
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -167,8 +167,7 @@
                     android:layout_toRightOf="@id/tv_productDetails"
                     android:enabled="false"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_totalAmount"
@@ -178,15 +177,14 @@
                     android:layout_alignParentEnd="true"
                     android:enabled="false"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignBaseline="@id/tv_totalAmount"
                     android:layout_toLeftOf="@id/tv_totalAmount"
-                    android:text="Total Amount:"
+                    android:text="Total Amount: "
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
