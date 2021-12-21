@@ -92,11 +92,11 @@ class Adapter_Buyer_Orders(val data:ArrayList<data_buyer_orders>, val context: C
                                 }
                                 it["Status"].toString() == "3" -> {
                                     status.text = "Placed"
-                                    status.setTextColor(Color.parseColor("#302A2A"))
+                                    status.setTextColor(ContextCompat.getColor(context, R.color.black))
                                 }
                                 else -> {
                                     status.text = "Pending"
-                                    status.setTextColor(Color.parseColor("#302A2A"))
+                                    status.setTextColor(ContextCompat.getColor(context, R.color.black))
 
                                 }
                             }
