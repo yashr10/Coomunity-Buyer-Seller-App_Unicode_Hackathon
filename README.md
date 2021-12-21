@@ -23,7 +23,6 @@ Clicking on a particular product will open the following activity.
 Here the buyer can see the product details and place an order by clicking on the "add requirement" button.
 An Alert Dialog will open up asking for the quantity of product to be bought.
 By cicking on Add in the ALert Dialog, the order will be shown to the seller.<br>
-![u8](https://user-images.githubusercontent.com/80092236/146875618-f3a40d77-59ad-4155-9057-3577cd7c04fc.jpg)
 <br>By using the navigation drawer, the user can switch to the "Orders" Activity.<br>
 ![u13](https://user-images.githubusercontent.com/80092236/146875650-9a6dd07d-f195-4ce4-b076-c5099d7ab0c2.jpg)
 <br>Here the buyer can see the orders placed by them and also the status of the order
@@ -40,19 +39,6 @@ By clicking on a particular item, the buyer will be able to see the order descri
 
 ![u14](https://user-images.githubusercontent.com/80092236/146875655-e0ece36b-cf5b-4d45-b49d-a9c8fee160b7.jpg)
 ![u16](https://user-images.githubusercontent.com/80092236/146875673-3f24611f-b2a1-4359-b86f-bb592a4c3e92.jpg)
-<b>Registration as Buyer</b>\n
-If you register as buyer, the following activity will be open up first.
-Here the buyer can see all the products available that the sellers have put up for sale.
-The buyer can also search for a particular product by name.
-Clicking on a particular product will open the following activity.
-Here the buyer can see the product details and place an order by clicking on the "add requirement" button.
-An Alert Dialog will open up asking for the quantity of product to be bought.
-By cicking on Add in the ALert Dialog, the order will be shown to the seller.
-By using the navigation drawer, the user can switch to the "Orders" Activity.
-Here the buyer can see the orders placed by them and also the status of the order
-The buyer can also search for a particular order by name.
-By clicking on a particular item, the buyer will be able to see the order description.
-There is an option for the user to log out of their account in the navigation drawer.
 
 
 <b>Registered as Seller</b><br>
