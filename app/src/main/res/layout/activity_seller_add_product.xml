@@ -43,6 +43,11 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_bar"
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,76 +55,11 @@
         android:layout_below="@id/app_bar"
         android:orientation="vertical">
 
-
-        <EditText
-            android:id="@+id/et_product_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Product Name"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="#808080" />
-
-        <EditText
-            android:id="@+id/et_productDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Product Description"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="#808080" />
-
-        <EditText
-            android:id="@+id/et_MRP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:hint="MRP"
-            android:inputType="number"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="#808080" />
-
-        <EditText
-            android:id="@+id/et_product_discountedPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Discounted Price"
-            android:inputType="number"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="#808080" />
-
-        <EditText
-            android:id="@+id/et_minQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Minimum Quantity for discount"
-            android:inputType="number"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="#808080" />
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:background="#f8f8f8"
             android:padding="8dp">
 
@@ -147,13 +87,120 @@
                 app:layout_constraintVertical_bias="0.504" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="18dp"
+    android:text="Product Name"
+    android:textStyle="bold"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    />
+        <EditText
+            android:id="@+id/et_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Product Name"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#808080" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Product Description"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            />
+
+        <EditText
+            android:id="@+id/et_productDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Product Description"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#808080" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Product MRP"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            />
+        <EditText
+            android:id="@+id/et_MRP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="MRP"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#808080" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Discounted Price"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            />
+
+        <EditText
+            android:id="@+id/et_product_discountedPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Discounted Price"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#808080" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Minimum Quantity to avail discount"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            />
+        <EditText
+            android:id="@+id/et_minQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Minimum Quantity for discount"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#808080" />
+
+
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_addProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="36dp"
             android:background="@drawable/back_button"
             android:padding="10dp"
             android:text="add product"
@@ -161,6 +208,7 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

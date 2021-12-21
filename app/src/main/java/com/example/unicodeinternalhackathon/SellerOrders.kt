@@ -159,9 +159,18 @@ class SellerOrders : AppCompatActivity() {
                     orderList.add(queryDocumentSnapshot.toObject(data_seller_order::class.java))
 
                 }
-                myAdapter = SellerOrdersAdapter(orderList,this)
-                recyclerView.adapter = myAdapter
-                Log.d("Seller Order",orderList.toString())
+
+                if (orderList.isEmpty()){
+
+                    recyclerView.isVisible =false
+                }else{
+
+                    myAdapter = SellerOrdersAdapter(orderList,this)
+                    recyclerView.adapter = myAdapter
+                    Log.d("Seller Order",orderList.toString())
+                    findViewById<TextView>(R.id.tv_text).isVisible = false
+                }
+
             }
 
 

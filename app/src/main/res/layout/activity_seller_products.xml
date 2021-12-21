@@ -24,7 +24,7 @@
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Orders yet. Check again later"
+            android:text="No Products added yet. Click on floating button to add product"
             android:textColor="@color/black"
             android:layout_centerInParent="true"
             />
