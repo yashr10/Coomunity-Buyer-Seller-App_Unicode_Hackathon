@@ -40,3 +40,32 @@ By clicking on a particular item, the buyer will be able to see the order descri
 
 ![u14](https://user-images.githubusercontent.com/80092236/146875655-e0ece36b-cf5b-4d45-b49d-a9c8fee160b7.jpg)
 ![u16](https://user-images.githubusercontent.com/80092236/146875673-3f24611f-b2a1-4359-b86f-bb592a4c3e92.jpg)
+<b>Registration as Buyer</b>\n
+If you register as buyer, the following activity will be open up first.
+Here the buyer can see all the products available that the sellers have put up for sale.
+The buyer can also search for a particular product by name.
+Clicking on a particular product will open the following activity.
+Here the buyer can see the product details and place an order by clicking on the "add requirement" button.
+An Alert Dialog will open up asking for the quantity of product to be bought.
+By cicking on Add in the ALert Dialog, the order will be shown to the seller.
+By using the navigation drawer, the user can switch to the "Orders" Activity.
+Here the buyer can see the orders placed by them and also the status of the order
+The buyer can also search for a particular order by name.
+By clicking on a particular item, the buyer will be able to see the order description.
+There is an option for the user to log out of their account in the navigation drawer.
+
+
+<b>Registered as Seller</b><br>
+When user registers as seller the user is taken to your products activity in the app .
+If the user has just registered then he will be prompted with AlertDialog box where he will be asked to input minimum amount for order.
+On the your products activty user can see all of his products in a recycleview which has some of the details of that product.
+This includes name of product, mrp of product and discounted price of product.
+A floating button is visible which can be used to add new products.
+On clicking the product seller will be taken product description activity where he can update details of the prducts and also delete the product
+On click of floating button a new add product activity will be opened where user will have to add details of new product which includes name, product description, 
+product mrp, discounted price, minimum quantity.
+There is a left nav for users using which user can open different acitvities.
+A user can open orders activity from left nav where he can see all his order and some details of particular order, on clicking the order he will be taken to order details activity where he can see all the details of the order and accept or reject a particular order.
+From all products in left nav user will be taken to all products activity where he can see all the listed products and some of its details, on clicking a particular product he can see all the details of the listed products which include product name, comapany name, mrp of product and min quantity of the product 
+Min amount in left opens up a alertdialog box from where user can update his min amount.
+Logout in left nav logs the user out of the app
