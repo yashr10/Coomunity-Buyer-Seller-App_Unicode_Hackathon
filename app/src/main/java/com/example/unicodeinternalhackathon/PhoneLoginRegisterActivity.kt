@@ -33,11 +33,13 @@ class PhoneLoginRegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_phone_login_register)
 
         mAuth = FirebaseAuth.getInstance()
-        var isBuyer: Boolean? = null
+        var isBuyer: Boolean? = true
 
         ph_bt_buyer.setOnClickListener {
-            ph_bt_buyer.background = AppCompatResources.getDrawable(this,R.drawable.back_button_clicked)
-            ph_bt_seller.background = AppCompatResources.getDrawable(this,R.drawable.back_button)
+            ph_bt_buyer.background = AppCompatResources.getDrawable(this,
+                R.drawable.register_bs_button_clicked)
+            ph_bt_seller.background = AppCompatResources.getDrawable(this,
+                R.drawable.register_bs_button_unclicked)
             isBuyer = true
             ph_et_bName_register.visibility = View.VISIBLE
             ph_et_bAddress_register.visibility = View.VISIBLE
@@ -56,9 +58,9 @@ class PhoneLoginRegisterActivity : AppCompatActivity() {
         }
         ph_bt_seller.setOnClickListener {
             ph_bt_seller.background = AppCompatResources.getDrawable(this,
-                R.drawable.back_button_clicked)
+                R.drawable.register_bs_button_clicked)
             ph_bt_buyer.background = AppCompatResources.getDrawable(this,
-                R.drawable.back_button)
+                R.drawable.register_bs_button_unclicked)
             isBuyer = false
             ph_et_shopName_register.visibility = View.VISIBLE
             ph_et_sAddress_register.visibility = View.VISIBLE
@@ -275,6 +277,12 @@ class PhoneLoginRegisterActivity : AppCompatActivity() {
                 // Save verification ID and resending token so we can use them later
                 storedVerificationId = verificationId
                 resendToken = token
+
+                Toast.makeText(
+                    this@PhoneLoginRegisterActivity,
+                    "OTP Sent",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
