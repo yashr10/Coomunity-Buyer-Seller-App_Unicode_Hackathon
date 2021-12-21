@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -64,10 +65,7 @@ class Buyer_orders : AppCompatActivity() {
 
 //        recyclerview for order list
         rv = findViewById(R.id.rv_buyer_orders)
-        rv.apply {
-            layoutManager = LinearLayoutManager(this@Buyer_orders)
-            adapter = Adapter_Buyer_Orders(data, this@Buyer_orders)
-        }
+
 
         //assigning header username
         db.collection("buyer").document(mAuth.currentUser!!.uid)
@@ -85,7 +83,18 @@ class Buyer_orders : AppCompatActivity() {
                 for (i in orders) {
                     data.add(i.toObject(data_buyer_orders::class.java))
                 }
-                rv.adapter!!.notifyDataSetChanged()
+
+                if (data.isEmpty()){
+                    rv.isVisible = false
+                }else{
+                    findViewById<TextView>(R.id.tv_text).isVisible = false
+                    rv.apply {
+                        layoutManager = LinearLayoutManager(this@Buyer_orders)
+                        adapter = Adapter_Buyer_Orders(data, this@Buyer_orders)
+                    }
+                    rv.adapter!!.notifyDataSetChanged()
+                }
+
             }
 
 

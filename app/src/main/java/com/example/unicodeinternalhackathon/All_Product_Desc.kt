@@ -54,6 +54,7 @@ class All_Product_Desc : AppCompatActivity() {
 
         val pId = intent.extras!!.getString("pId")
         val sId = intent.extras!!.getString("sId")
+        val shop = intent.extras!!.getString("shop_name")
 
         //setting findview by id to put value sin the fields of product details page
         val tvName = findViewById<TextView>(R.id.tv_product_desc_name)
@@ -62,6 +63,7 @@ class All_Product_Desc : AppCompatActivity() {
         val tvDp = findViewById<TextView>(R.id.tv_product_desc_dp)
         val tvMin = findViewById<TextView>(R.id.tv_product_desc_min)
         val tvMrp = findViewById<TextView>(R.id.tv_product_desc_mrp)
+        val company = findViewById<TextView>(R.id.company)
 
         //putting data in product details page
         tvName.text = name
@@ -69,6 +71,7 @@ class All_Product_Desc : AppCompatActivity() {
         tvDp.text = dp
         tvMin.text = min
         tvMrp.text = mrp
+        company.append(shop)
 
 
         Glide.with(this)
@@ -182,7 +185,8 @@ class All_Product_Desc : AppCompatActivity() {
                                         "orderId" to document["orderId"].toString(),
                                         "discountedPrice" to dp.toString(),
                                         "mrp" to mrp.toString(),
-                                        "minAmount" to MinAmount.toString()
+                                        "minAmount" to MinAmount.toString(),
+                                        "shop_name" to shop.toString()
 
                                     )
 
@@ -228,7 +232,8 @@ class All_Product_Desc : AppCompatActivity() {
                                 "orderId" to sameId,
                                 "discountedPrice" to dp.toString(),
                                 "mrp" to mrp.toString(),
-                                "minAmount" to MinAmount.toString()
+                                "minAmount" to MinAmount.toString(),
+                                "shop_name" to shop.toString()
 
                             )
 
@@ -309,7 +314,8 @@ class All_Product_Desc : AppCompatActivity() {
                                 "orderId" to orderId.toString(),
                                 "discountedPrice" to dp.toString(),
                                 "mrp" to mrp.toString(),
-                                "minAmount" to MinAmount.toString()
+                                "minAmount" to MinAmount.toString(),
+                                "shop_name" to shop.toString()
 
                             )
 

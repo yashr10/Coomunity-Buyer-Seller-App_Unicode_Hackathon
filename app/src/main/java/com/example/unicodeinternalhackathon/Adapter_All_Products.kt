@@ -36,6 +36,7 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
             intent.putExtra("qf", data[position].QuantityFulfilled)
             intent.putExtra("pId",data[position].ProductId)
             intent.putExtra("sId",data[position].SellerId)
+            intent.putExtra("shop_name",data[position].shop_name)
             context.startActivity(intent)
         }
     }
@@ -51,12 +52,14 @@ class Adapter_All_Products(var data: ArrayList<data_all_products>, private val c
         private var tvMrp: TextView = v.findViewById(R.id.tv_all_products_mrp)
         private var tvDp: TextView = v.findViewById(R.id.tv_all_products_dp)
         var img: ImageView = v.findViewById(R.id.im_all_products_img)
+        var companyName :TextView = v.findViewById(R.id.textView)
 
         // function that assigns data to recyclerview fields
         fun bind(data: data_all_products, context: Context) {
             tvName.text = data.Name
             tvDp.text = data.DiscountedPrice
             tvMrp.text = data.MRP
+            companyName.append(data.shop_name)
             Glide.with(context)
                 .load(data.Image)
                 .into(img)

@@ -96,18 +96,7 @@ class SellerAddProduct : AppCompatActivity() {
                                 }
 
 
-                                val product = hashMapOf(
-                                    "Name" to productName.text.toString(),
-                                    "Description" to productDesc.text.toString(),
-                                    "MRP" to productMrp.text.toString(),
-                                    "DiscountedPrice" to productDiscountedPrice.text.toString(),
-                                    "MinQuantity" to productMinQuantity.text.toString(),
-                                    "Image" to imgUrl,
-                                    "ProductId" to productId.toString(),
-                                    "QuantityFulfilled" to "0",
-                                    "SellerId" to mAuth.currentUser!!.uid,
-                                    "totalAmount" to "0"
-                                )
+
 
 //                                val x = UUID.randomUUID().toString()
 //                                val mOrder = hashMapOf(
@@ -126,22 +115,42 @@ class SellerAddProduct : AppCompatActivity() {
 
                                 db.collection("seller")
                                     .document(Firebase.auth.currentUser!!.uid)
-                                    .collection("products")
-                                    .document(productId!!)
-                                    .set(product)
+                                    .get()
                                     .addOnSuccessListener {
-                                        Log.d("SellerAddProduct", product.toString())
 
-                                        startActivity(Intent(this, SellerProducts::class.java))
-                                        finish()
+                                        val product = hashMapOf(
+                                            "Name" to productName.text.toString(),
+                                            "Description" to productDesc.text.toString(),
+                                            "MRP" to productMrp.text.toString(),
+                                            "DiscountedPrice" to productDiscountedPrice.text.toString(),
+                                            "MinQuantity" to productMinQuantity.text.toString(),
+                                            "Image" to imgUrl,
+                                            "ProductId" to productId.toString(),
+                                            "QuantityFulfilled" to "0",
+                                            "SellerId" to mAuth.currentUser!!.uid,
+                                            "shop_name" to it["shop_name"].toString()
+                                        )
 
-                                    }.addOnFailureListener {
-                                        Toast.makeText(
-                                            this,
-                                            "Failed to add product",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        db.collection("seller")
+                                            .document(Firebase.auth.currentUser!!.uid)
+                                            .collection("products")
+                                            .document(productId!!)
+                                            .set(product)
+                                            .addOnSuccessListener {
+                                                Log.d("SellerAddProduct", product.toString())
+
+                                                startActivity(Intent(this, SellerProducts::class.java))
+                                                finish()
+
+                                            }.addOnFailureListener {
+                                                Toast.makeText(
+                                                    this,
+                                                    "Failed to add product",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
                                     }
+
                             }
                     } else {
                         Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()

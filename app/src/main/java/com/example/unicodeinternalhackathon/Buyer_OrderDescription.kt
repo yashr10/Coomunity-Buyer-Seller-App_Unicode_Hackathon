@@ -38,6 +38,8 @@ class Buyer_OrderDescription : AppCompatActivity() {
         binding.tvProductDetailsDesc.text = order.description
         binding.tvOrderQuantity.setText(order.quantity)
         binding.tvTotalAmount.text = order.totalAmount
+        binding.tvProductDetailsCompany.text = order.shop_name
+
 
         binding.imgBuyerOrderDescBack.setOnClickListener {
             finish()

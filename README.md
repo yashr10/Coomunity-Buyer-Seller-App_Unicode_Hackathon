@@ -20,7 +20,7 @@ Once registered, the following is the login
 ![u9](https://user-images.githubusercontent.com/80092236/146875626-45f8cae6-2521-44cd-8749-d3b24a1e74d8.jpg)
 ![u10](https://user-images.githubusercontent.com/80092236/146875727-de1bbc6b-685a-4667-aa9e-cb765f5230c2.jpg)
 ![u11](https://user-images.githubusercontent.com/80092236/146875729-e4d26e92-276c-4141-8206-330a4ea65ab2.jpg)
-![u12](https://user-images.githubusercontent.com/80092236/146876594-500dfecd-847d-4540-aaf2-3aff09a24afe.jpg)
+![u12](https://user-images.githubusercontent.com/80092236/146877406-ccd5dd54-1ca5-4d0c-b646-ff661c858943.jpg)
 ![u13](https://user-images.githubusercontent.com/80092236/146875650-9a6dd07d-f195-4ce4-b076-c5099d7ab0c2.jpg)
 ![u14](https://user-images.githubusercontent.com/80092236/146875655-e0ece36b-cf5b-4d45-b49d-a9c8fee160b7.jpg)
 ![u15](https://user-images.githubusercontent.com/80092236/146875658-2a268ff9-2654-4fe3-8af0-8c98f1e065aa.jpg)
