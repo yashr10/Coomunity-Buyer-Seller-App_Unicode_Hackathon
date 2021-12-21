@@ -26,6 +26,15 @@
             android:layout_below="@id/seller_orders_toolbar"
             android:padding="8dp"
             android:paddingTop="12dp" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No Orders yet. Check again later"
+            android:textStyle="bold" />
+
         <!-- app:layout_constraintBottom_toBottomOf="parent"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toStartOf="parent"
