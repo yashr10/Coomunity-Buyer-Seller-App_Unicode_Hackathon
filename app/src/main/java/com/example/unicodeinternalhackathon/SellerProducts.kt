@@ -282,6 +282,7 @@ class SellerProductsAdapter(
         val name: TextView = v.findViewById(R.id.tv_all_products_name)
         val mrp: TextView = v.findViewById(R.id.tv_all_products_mrp)
         val discountedPrice: TextView = v.findViewById(R.id.tv_all_products_dp)
+        val invisible: TextView = v.findViewById(R.id.textView)
 
     }
 
@@ -298,6 +299,7 @@ class SellerProductsAdapter(
         holder.name.text = productList[position].Name
         holder.discountedPrice.text = productList[position].DiscountedPrice
         holder.mrp.text = productList[position].MRP
+        holder.invisible.isVisible = false
 
         Glide.with(context)
             .load(productList[position].Image)

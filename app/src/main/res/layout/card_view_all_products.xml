@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_width="match_parent"
+
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -11,6 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="130dp"
         android:background="#f8f8f8"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -32,7 +34,7 @@
         android:id="@+id/tv_all_products_name"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="30dp"
         android:paddingLeft="5dp"
         android:text="Hello"
@@ -41,32 +43,32 @@
         app:layout_constraintStart_toEndOf="@+id/ll_image"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
         android:paddingLeft="5dp"
         android:text="MRP : "
-        android:textSize="16sp"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/ll_image"
-        app:layout_constraintTop_toBottomOf="@+id/tv_all_products_name" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/tv_all_products_mrp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:hint="MRP"
         android:paddingLeft="5dp"
-        android:textSize="16sp"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tv3"
-        app:layout_constraintTop_toBottomOf="@+id/tv_all_products_name" />
+        app:layout_constraintTop_toTopOf="@+id/tv3" />
 
     <TextView
         android:id="@+id/tv5"
@@ -76,8 +78,11 @@
         android:layout_marginTop="8dp"
         android:paddingLeft="5dp"
         android:text="Discounted Price : "
-        android:textSize="16sp"
         android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintRight_toLeftOf="@id/tv_all_products_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/ll_image"
         app:layout_constraintTop_toBottomOf="@+id/tv_all_products_mrp" />
 
@@ -85,20 +90,33 @@
         android:id="@+id/tv_all_products_dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="6dp"
         android:hint="discounted price"
         android:paddingLeft="5dp"
-        android:textSize="16sp"
         android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toEndOf="@+id/tv5"
-        app:layout_constraintTop_toBottomOf="@+id/tv_all_products_mrp" />
+        app:layout_constraintTop_toTopOf="@id/tv5"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#9A9A9A"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Company Name: "
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/tv_all_products_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_all_products_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

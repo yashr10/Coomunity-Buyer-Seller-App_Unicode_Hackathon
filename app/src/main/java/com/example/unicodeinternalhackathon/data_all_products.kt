@@ -13,7 +13,8 @@ data class data_all_products(
     var Name: String = "",
     var QuantityFulfilled:String = "",
     var ProductId:String = "",
-    var SellerId:String = ""
+    var SellerId:String = "",
+    var shop_name : String = ""
 ):Parcelable
 
 
