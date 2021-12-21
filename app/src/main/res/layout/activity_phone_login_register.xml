@@ -7,44 +7,56 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    //Buyer
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ph_bt_buyer"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="78dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginTop="20dp"
         android:padding="5dp"
-        android:background="@drawable/back_button"
+        android:background="@drawable/register_bs_button_clicked"
         android:text="Buyer"
         android:textStyle="normal"
         android:textSize="11sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ph_bt_seller"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="78dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="20dp"
         android:padding="5dp"
         android:text="Seller"
         android:textStyle="normal"
         android:textSize="11sp"
-        android:textColor="@color/white"
-        android:background="@drawable/back_button"
+        android:textColor="@color/black"
+        android:background="@drawable/register_bs_button_unclicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Registration"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ph_bt_buyer"/>
 
     <EditText
         android:id="@+id/ph_et_bName_register"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="100dp"
         android:drawableLeft="@drawable/ic_profile"
         android:drawablePadding="12dp"
         android:background="@drawable/back1"
@@ -53,11 +65,10 @@
         android:padding="8dp"
         android:textColorHint="#808080"
         android:textColor="@color/black"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ph_bt_buyer"/>
+        app:layout_constraintTop_toBottomOf="@id/ph_bt_buyer"/>
 
     <EditText
         android:id="@+id/ph_et_bAddress_register"
@@ -68,7 +79,6 @@
         android:drawablePadding="12dp"
         android:background="@drawable/back1"
         android:hint="Address"
-        android:visibility="gone"
         android:inputType="textPostalAddress"
         android:padding="8dp"
         android:textColorHint="#808080"
@@ -89,7 +99,6 @@
         android:hint="Registration Number"
         android:inputType = "numberDecimal"
         android:padding="8dp"
-        android:visibility="gone"
         android:textColorHint="#808080"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +115,6 @@
         android:drawablePadding="12dp"
         android:background="@drawable/back1"
         android:hint="Phone Number"
-        android:visibility="gone"
         android:inputType = "numberDecimal"
         android:padding="8dp"
         android:textColorHint="#808080"
@@ -127,7 +135,6 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="8dp"
-        android:visibility="gone"
         android:textColorHint="#808080"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,25 +146,20 @@
         android:id="@+id/ph_bt_bSendOTP_register"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:padding="5dp"
         android:text="Send OTP"
         android:background="@drawable/back_button"
         android:textColor="@color/white"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ph_et_bPhNo_register"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/ph_et_bPhNo_register" />
 
-    //Seller
     <EditText
         android:id="@+id/ph_et_shopName_register"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="100dp"
         android:drawableLeft="@drawable/ic_profile"
         android:drawablePadding="12dp"
         android:background="@drawable/back1"
@@ -168,9 +170,8 @@
         android:textColorHint="#808080"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ph_bt_buyer"/>
+        app:layout_constraintTop_toBottomOf="@id/ph_bt_buyer"/>
 
     <EditText
         android:id="@+id/ph_et_sAddress_register"
@@ -252,7 +253,7 @@
         android:id="@+id/ph_bt_sSendOTP_register"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:padding="5dp"
         android:text="Send OTP"
         android:background="@drawable/back_button"
@@ -260,7 +261,6 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ph_et_sPhNo_register"
         app:layout_constraintVertical_bias="0.0" />
@@ -317,12 +317,12 @@
         android:id="@+id/ph_tv_already_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="455dp"
         android:layout_marginBottom="90dp"
         android:text="@string/already_a_user_login"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ph_bt_buyer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

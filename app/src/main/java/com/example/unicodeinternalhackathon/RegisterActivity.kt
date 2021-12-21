@@ -22,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        var isBuyer: Boolean? = null
+        var isBuyer: Boolean? = true
         mAuth = FirebaseAuth.getInstance()
 
         bt_buyer.setOnClickListener {

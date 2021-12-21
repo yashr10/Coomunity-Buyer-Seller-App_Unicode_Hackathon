@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="5dp"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="8dp"
+        android:backgroundTint="#E4E2E2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +23,7 @@
             android:layout_margin="5dp"
             android:inputType="number"
             android:textColor="@color/black"
-            android:hint="Enter Quantity"
+            android:hint="Enter Here"
             android:paddingLeft="5dp" />
 
     </androidx.cardview.widget.CardView>
